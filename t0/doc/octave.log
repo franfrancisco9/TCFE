@@ -1,0 +1,61 @@
+Symbolic pkg v2.9.0: Python communication link active, SymPy v1.5.1.
+i(t) = (symfun)
+
+    d        
+  C⋅──(vo(t))
+    dt       
+
+
+
+KVL equation:
+vi(t) = (symfun)
+
+      d                
+  C⋅R⋅──(vo(t)) + vo(t)
+      dt               
+
+
+
+Solution is of the formv(t) = (symfun) vo_f(t) + voₙ(t)
+
+
+Natural solution:
+vi(t) = (symfun) 0
+i_n(t) = (symfun)
+
+    d         
+  C⋅──(voₙ(t))
+    dt        
+
+
+
+ Natural solution is of the formvo_n(t) = (symfun)
+
+     t⋅wn
+  A⋅ℯ    
+
+ans = (sym)
+
+     t⋅wn       d             
+  A⋅ℯ     + C⋅R⋅──(voₙ(t)) = 0
+                dt            
+
+ans = (sym)
+
+            t⋅wn      t⋅wn    
+  A⋅C⋅R⋅wn⋅ℯ     + A⋅ℯ     = 0
+
+ans = (sym) C⋅R⋅wn + 1 = 0
+ans = (sym)
+
+  -1 
+  ───
+  C⋅R
+
+R =  1000
+C =  0.00000010000
+f =  1000
+Zc =     0.00000 - 1591.54943i
+Cgain =  0.71696 - 0.45048i
+Gain =  0.84673
+Phase = -0.56098
