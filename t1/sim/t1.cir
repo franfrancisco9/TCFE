@@ -1,0 +1,53 @@
+*voltage divider netlist
+.options savecurrents
+
+Va Node1 Node2 DC 5.24204797361 
+R1 Node1 Node6 1.01949191994e+03
+R2 Node5 Node6 2.05054429461e+03
+R3 Node7 Node6 3.09286027724e+03
+R4 Node7 Node2 4.12838973576e+03
+R5 Node7 Node4 3.06635427647e+03
+R6 Node3 Node8 2.01254230153e+03
+R7 0 Node3 1.00502981701e+03 
+Id 0 Node4 DC 1.01905568201e-03
+
+*Vc
+VHLIM Node2 Node8 0V
+HLIM Node7 0 VHLIM 8.12820254987e+03 
+*end Vc 
+
+*Ib
+GCMIb Node4 Node5 Node6 Node7 7.23185131759e-03
+*end Ib
+
+.control
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+print v(Node6,Node7)
+echo  "op_END"
+	
+.endc
+
+*R1 = 1.01949191994 
+*R2 = 2.05054429461 
+*R3 = 3.09286027724 
+*R4 = 4.12838973576 
+*R5 = 3.06635427647 
+*R6 = 2.01254230153 
+*R7 = 1.00502981701 
+*Va = 5.24204797361 
+*Id = 1.01905568201 
+*Kb = 7.23185131759 
+*Kc = 8.12820254987 
+.end
+
+
+
+

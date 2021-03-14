@@ -1,0 +1,90 @@
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+* supply voltage
+Vcc vcc 0 10.0
+
+* input voltage source
+Vin 1 0 0.0 ac 1.0 sin(0 .1 100k)
+
+Rs 1 2 1k
+
+* input capacitor (DC block)
+Cb 2 base 1uF
+
+Rf coll base 50k
+
+Q1 coll base emit P2model
+
+Rc vcc coll 300
+
+Re emit 0 100
+
+Ce emit 0 10uF
+
+.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+print Vcc
+print @Q1[ic]
+print @Rf[i]
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 10e-3
+
+hardcopy trans.ps v(coll) v(base)
+echo trans_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+
+ac dec 10 10 100MEG
+
+hardcopy acm.ps db(v(coll)) v(base)
+echo acm_FIG
+hardcopy acp.ps v(base)
+echo acp_FIG
+
+*plot db(v(coll))
+*plot vp(coll)
+
+echo "********************************************"
+echo  "Input impedance"
+echo "********************************************"
+
+hardcopy zim.ps abs(v(coll)/((v(1)-v(2))/1k))
+echo zim_FIG
+
+quit
+.endc
+
+.end

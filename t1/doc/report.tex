@@ -1,0 +1,160 @@
+
+% ----------------------------------------------------------------------
+%  Set the document class
+% ----------------------------------------------------------------------
+\documentclass[11pt,a4paper,twoside]{article}
+
+% ----------------------------------------------------------------------
+% Define external packages, language, margins, fonts and new commands
+% ----------------------------------------------------------------------
+%\input{preamble} 
+\usepackage[utf8]{inputenc}   % <<<<< Linux
+\usepackage[english]{babel} % <<<<< English
+\usepackage{notoccite}
+\usepackage[skip=0.5\baselineskip]{caption}
+\hyphenation{GTKWave}
+\usepackage{listings}
+\usepackage[all]{nowidow}
+
+%blind text
+\usepackage{lipsum}
+
+\usepackage{graphicx}
+\graphicspath{ {./} {../../figlib/} }
+\def\FontLn{% 16 pt normal
+  \usefont{T1}{phv}{m}{n}\fontsize{16pt}{16pt}\selectfont}
+\def\FontLb{% 16 pt bold
+  \usefont{T1}{phv}{b}{n}\fontsize{16pt}{16pt}\selectfont}
+\def\FontMn{% 14 pt normal
+  \usefont{T1}{phv}{m}{n}\fontsize{14pt}{14pt}\selectfont}
+\def\FontMb{% 14 pt bold
+  \usefont{T1}{phv}{b}{n}\fontsize{14pt}{14pt}\selectfont}
+\def\FontSn{% 12 pt normal
+  \usefont{T1}{phv}{m}{n}\fontsize{12pt}{12pt}\selectfont}
+
+% Use Arial font as default
+%
+\renewcommand{\rmdefault}{phv}
+\renewcommand{\sfdefault}{phv}
+\usepackage{geometry}	
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+
+%\usepackage{setspace}
+%\renewcommand{\baselinestretch}{1.5}
+
+\usepackage[pdftex]{hyperref} % enhance documents that are to be
+                              % output as HTML and PDF
+\hypersetup{colorlinks,       % color text of links and anchors,
+                              % eliminates borders around links
+%            linkcolor=red,    % color for normal internal links
+            linkcolor=black,  % color for normal internal links
+            anchorcolor=black,% color for anchor text
+%            citecolor=green,  % color for bibliographical citations
+            citecolor=black,  % color for bibliographical citations
+%            filecolor=magenta,% color for URLs which open local files
+            filecolor=black,  % color for URLs which open local files
+%            menucolor=red,    % color for Acrobat menu items
+            menucolor=black,  % color for Acrobat menu items
+%            pagecolor=red,    % color for links to other pages
+            pagecolor=black,  % color for links to other pages
+%            urlcolor=cyan,    % color for linked URLs
+            urlcolor=black,   % color for linked URLs
+	          bookmarks=true,         % create PDF bookmarks
+	          bookmarksopen=false,    % don't expand bookmarks
+	          bookmarksnumbered=true, % number bookmarks
+	          pdftitle={report},
+            pdfauthor={Andre C. Marta},
+%            pdfsubject={Thesis Title},
+%            pdfkeywords={Thesis Keywords},
+            pdfstartview=FitV,
+            pdfdisplaydoctitle=true}
+
+\usepackage[numbers,sort&compress]{natbib} % <<<<< References in numbered list [1],[2],...
+\usepackage{subcaption} 
+\usepackage{mdframed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Begin Document                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% Set plain page style (no headers, footer with centered page number)
+\pagestyle{plain}
+
+% Set roman numbering (i,ii,...) before the start of chapters
+%\pagenumbering{roman}
+
+% ----------------------------------------------------------------------
+%  Cover page
+% ----------------------------------------------------------------------
+\input{frontcover}
+
+% ----------------------------------------------------------------------
+% Dedication page (optional)
+% ----------------------------------------------------------------------
+%\input{dedication} 
+%\cleardoublepage
+
+% ----------------------------------------------------------------------
+%  Acknowledgments (optional)
+% ----------------------------------------------------------------------
+%\input{acknowledgements}
+%\cleardoublepage
+
+% ----------------------------------------------------------------------
+%  Abstract (both in English and Portuguese)
+% ----------------------------------------------------------------------
+%\input{resumo} 
+%\cleardoublepage
+
+%\input{abstract} 
+
+% ----------------------------------------------------------------------
+%  Table of contents, list of tables, list of figures and nomenclature
+% ----------------------------------------------------------------------
+
+% Table of contents
+%
+\tableofcontents
+
+% List of tables
+%\addcontentsline{toc}{section}{\listtablename}
+%\listoftables
+%\cleardoublepage 
+
+% List of figures
+%\addcontentsline{toc}{section}{\listfigurename}
+%\listoffigures
+%\cleardoublepage 
+
+% Set arabic numbering (1,2,...) after preface
+%
+%\setcounter{page}{1}
+%\pagenumbering{arabic}
+
+% ----------------------------------------------------------------------
+%  Body
+% ----------------------------------------------------------------------
+
+\input{intro}
+
+\input{analysis}
+
+\input{simulation}
+
+\input{conclusion}
+%\cleardoublepage
+
+% ----------------------------------------------------------------------
+%  Bibliography
+% ----------------------------------------------------------------------
+%\addcontentsline{toc}{section}{\bibname}
+%\bibliographystyle{abbrvunsrtnat} % <<<<< SELECT IF USING REFERENCES BY NUMBER (CITATION ORDER)
+%\bibliography{../../../BIBfile.bib}
+
+% ----------------------------------------------------------------------
+\end{document}
+% ----------------------------------------------------------------------
+
