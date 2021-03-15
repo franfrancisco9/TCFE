@@ -1,23 +1,23 @@
 *voltage divider netlist
 .options savecurrents
 
-Va Node1 Node2 DC 5.24204797361 
-R1 Node1 Node6 1.01949191994e+03
-R2 Node5 Node6 2.05054429461e+03
-R3 Node7 Node6 3.09286027724e+03
-R4 Node7 Node2 4.12838973576e+03
-R5 Node7 Node4 3.06635427647e+03
-R6 Node3 Node8 2.01254230153e+03
-R7 0 Node3 1.00502981701e+03 
-Id 0 Node4 DC 1.01905568201e-03
+Va V1 V2 DC 5.24204797361 
+R1 V1 V6 1.01949191994e+03
+R2 V5 V6 2.05054429461e+03
+R3 V7 V6 3.09286027724e+03
+R4 V7 V2 4.12838973576e+03
+R5 V7 V4 3.06635427647e+03
+R6 V3 V8 2.01254230153e+03
+R7 0 V3 1.00502981701e+03 
+Id 0 V4 DC 1.01905568201e-03
 
 *Vc
-VHLIM Node2 Node8 0V
-HLIM Node7 0 VHLIM 8.12820254987e+03 
+VVc V2 V8 0V
+HVc V7 0 VVc 8.12820254987e+03 
 *end Vc 
 
 *Ib
-GCMIb Node4 Node5 Node6 Node7 7.23185131759e-03
+GIb V4 V5 V6 V7 7.23185131759e-03
 *end Ib
 
 .control
@@ -30,9 +30,28 @@ echo "********************************************"
 
 echo  "op_TAB"
 print all
-print v(Node6,Node7)
 echo  "op_END"
-	
+
+echo "********************************************"
+echo  "Given Values"
+echo "********************************************"
+
+echo "op_TAB1"
+echo "R1 = 1.01949191994 Kohms" 
+echo "R2 = 2.05054429461 Kohms"
+echo "R3 = 3.09286027724 Kohms"
+echo "R4 = 4.12838973576 Kohms"
+echo "R5 = 3.06635427647 Kohms"
+echo "R6 = 2.01254230153 Kohms"
+echo "R7 = 1.00502981701 Kohms"
+echo "Va = 5.24204797361 V"
+echo "Id = 1.01905568201 mA"
+echo "Kb = 7.23185131759 mS"
+echo "Kc = 8.12820254987 Kohms"
+echo "op_END1"
+
+quit 
+
 .endc
 
 *R1 = 1.01949191994 
