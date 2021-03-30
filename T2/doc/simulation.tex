@@ -1,0 +1,59 @@
+\newpage
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+In this section we proceed to do the anlysis of the circuit through the use of the Ngspice simulation programm. In figure~\ref{fig:circuit_simulation} we have the circuit that was inputed into Ngspice (and also the considered current flows and nodes). The file can be found at the $sim$ folder inside the $T1$ folder.
+
+\begin{figure}[!ht] \centering
+\includegraphics[width=0.8\linewidth]{circuit_simulation.pdf}
+\caption{Considered circuit for Ngspice simulation}
+\label{fig:circuit_simulation}
+\end{figure}
+
+$V_8$ refers to an extra ficticious node created specifically for the Ngspice simulation, and it is below $V_2$ and above resistor R6 as it can be seen above in figure~\ref{fig:circuit_simulation}.The reason this node is necessary is because when creating a current controlled voltage source, Ngspice gets the current value by refering to a voltage source from where the current goes through. Since $I_c$ does not go through any voltage source in the circuit (does not go through $V_a$) we used this extra node to create a voltage source of 0$V$ (Which can be confirmed since $V_8 - V_2 = 0$) from which we are certain $I_c$ is passing by. 
+
+Table~\ref{tab:op} shows the simulated operating point results for the circuit
+under analysis given the values found on Table~\ref{tab:op1}. The variables representation and format are automatically determined by Ngspice.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{op_tab}
+  \end{tabular}
+  \caption{Operating point. A variable preceded by @ is of type {\em current}
+    and expressed in Ampere; other variables are of type {\it voltage} and expressed in
+    Volt. (the g in "gib" refers to the Ngspice notation of a voltage controlled current source)}
+  \label{tab:op}
+\end{table}
+
+We can get all the missing values given the equations showed in section~\ref{sec:analysis}.
+
+\begin{equation}
+  V_c = V_7
+  \label{eq:1}
+\end{equation}
+
+\begin{equation}
+  V_b = V_6 - V_7
+  => V_b = -3.3943*10^{-2} V
+\end{equation}
+
+From Table~\ref{tab:op} we can directly get the value of $I_c$:
+
+\begin{equation}
+  I_c = @r6[i]
+\end{equation}
+
+With this we have finalized the circuit anlysis through simulation with Ngspice.
+
+
+
+
+
+
+
+
+
+
