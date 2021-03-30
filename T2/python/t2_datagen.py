@@ -4,6 +4,9 @@
 #
 #    FOLLOW THE COMMENTS IN CAPITALS BELOW TO EDIT THIS SCRIPT FOR A NEW QUIZ
 
+#Extra
+import sys
+#End Extra
 
 import math
 import random
@@ -66,7 +69,10 @@ class DataSet:
 
 def main():
     #init test
-    number = input("\n\nPlease enter the lowest student number in your group: \n")
+    if (len(sys.argv) <= 1):
+    	number = input("\n\nPlease enter the lowest student number in your group: \n")
+    if (len(sys.argv) > 1):
+    	number = int(sys.argv[1])
     print
     print
     dataset = DataSet(number)

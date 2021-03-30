@@ -9,14 +9,16 @@ LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
 all: $(FILE).pdf
 	evince $< &
 
-$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) octave.log ngspice
+$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) octave.log ngspice python
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
+python:
+	python2 ../python/t2_datagen.py 95772 > ../mat/data.txt
 
 octave.log:
-	octave ../mat/T1_Octave.m > octave.log
-
+	octave ../mat/T2_Octave.m > octave.log
+	
 ngspice: ngspice.log
 	$(eval NGSFIGS=$(shell grep _FIG $< | sed 's/_FIG//g' | sed ':a;N;$!ba;s/\n/ /g'))
 	$(eval NGSFIGPS=$(addsuffix .ps, $(NGSFIGS)))
@@ -30,7 +32,7 @@ ngspice: ngspice.log
 	$(foreach j, $(NGSTABS1), sed -n '/^$j_TAB1/,/^$j_END1/{p;/^$j_END1/q}' $< | grep -v $j_TAB1 | grep -v $j_END1 | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $j_tab1.tex;)
 	$(foreach j, $(NGSFIGPS1), ps2pdf $j;)
 
-ngspice.log: ../sim/T1_Ngspice.cir
+ngspice.log: ../sim/T2_Ngspice.cir
 	ngspice -b $< -o $@
 
 
@@ -39,7 +41,7 @@ ngspice.log: ../sim/T1_Ngspice.cir
 	soffice --headless --convert-to pdf $<
 
 clean:
-	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof
+	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof *.txt
 	@rm -rf *.log *.lot *.nlo *.nls *.out *.toc *~ *.*% ./*.pdf ./*.ps
 	@rm -rf *_tab.tex octave-workspace *.eps *nos.tex *malhas.tex *_tab1.tex
 
