@@ -1,6 +1,7 @@
 close all
 clear all
 format short e
+pkg load symbolic
 
 #--------------------  DADOS  ----------------------- 
 
@@ -91,6 +92,19 @@ Ib_2 = Nos_C_2(8)
 Id_2 = Nos_C_2(9)
 Vb_2 = Nos_C_2(10)
 Vd_2 = Nos_C_2(11)
+
+Vx_2 = V6_2 - V8_2
+Ix_2 = -Ib_2 - (V6_2 - V5_2)*G5
+Req = Vx_2/Ix_2
+tau = Req * C
+
+#--------------------  Alínea 3  -----------------------
+syms t
+v6_natural = @(t) (V8_2 + Vx_2) * exp(-(t/tau))
+plot (t, v6_natural(t))
+
+
+#--------------------  Imprimir em ficheiros -----------------------
         
 filename = 'ngspice_circuit_1.txt'
 file = fopen(filename, 'w')
