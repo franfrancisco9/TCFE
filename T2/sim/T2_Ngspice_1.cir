@@ -1,8 +1,8 @@
 *voltage divider netlist
 .options savecurrents
 
-*.include ../mat/ngspice_circuit_1.txt
-.include ../doc/ngspice_circuit_1.txt
+.include ../mat/ngspice_circuit_1.txt
+*.include ../doc/ngspice_circuit_1.txt
 
 
 .control
@@ -32,7 +32,7 @@ echo "R5 = 3.06635427647 KΩ"
 echo "R6 = 2.01254230153 KΩ"
 echo "R7 = 1.00502981701 KΩ"
 echo "Va = 5.24204797361 V"
-echo "C = 1.01905568201 F"
+echo "C = 1.01905568201 uF"
 echo "Kb = 7.23185131759 mS"
 echo "Kc = 8.12820254987 KΩ"
 echo "op_END1"

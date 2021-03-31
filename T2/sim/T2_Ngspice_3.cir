@@ -1,6 +1,9 @@
 *voltage divider netlist
 .options savecurrents
 
+*.include ../mat/ngspice_circuit_3.txt
+*.include ../doc/ngspice_circuit_3.txt
+
 Vs V1 0 DC 0
 R1 V2 V1 1.01949191994e+03
 R2 V3 V2 2.05054429461e+03
@@ -8,22 +11,18 @@ R3 V2 V5 3.09286027724e+03
 R4 0 V5 4.12838973576e+03
 R5 V6 V5 3.06635427647e+03
 R6 V9 V7 2.01254230153e+03
-R7 V7 V8 1.00502981701e+03 
-Vx V6 V8  DC 8.763665
+R7 V7 V8 1.00502981701e+03
 
-
-
-*Vc
 VVc 0 V9 0V
-HVc V5 V8 VVc 8.12820254987e+03 
-*end Vc 
+HVc V5 V8 VVc 8.12820254987e+03
 
-*Ib
 GIb V6 V3 V2 V5 7.23185131759e-03
-*end Ib
+C1 V6 V8 1.01905568201e-06 ic=8.76366948753e+00
+.ic V6 = 8.76366948753e+00 V8 = 0
 
 .control
 
+ic V6 = 8.76366948753e+00
 op
 
 echo "********************************************"
@@ -51,6 +50,19 @@ echo "C = 1.01905568201 F"
 echo "Kb = 7.23185131759 mS"
 echo "Kc = 8.12820254987 KΩ"
 echo "op_END1"
+
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 20e-3 uic
+
+set hcopydevtype=postscript
+set hcopypscolor=7
+
+
+hardcopy trans.ps v(V8) v(V6)
 
 
 quit
