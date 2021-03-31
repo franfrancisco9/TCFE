@@ -3,15 +3,16 @@
 #
 # type "make clean" to delete all generated files
 # ------------------------------------------------------------
-
-all:
+all: 
 	make -C doc clean
 	make -C doc
 	cp doc/report.pdf .
-
+	
 clean:
 	make -C doc clean
 
 .PHONY: all clean
+
+
 
 

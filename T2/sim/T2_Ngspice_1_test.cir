@@ -1,0 +1,77 @@
+*voltage divider netlist
+.options savecurrents
+
+.include ../mat/ngspice_basic_circuit [0:10]
+
+.control
+*alter C 0
+op
+
+echo "********************************************"
+echo  "Operating point 1"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+print v(V5,V2)
+print v(V8,V5)
+print v(V6,V8)
+echo  "op_END"
+
+echo "********************************************"
+echo  "Given Values"
+echo "********************************************"
+
+echo "op_TAB1"
+print @r1[resistance]
+print @r2[resistance]
+print @r3[resistance]
+print @r4[resistance]
+print @r5[resistance]
+print @r6[resistance]
+print @r7[resistance]
+print V1
+echo "C = 1.01905568201 F"
+echo "Kb = 7.23185131759 mS"
+echo "Kd = 8.12820254987 KΩ"
+echo "op_END1"
+
+alter Vx DC = v(V6,V8)
+alter C 1.01905568201
+op
+echo "********************************************"
+echo  "Operating point 2"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+print v(V5,V2)
+print v(V8,V5)
+print v(V6,V8)
+echo  "op_END"
+
+
+quit
+
+.endc
+
+
+
+
+*R1 = 1.01949191994 
+*R2 = 2.05054429461 
+*R3 = 3.09286027724 
+*R4 = 4.12838973576 
+*R5 = 3.06635427647 
+*R6 = 2.01254230153 
+*R7 = 1.00502981701 
+*Vs = 5.24204797361 
+*C = 1.01905568201 
+*Kb = 7.23185131759 
+*Kd = 8.12820254987
+
+
+
+
+
+

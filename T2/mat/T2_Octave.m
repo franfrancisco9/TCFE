@@ -4,87 +4,74 @@ format short e
 
 #--------------------  DADOS  ----------------------- 
 
-filename='data.txt'
-values = textread(filename, '%f')
+values = dlmread('data.txt');  
 
-#R1 = 1.01949191994e+03
-#G1 = 1/R1
-#R2 = 2.05054429461e+03
-#G2 = 1/R2
-#R3 = 3.09286027724e+03 
-#G3 = 1/R3
-#R4 = 4.12838973576e+03 
-#G4 = 1/R4
-#R5 = 3.06635427647e+03 
-#G5 = 1/R5
-#R6 = 2.01254230153e+03 
-#G6 = 1/R6
-#R7 = 1.00502981701e+03 
-#G7 = 1/R7
-#Va = 5.24204797361
-#Id = 1.01905568201e-03 
-#Kb = 7.23185131759e-03 
-#Kc = 8.12820254987e+03 
+R1 = values(3,3)*1000
+R2 = values(4,3)*1000
+R3 = values(5,3)*1000
+R4 = values(6,3)*1000
+R5 = values(7,3)*1000
+R6 = values(8,3)*1000
+R7 = values(9,3)*1000
+
+G1 = 1/R1
+G2 = 1/R2
+G3 = 1/R3
+G4 = 1/R4 
+G5 = 1/R5 
+G6 = 1/R6
+G7 = 1/R7
+
+Vs= values(10,3)
+C = values(11,3) 
+Kb = values(12,3)*0.001
+Kd = values(13,3)*1000
 
 
 #--------------------  NOS  ----------------------- 
 
-Nos_A = [Kb 0 0 0 0 0 0 0 0 -1 0; 0 -1 0 0 0 0 0 0 0 0 Kc; 0 -1 0 0 0 0 0 0 1 0 0; 0 0 1 -1 0 0 0 0 0 0 0; 0 0 0 0 G7 0 0 0 0 0 -1; 1 0 0 0 0 0 0 -1 1 0 0; 0 0 0 G6 -G6-G7 0 0 0 0 0 0; Kb 0 0 0 0 G5 0 0 -G5 0 0; Kb 0 0 0 0 0 -G2 G2 0 0 0; Kb 0 G1 0 0 0 0 -G1-G3 G3 0 0; 0 0 G1 G4 G7 0 0 -G1 -G4 0 0]
+Nos_A = [0 0 1 0 0 0 0 0 0 0 0 0;
+        -1 0 0 1 0 -1 0 0 0 0 0 0; 
+        Kb 0 0 0 0 0 0 0 0 -1 0 0;
+        0 -1 0 0 0 0 0 0 0 0 0 Kd;
+        0 -1 0 0 0 1 0 0 -1 0 0 0;
+        0 0 0 0 0 0 0 -G6 0 0 0 -1;
+        0 0 0 0 0 0 0 0 0 0 1 0;
+        0 0 -G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0;
+        0 0 0 -G2-Kb G2 Kb 0 0 0 0 0 0;
+        0 0 0 Kb 0 -Kb-G5 G5 0 0 0 0 0;
+        0 0 0 0 0 0 0 G7+G6 -G7 0 0 0 ; 
+        0 0 G1 -G1 0 -G4 0 0 0 0 0 1]
 
-Nos_B = [0;0;0;Va;0;0;0;Id;0;0;0]
+Nos_B = [Vs;0;0;0;0;0;0;0;0;0;0;0]
 
 Nos_C =  Nos_A\Nos_B
 
-Vbn = Nos_C(1)
-Vcn = Nos_C(2)
-V1n = Nos_C(3)
-V2n = Nos_C(4)
-V3n = Nos_C(5)
-V4n = Nos_C(6)
-V5n = Nos_C(7)
-V6n = Nos_C(8)
-V7n = Nos_C(9)
-Ibn = Nos_C(10)
-Icn = Nos_C(11)
-iR1n = (V6n-V1n) / R1
-iR2n = Ibn
-iR3n = Vbn / R3
-iR4n = (V2n - V7n) / R4
-iR5n = (V4n - V7n) / R5
-iR6n = Icn
-iR7n = Icn
+Vb = Nos_C(1)
+Vc = Nos_C(2)
+V1 = Nos_C(3)
+V2 = Nos_C(4)
+V3 = Nos_C(5)
+V5 = Nos_C(6)
+V6 = Nos_C(7)
+V7 = Nos_C(8)
+V8 = Nos_C(9)
+Ib = Nos_C(10)
+Ic = Nos_C(11)
+Id = Nos_C(12)
 
+#iR1 = (V6-V1) / R1
+#iR2 = Ib
+#iR3 = Vb / R3
+#iR4 = (V2 - V7) / R4
+#iR5 = (V4 - V7) / R5
+#iR6 = Iccl
+#iR7 = Ic
 
-#--------------------  MALHAS  ----------------------- 
+save("-ascii","../doc/nos.tex", "Vb", "Vc", "V1", "V2", "V3", "V5", "V6", "V7", "Ib", "Ic", "Id", "iR1", "iR2", "iR3", "iR4", "iR5", "iR6", "iR7");
 
-Malhas_A = [-Kb*R3 1-Kb*R3 0; R1+R3+R4 R3 R4; R4 0 R6+R7-Kc+R4]
-
-Malhas_B = [0;Va;0]
-
-Malhas_C =  Malhas_A\Malhas_B
-
-Iam = Malhas_C(1)
-Ibm = Malhas_C(2)
-Icm = Malhas_C(3)
-Vcm = Kc * Icm
-Vbm = Ibm / Kb
-V7m = Vcm
-V6m = V7m + Vbm
-V5m = V6m + R2 * Ibm
-V4m = V7m + R5 * (Id - Ibm)
-V3m = R7 * Icm
-V2m = V3m + R6 * Icm
-V1m = V2m + Va
-iR1m = Iam
-iR2m = Ibm
-iR3m = Iam + Ibm
-iR4m = Iam + Icm
-iR5m = Id - Ibm
-iR6m = Icm
-iR7m = Icm
-
-save("-ascii","../doc/nos.tex", "Vbn", "Vcn", "V1n", "V2n", "V3n", "V4n", "V5n", "V6n", "V7n", "Ibn", "Icn", "iR1n", "iR2n", "iR3n", "iR4n", "iR5n", "iR6n", "iR7n");
-save("-ascii","../doc/malhas.tex", "Vbm", "Vcm", "V1m", "V2m", "V3m", "V4m", "V5m", "V6m", "V7m", "Ibm", "Icm","iR1m", "iR2m", "iR3m", "iR4m", "iR5m", "iR6m", "iR7m");
-
-
-
+filename = 'ngspice_basic_circuit.txt'
+file = fopen(filename, 'w')
+fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nVx V6 V8 DC 0\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C) 
+fflush(filename)
+fclose(filename)

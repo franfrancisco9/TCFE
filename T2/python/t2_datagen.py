@@ -26,7 +26,7 @@ class Prob:
         self.weight = weight
         
     def printProb(self):
-        print "Values: ",
+        print "Values: \n",
         for i in range(len(self.varList)):
             self.varList[i].printVar()
         print "\n\n"
@@ -57,18 +57,17 @@ class DataSet:
         self.prob.addVar(Var("Vs", 5, 5))
         self.prob.addVar(Var("C",  1, 5))
         self.prob.addVar(Var("Kb", 7, 5))
-        self.prob.addVar(Var("Kc", 8, 5))
+        self.prob.addVar(Var("Kd", 8, 5))
 
         self.probList.append(self.prob)
     
     def printDataSet(self):
         nprobs = len(self.probList)
-        print "Units for the values: V, mA, kOhm and mS\n\n"
+        print "Units for the values: V, mA, kOhm, mS and uF\n\n"
         for i in range(nprobs):
             self.probList[i].printProb()
 
 def main():
-    #init test
     if (len(sys.argv) <= 1):
     	number = input("\n\nPlease enter the lowest student number in your group: \n")
     if (len(sys.argv) > 1):
@@ -81,5 +80,6 @@ def main():
     dataset.printDataSet()
     
 if __name__ == "__main__": main()
+
 
 
