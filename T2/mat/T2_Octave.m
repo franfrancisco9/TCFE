@@ -23,7 +23,7 @@ G6 = 1/R6
 G7 = 1/R7
 
 Vs= values(10,3)
-C = values(11,3) 
+C = values(11,3)*0.000001 
 Kb = values(12,3)*0.001
 Kd = values(13,3)*1000
 
