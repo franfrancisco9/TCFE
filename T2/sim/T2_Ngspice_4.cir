@@ -4,7 +4,7 @@
 *.include ../mat/ngspice_circuit_3.txt
 *.include ../doc/ngspice_circuit_3.txt
 
-Vs V1 0 DC 0
+Vs V1 0 SIN(5.24204797361 1 1000 )
 R1 V2 V1 1.01949191994e+03
 R2 V3 V2 2.05054429461e+03
 R3 V2 V5 3.09286027724e+03
@@ -59,15 +59,9 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-5 20e-3 uic
 
-*makes plots in color
-set hcopypscolor=0
-set color0=white
-set color1=black
-set color2=red
-set color3=blue
-set color4=violet
-set color5=rgb:3/8/0
-set color6=rgb:4/0/0
+set hcopydevtype=postscript
+set hcopypscolor=1
+
 
 hardcopy trans.ps v(V6) 
 

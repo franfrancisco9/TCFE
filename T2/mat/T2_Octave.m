@@ -2,10 +2,11 @@ close all
 clear all
 format short e
 pkg load symbolic
-
 #--------------------  DADOS  ----------------------- 
 
 values = dlmread('data.txt');  
+
+f = 1000
 
 R1 = values(3,3)*1000
 R2 = values(4,3)*1000
@@ -94,15 +95,58 @@ Vb_2 = Nos_C_2(10)
 Vd_2 = Nos_C_2(11)
 
 Vx_2 = V6_2 - V8_2
-Ix_2 = -Ib_2 - (V6_2 - V5_2)*G5
+Ix_2 = Ib_2 + (V6_2 - V5_2)*G5
 Req = Vx_2/Ix_2
 tau = Req * C
 
 #--------------------  Alínea 3  -----------------------
 syms t
-v6_natural = @(t) (V8_2 + Vx_2) * exp(-(t/tau))
-plot (t, v6_natural(t))
+syms v6(t)
+t=0:1e-6:20e-3;
+v6 = (V8_2 + Vx_2) * exp(-(t/tau));
+#hf = figure ();
+plot(t*1000, v6)
 
+#--------------------  Alínea 4  -----------------------
+syms t2
+syms V6_3(t2)
+Yc = (C*2*pi*f)*i
+Zc = 1/Yc
+Vs_phasor = exp((2*pi*f*t2)*i)
+
+Nos_A_3 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
+        0 -G2-Kb G2 Kb 0 0 0 0 0 0 0 ; 
+        0 Kb 0 -Kb-G5 G5+Yc 0 -Yc 0 0 0 0 ;
+        0 0 0 0 0 G6+G7 -G7 0 0 0 0 ;
+        1 0 0 0 0 0 0 0 0 0 0 ;
+        0 0 0 1 0 Kd*G6 -1 0 0 0 0 ;
+        G1 -G1 0 -G4 0 -G6 0 0 0 0 0;
+        0 0 0 0 0 0 0 1 0 -Kb 0;
+        0 0 0 0 0 G6 0 0 1 0 0;
+        0 0 0 -1 0 0 1 0 0 1 0 ;
+        0 0 0 0 0 0 0 0 -Kd 0 1]
+
+Nos_B_3 = [0;0;0;0;Vs_phasor;0;0;0;0;0;0]
+
+Nos_C_3 =  Nos_A_3\Nos_B_3
+
+solve(t2)
+
+V1_3 = Nos_C_3(1)
+V2_3 = Nos_C_3(2)
+V3_3 = Nos_C_3(3)
+V5_3 = Nos_C_3(4)
+V7_3 = Nos_C_3(6)
+V8_3 = Nos_C_3(7)
+Ib_3 = Nos_C_3(8)
+Id_3 = Nos_C_3(9)
+Vb_3 = Nos_C_3(10)
+Vd_3 = Nos_C_3(11)
+t2=0:1e-6:20e-3;
+V6_3 = Nos_C_3(5)
+
+
+plot(t2*1000, V6_3)
 
 #--------------------  Imprimir em ficheiros -----------------------
         

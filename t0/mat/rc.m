@@ -54,14 +54,14 @@ f = 1000 %Hz
 w = 2*pi*f; %rad/s
 
 %time axis: 0 to 10ms with 1us steps
-t=0:1e-6:10e-3; %s
+t=0:1e-3:10e-3; %s
 
 Zc = 1/(j*w*C)
 Cgain = Zc/(R+Zc)
 Gain = abs(Cgain)
 Phase = angle(Cgain)
 
-vi = 1*cos(w*t);
+vi = 1*cos(w*t)
 vo = Gain*cos(w*t+Phase);
 
 hf = figure ();
