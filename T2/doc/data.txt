@@ -1,6 +1,6 @@
 
 
-Units for the values: V, mA, kOhm and mS
+Units for the values: V, mA, kOhm, mS and uF
 
 
 Values: 
@@ -14,7 +14,7 @@ R7 = 1.00502981701
 Vs = 5.24204797361 
 C = 1.01905568201 
 Kb = 7.23185131759 
-Kc = 8.12820254987 
+Kd = 8.12820254987 
 
 
 

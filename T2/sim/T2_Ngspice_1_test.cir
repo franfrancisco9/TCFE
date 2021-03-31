@@ -1,22 +1,13 @@
 *voltage divider netlist
 .options savecurrents
 
-.include ../mat/ngspice_basic_circuit [0:10]
+.include ../mat/ngspice_basic_circuit.txt
+
+
 
 .control
-*alter C 0
+
 op
-
-echo "********************************************"
-echo  "Operating point 1"
-echo "********************************************"
-
-echo  "op_TAB"
-print all
-print v(V5,V2)
-print v(V8,V5)
-print v(V6,V8)
-echo  "op_END"
 
 echo "********************************************"
 echo  "Given Values"
@@ -36,9 +27,6 @@ echo "Kb = 7.23185131759 mS"
 echo "Kd = 8.12820254987 KΩ"
 echo "op_END1"
 
-alter Vx DC = v(V6,V8)
-alter C 1.01905568201
-op
 echo "********************************************"
 echo  "Operating point 2"
 echo "********************************************"
@@ -50,6 +38,18 @@ print v(V8,V5)
 print v(V6,V8)
 echo  "op_END"
 
+alter Vx DC = 0
+op
+echo "********************************************"
+echo  "Operating point 1"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+print v(V5,V2)
+print v(V8,V5)
+print v(V6,V8)
+echo  "op_END"
 
 quit
 

@@ -28,7 +28,7 @@ Kb = values(12,3)*0.001
 Kd = values(13,3)*1000
 
 
-#--------------------  NOS  ----------------------- 
+#--------------------  Alínea 1  ----------------------- 
 
 Nos_A = [0 0 1 0 0 0 0 0 0 0 0 0;
         -1 0 0 1 0 -1 0 0 0 0 0 0; 
@@ -60,18 +60,45 @@ Ib = Nos_C(10)
 Ic = Nos_C(11)
 Id = Nos_C(12)
 
-#iR1 = (V6-V1) / R1
-#iR2 = Ib
-#iR3 = Vb / R3
-#iR4 = (V2 - V7) / R4
-#iR5 = (V4 - V7) / R5
-#iR6 = Iccl
-#iR7 = Ic
+#--------------------  Alínea 2  ----------------------- 
 
-save("-ascii","../doc/nos.tex", "Vb", "Vc", "V1", "V2", "V3", "V5", "V6", "V7", "Ib", "Ic", "Id", "iR1", "iR2", "iR3", "iR4", "iR5", "iR6", "iR7");
+Vx = V6 - V8
 
-filename = 'ngspice_basic_circuit.txt'
+Nos_A_2 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
+        0 -G2 G2 0 0 0 0 -1 0 0 0 ; 
+        0 0 0 0 0 G7 -G7 0 -1 0 0 ;
+        0 0 0 0 1 0 -1 0 0 0 0 ;
+        0 -1 0 1 0 0 0 0 0 1 0 ;
+        0 0 0 -1 0 0 1 0 0 0 1 ;
+        0 0 0 0 0 0 0 1 0 -Kb 0;
+        0 0 0 0 0 0 0 0 -Kd 0 1;
+        G1+G4 -G1 0 -G4 0 0 0 0 1 0 0;
+        1 0 0 0 0 0 0 0 0 0 0 ;
+        -G6 0 0 0 0 G6 0 0 1 0 0]
+        
+Nos_B_2 = [0;0;0;Vx;0;0;0;0;0;0;0]
+
+Nos_C_2 =  Nos_A_2\Nos_B_2
+
+V1_2 = Nos_C_2(1)
+V2_2 = Nos_C_2(2)
+V3_2 = Nos_C_2(3)
+V5_2 = Nos_C_2(4)
+V6_2 = Nos_C_2(5)
+V7_2 = Nos_C_2(6)
+V8_2 = Nos_C_2(7)
+Ib_2 = Nos_C_2(8)
+Id_2 = Nos_C_2(9)
+Vb_2 = Nos_C_2(10)
+Vd_2 = Nos_C_2(11)
+        
+filename = 'ngspice_circuit_1.txt'
 file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nVx V6 V8 DC 0\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C) 
+fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb) 
+fflush(filename)
+fclose(filename)
+filename = 'ngspice_circuit_2.txt'
+file = fopen(filename, 'w')
+fprintf(file, "Vs V1 0 DC 0\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nVx V6 V8 DC %.11e", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,Vx) 
 fflush(filename)
 fclose(filename)
