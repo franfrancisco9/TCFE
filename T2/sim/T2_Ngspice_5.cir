@@ -1,13 +1,12 @@
 *voltage divider netlist
 .options savecurrents
 
-*.include ../mat/ngspice_circuit_4.txt
-.include ../doc/ngspice_circuit_4.txt
+*.include ../mat/ngspice_circuit_5.txt
+.include ../doc/ngspice_circuit_5.txt
 
 .control
 
 op
-
 
 
 *makes plots in color
@@ -21,14 +20,20 @@ set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
 echo "********************************************"
-echo  "Transient analysis"
+echo  "Frequency analysis"
 echo "********************************************"
-tran 1e-6 20e-3 uic
 
+ac dec 1000 0.1 1MEG
+settype decibel out
+hardcopy acm.ps vdb(V6) xlimit 1 1000k ylabel 'small signal gain'
+settype phase out
 
+hardcopy acm1.ps cph(V6) xlimit 1 1000k ylabel 'phase (in rad)'
 
-hardcopy trans4.ps v(V6) v(V1) 
+let outd = 180/PI*cph(V6)
 
+settype phase outd
+hardcopy acm2.ps outd  xlimit 1 1000k ylabel 'phase'
 
 quit
 

@@ -1,8 +1,8 @@
 *voltage divider netlist
 .options savecurrents
 
-.include ../mat/ngspice_circuit_1.txt
-*.include ../doc/ngspice_circuit_1.txt
+*.include ../mat/ngspice_circuit_1.txt
+.include ../doc/ngspice_circuit_1.txt
 
 
 .control
@@ -13,17 +13,17 @@ echo "********************************************"
 echo  "Operating point"
 echo "********************************************"
 
-echo  "op_TAB"
+echo  "op_TAB1"
 print all
 print v(V5,V2)
 print v(V8,V5)
-echo  "op_END"
+echo  "op_END1"
 
 echo "********************************************"
 echo  "Given Values"
 echo "********************************************"
 
-echo "op_TAB1"
+echo "op_TAB"
 echo "R1 = 1.01949191994 KΩ" 
 echo "R2 = 2.05054429461 KΩ"
 echo "R3 = 3.09286027724 KΩ"
@@ -35,7 +35,7 @@ echo "Va = 5.24204797361 V"
 echo "C = 1.01905568201 uF"
 echo "Kb = 7.23185131759 mS"
 echo "Kc = 8.12820254987 KΩ"
-echo "op_END1"
+echo "op_END"
 
 quit
 
