@@ -2,6 +2,7 @@ close all
 clear all
 format short e
 pkg load symbolic
+pkg load control
 #--------------------  DADOS  ----------------------- 
 
 values = dlmread('data.txt');  
@@ -108,23 +109,6 @@ v6 = (V8_2 + Vx_2) * exp(-(t/tau));
 plot(t*1000, v6)
 
 #--------------------  Alínea 4  -----------------------
-syms t2
-#syms Vs_phasor(t2)
-#syms Nos_B_3(t2)
-#syms V1_3(t2)
-#syms V2_3(t2)
-#syms V3_3(t2)
-#syms V5_3(t2)
-#syms V6_3(t2)
-syms V6_teste(t2)
-#syms V7_3(t2)
-#syms V8_3(t2)
-#syms Ib_3(t2)
-#syms Id_3(t2)
-#syms Vb_3(t2)
-#syms Vd_3(t2)
-
-
 Yc = (C*2*pi*f)*i
 Zc = 1/Yc
 
@@ -141,62 +125,77 @@ Nos_A_3 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
         0 -1 0 1 0 0 0 0 0 1 0;
         0 0 0 0 0 0 0 0 -Kd 0 1]
 
-Nos_B_3 = [0;0;0;0;exp((2*pi*f*t2 - pi/2)*i);0;0;0;0;0;0]
+Nos_B_3 = [0;0;0;0;1; 0;0;0;0;0;0]
 Nos_C_3 =  Nos_A_3\Nos_B_3
 
+V1_3 = (Nos_C_3(1))
+V2_3 = (Nos_C_3(2))
+V3_3 = (Nos_C_3(3))
+V5_3 = (Nos_C_3(4))
+V6_3 = (Nos_C_3(5))
+V7_3 = (Nos_C_3(6))
+V8_3 = (Nos_C_3(7))
+Ib_3 = (Nos_C_3(8))
+Id_3 = (Nos_C_3(9))
+Vb_3 = (Nos_C_3(10))
+Vd_3 = (Nos_C_3(11))
 
-#solve(t2)
+t=0:1e-6:20e-3;
+V6_forced = V6_3*sin(2*pi*f*t);
+Vs_all = sin(2*pi*f*t); 
+
+plot(t, V6_forced, t, Vs_all)
+
+#--------------------  Alínea 5  -----------------------
+t=-5e-3:1e-6:20e-3;
+V6_all(t>=0)= V6_3*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
+V6_all(t<0) = V6;
+Vs_all(t>=0) = sin(2*pi*f*t(t>=0));
+Vs_all(t<0) = Vs;
+ 
+plot(t, V6_all, t, Vs_all)
+
+#--------------------  Alínea 6  -----------------------
+syms f
+f = 0.1:10000:1000000;
+V6_6 = magV6_3*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
 
 
-V1_3 = real(Nos_C_3(1))
-V2_3 = real(Nos_C_3(2))
-V3_3 = real(Nos_C_3(3))
-V5_3 = real(Nos_C_3(4))
-V6_3 = real(Nos_C_3(5))
-V7_3 = real(Nos_C_3(6))
-V8_3 = real(Nos_C_3(7))
-Ib_3 = real(Nos_C_3(8))
-Id_3 = real(Nos_C_3(9))
-Vb_3 = real(Nos_C_3(10))
-Vd_3 = real(Nos_C_3(11))
+G = V6_6/Vs_6
 
-#t2_1=0:1e-3:20e-3;
-#V6_teste = subs(V6_3, t2, t2_1) 
-#Vs_phasor = exp((2*pi*f*t2)*i)
-#Vs_phasor = exp((2*pi*f*t2)*i)
+magnitude
 
-#V6_teste  = double (V6_teste)
 
-#plot(t2_1*1000, V6_teste)
+
 
 #--------------------  Imprimir em ficheiros -----------------------
         
 filename = 'ngspice_circuit_1.txt'
-file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb, C) 
-fflush(filename)
-fclose(filename)
+file = fopen(filename, 'w');
+fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb, C); 
+fflush(filename);
+fclose(filename);
 
 filename = 'ngspice_circuit_2.txt'
-file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 DC 0\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nVx V6 V8 DC %.11e", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,Vx) 
-fflush(filename)
-fclose(filename)
+file = fopen(filename, 'w');
+fprintf(file, "Vs V1 0 DC 0\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nVx V6 V8 DC %.11e", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,Vx); 
+fflush(filename);
+fclose(filename);
 
 filename = 'ngspice_circuit_3.txt'
-file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 DC 0\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx) 
-fflush(filename)
-fclose(filename)
+file = fopen(filename, 'w');
+fprintf(file, "Vs V1 0 DC 0\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx); 
+fflush(filename);
+fclose(filename);
 
 filename = 'ngspice_circuit_4.txt'
-file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 0.0 ac 1.0 sin(0 1 1k)\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx) 
-fflush(filename)
-fclose(filename)
+file = fopen(filename, 'w');
+fprintf(file, "Vs V1 0 0.0 ac 1.0 sin(0 1 1k)\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx); 
+fflush(filename);
+fclose(filename);
 
 filename = 'ngspice_circuit_5.txt'
-file = fopen(filename, 'w')
-fprintf(file, "Vs V1 0 0.0 ac 1.0 sin(0 1 1k)\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx) 
-fflush(filename)
-fclose(filename)
+file = fopen(filename, 'w');
+fprintf(file, "Vs V1 0 0.0 ac 1.0 sin(0 1 1k)\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVc 0 V9 0V\nHVc V5 V8 VVc %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e ic = %.11e\n.ic v(V6) = %.11e v(V8) = 0", R1, R2, R3, R4, R5, R6, R7, Kd, Kb,C,Vx, Vx); 
+fflush(filename);
+fclose(filename);
