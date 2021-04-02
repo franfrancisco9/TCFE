@@ -63,6 +63,49 @@ Ib = Nos_C(10)
 Ic = Nos_C(11)
 Id = Nos_C(12)
 
+if (V2 > V1)
+	IR1 = (V2 - V1)*G1
+else 
+	IR1 = -(V2 - V1)*G1
+endif
+
+if (V2 > V3)
+	IR2 = (V2 - V3)*G2
+else 
+	IR2 = -(V2 - V3)*G2
+endif
+
+if (V2 > V5)
+	IR3 = (V2 - V5)*G3
+else 
+	IR3 = -(V2 - V5)*G3
+endif
+
+if (V5 > V4)
+	IR4 = (V5 - V4)*G4
+else 
+	IR4 = -(V5 - V4)*G4
+endif
+
+if (V5 > V6)
+	IR5 = (V5 - V6)*G5
+else 
+	IR5 = -(V5 - V6)*G5
+endif
+
+if (V7 > V4)
+	IR6 = (V7 - V4)*G6
+else 
+	IR6 = -(V7 - V4)*G6
+endif
+
+if (V7 > V8)
+	IR7 = (V7 - V8)*G7
+else 
+	IR7 = -(V7 - V8)*G7
+endif
+
+
 #--------------------  Alínea 2  ----------------------- 
 
 Vx_2 = V6 - V8
@@ -119,35 +162,42 @@ Yc = (C*2*pi*f)*i
 Zc = 1/Yc
 
 
-Nos_A_3 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
+Nos_A_4 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
         0 -G2-Kb G2 Kb 0 0 0 0 0 0 0 ; 
         0 Kb 0 -Kb-G5 G5+Yc 0 -Yc 0 0 0 0 ;
         0 0 0 0 0 G6+G7 -G7 0 0 0 0 ;
         1 0 0 0 0 0 0 0 0 0 0 ;
         0 0 0 1 0 Kd*G6 -1 0 0 0 0 ;
-        G1 -G1 0 -G4 0 -G6 0 0 0 0 0;
-        0 0 0 0 0 0 0 1 0 -Kb 0;
-        0 0 0 0 0 G6 0 0 1 0 0;
-        0 -1 0 1 0 0 0 0 0 1 0;
-        0 0 0 0 0 0 0 0 -Kd 0 1]
+        G1 -G1 0 -G4 0 -G6 0 0 0 0 0]
 
-Nos_B_3 = [0;0;0;0;1; 0;0;0;0;0;0]
-Nos_C_3 =  Nos_A_3\Nos_B_3
+Nos_B_4 = [0;0;0;0;1;0;0]
+Nos_C_4 =  Nos_A_4\Nos_B_4
 
-V1_3 = (Nos_C_3(1))
-V2_3 = (Nos_C_3(2))
-V3_3 = (Nos_C_3(3))
-V5_3 = (Nos_C_3(4))
-V6_3 = (Nos_C_3(5))
-V7_3 = (Nos_C_3(6))
-V8_3 = (Nos_C_3(7))
-Ib_3 = (Nos_C_3(8))
-Id_3 = (Nos_C_3(9))
-Vb_3 = (Nos_C_3(10))
-Vd_3 = (Nos_C_3(11))
+V1_4 = (Nos_C_4(1))
+V2_4 = (Nos_C_4(2))
+V3_4 = (Nos_C_4(3))
+V5_4 = (Nos_C_4(4))
+V6_4 = (Nos_C_4(5))
+V7_4 = (Nos_C_4(6))
+V8_4 = (Nos_C_4(7))
+
+RV1_4 = real(V1_4)
+IV1_4 = imag(V1_4)
+RV2_4 = real(V2_4)
+IV2_4 = imag(V2_4)
+RV3_4 = real(V3_4)
+IV3_4 = imag(V3_4)
+RV5_4 = real(V5_4)
+IV5_4 = imag(V5_4)
+RV6_4 = real(V6_4)
+IV6_4 = imag(V6_4)
+RV7_4 = real(V7_4)
+IV7_4 = imag(V7_4)
+RV8_4 = real(V8_4)
+IV8_4 = imag(V8_4)
 
 t=0:1e-6:20e-3;
-V6_forced = V6_3*sin(2*pi*f*t);
+V6_forced = V6_4*sin(2*pi*f*t);
 Vs_all = sin(2*pi*f*t); 
 
 hf1 = figure();
@@ -157,10 +207,11 @@ xlabel ("t[ms]");
 ylabel ("v_{6f}(t) [V]");
 #title ("Forced Response of v_{6f}(t) in the interval [0,20]ms");
 print (hf1, "theoretical_4.eps", "-color");
+close(hf1);
 
 #--------------------  Alínea 5  -----------------------
 t=-5e-3:1e-6:20e-3;
-V6_all(t>=0)= V6_3*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
+V6_all(t>=0)= V6_4*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
 V6_all(t<0) = V6;
 Vs_all(t>=0) = sin(2*pi*f*t(t>=0));
 Vs_all(t<0) = Vs;
@@ -169,10 +220,12 @@ hf2 = figure();
 plot(t, V6_all, t, Vs_all);
 xlabel ("t[ms]");
 ylabel ("v_6(t) [V](blue) and v_s(t) [V](red)");
-#title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
+title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
 print (hf2, "theoretical_5.eps", "-color");
+close(hf2);
 
 #--------------------  Alínea 6  -----------------------
+
 #syms f
 #f = 0.1:10000:1000000;
 #V6_6 = magV6_3*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
@@ -184,9 +237,11 @@ print (hf2, "theoretical_5.eps", "-color");
 
 
 #--------------------  Guardar para Tabelas -----------------------
-save("-ascii","../doc/theoretical_1.tex", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Vb", "Vd", "Ib", "Ic", "Id");
+
+save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id", "IR1", "IR2", "IR3", "IR4", "IR5", "IR6", "IR7");
 save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau");
-save("-ascii","../doc/theoretical_4.tex", "V1_3", "V2_3", "V3_3", "V5_3", "V6_3", "V7_3", "V8_3", "Vb_3", "Vd_3", "Ib_3", "Ic_3", "Id_3");
+save("-ascii","../doc/theoretical_4.tex", "RV1_4", "IV1_4", "RV2_4", "IV2_4", "RV3_4", "IV3_4", "RV5_4", "IV5_4", "RV6_4", "IV6_4", "RV7_4", "IV7_4",  "RV8_4", "IV8_4");
+
 
 
 #--------------------  Imprimir em ficheiros -----------------------
