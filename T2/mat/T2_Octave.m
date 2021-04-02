@@ -193,10 +193,23 @@ print (hf2, "theoretical_5.eps", "-color");3
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
+s = tf('s');                                      
+G = 1/(C*Req*s+1);                                  
+#bode(G)
+V8_bode = G * V8_4
+f = logspace(-1, 6, 200);
+[mag, phase] = bode(G ,2*pi*f) 
+subplot(2,1,1);
 
-#syms f
-#f = 0.1:10000:1000000;
-#V6_6 = magV6_3*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
+semilogx(f, 20*log10(abs(mag)));
+
+subplot(2,1,2);
+
+semilogx(f, phase);
+#bode(V8_bode)
+#bode(G+V8_bode)
+% bode
+
 
 
 #G = V6_6/Vs_6
