@@ -65,7 +65,7 @@ Id = Nos_C(12)
 
 #--------------------  Alínea 2  ----------------------- 
 
-Vx = V6 - V8
+Vx_2 = V6 - V8
 
 Nos_A_2 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
         0 -G2 G2 0 0 0 0 -1 0 0 0 ; 
@@ -79,7 +79,7 @@ Nos_A_2 = [-G1 G1+G2+G3 -G2 -G3 0 0 0 0 0 0 0 ;
         1 0 0 0 0 0 0 0 0 0 0 ;
         -G6 0 0 0 0 G6 0 0 1 0 0]
         
-Nos_B_2 = [0;0;0;Vx;0;0;0;0;0;0;0]
+Nos_B_2 = [0;0;0;Vx_2;0;0;0;0;0;0;0]
 
 Nos_C_2 =  Nos_A_2\Nos_B_2
 
@@ -95,9 +95,9 @@ Id_2 = Nos_C_2(9)
 Vb_2 = Nos_C_2(10)
 Vd_2 = Nos_C_2(11)
 
-Vx_2 = V6_2 - V8_2
-Ix_2 = Ib_2 + (V6_2 - V5_2)*G5
-Req = Vx_2/Ix_2
+Vx = V6_2 - V8_2
+Ix = Ib_2 + (V6_2 - V5_2)*G5
+Req = Vx/Ix
 tau = Req * C
 
 #--------------------  Alínea 3  -----------------------
@@ -184,7 +184,10 @@ print (hf2, "theoretical_5.eps", "-color");
 
 
 #--------------------  Guardar para Tabelas -----------------------
-save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id");
+save("-ascii","../doc/theoretical_1.tex", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Vb", "Vd", "Ib", "Ic", "Id");
+save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau");
+save("-ascii","../doc/theoretical_4.tex", "V1_3", "V2_3", "V3_3", "V5_3", "V6_3", "V7_3", "V8_3", "Vb_3", "Vd_3", "Ib_3", "Ic_3", "Id_3");
+
 
 #--------------------  Imprimir em ficheiros -----------------------
         
