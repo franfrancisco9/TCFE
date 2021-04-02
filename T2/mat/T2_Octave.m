@@ -3,6 +3,7 @@ clear all
 format short e
 pkg load symbolic
 pkg load control
+pkg load signal
 #--------------------  DADOS  ----------------------- 
 
 values = dlmread('data.txt');  
@@ -189,23 +190,26 @@ plot(t, V6_all, t, Vs_all);
 xlabel ("t[ms]");
 ylabel ("v_6(t) [V](blue) and v_s(t) [V](red)");
 title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
-print (hf2, "theoretical_5.eps", "-color");3
+print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
-s = tf('s');                                      
-G = 1/(C*Req*s+1);                                  
+#s = tf('s');                                      
+#G = (1+(V8_4*(C*Req*s+1)))/(C*Req*s+1);
+#r = sqrt(square(RV6_4)+square(IV6_4))
+#teta = atan(IV6_4/RV6_4)
+#V6_bode = r*exp(i*2*pi*f+teta)                                 
 #bode(G)
-V8_bode = G * V8_4
-f = logspace(-1, 6, 200);
-[mag, phase] = bode(G ,2*pi*f) 
-subplot(2,1,1);
+#V6_bode = G + V8_4
+#f = logspace(-1, 6, 200);
+#[mag, phase] = bode(G ,2*pi*f) ;
+#subplot(2,1,1);
 
-semilogx(f, 20*log10(abs(mag)));
+#semilogx(f, 20*log10(abs(mag)));
 
-subplot(2,1,2);
+#subplot(2,1,2);
 
-semilogx(f, phase);
+#semilogx(f, phase);
 #bode(V8_bode)
 #bode(G+V8_bode)
 % bode
@@ -215,7 +219,28 @@ semilogx(f, phase);
 #G = V6_6/Vs_6
 
 #magnitude
-
+f=logspace(-1,6,200);
+w=2*pi*f;
+p=-1/(Req*C)-V8_4;
+u=-20*log10(sqrt(1+(w*Req*C).^2));
+h=semilogx(f,u); hold on;
+wn=-p;
+plot([wn/(2*pi) wn/(2*pi)], get(gca,'YLim'),'k--');
+text(wn/(2*pi),5,'|p|/2\pi');
+f1=-p/(2*pi);
+fmax=max(f);
+asymp=-20*log10((fmax-f1)/f1);
+plot([min(f) f1 fmax],[0 0 asymp ],'k--');
+hold off
+poles=[-p -p];
+figure(1);
+grid off;
+axis([min(f) max(f) -80 40]);
+xlabel('frequency [Hz]'); ylabel('20log| H(t)|');
+leg=[strread(num2str(R,1),'%s');'asymptote'];
+t=['Bode Magnitude in dB(f), C=' num2str(C*1e9) 'nF, R=' num2str(Req) '\Omega'];
+title(t, "fontsize", 15);
+hold off;
 
 #--------------------  Guardar para Tabelas -----------------------
 
