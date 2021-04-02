@@ -150,20 +150,27 @@ V6_4 = (Nos_C_4(5))
 V7_4 = (Nos_C_4(6))
 V8_4 = (Nos_C_4(7))
 
-RV1_4 = real(V1_4)
-IV1_4 = imag(V1_4)
-RV2_4 = real(V2_4)
-IV2_4 = imag(V2_4)
-RV3_4 = real(V3_4)
-IV3_4 = imag(V3_4)
-RV5_4 = real(V5_4)
-IV5_4 = imag(V5_4)
-RV6_4 = real(V6_4)
-IV6_4 = imag(V6_4)
-RV7_4 = real(V7_4)
-IV7_4 = imag(V7_4)
-RV8_4 = real(V8_4)
-IV8_4 = imag(V8_4)
+RV1 = real(V1_4)
+IV1 = imag(V1_4)
+RV2 = real(V2_4)
+IV2 = imag(V2_4)
+RV3 = real(V3_4)
+IV3 = imag(V3_4)
+RV5 = real(V5_4)
+IV5 = imag(V5_4)
+RV6 = real(V6_4)
+IV6 = imag(V6_4)
+RV7 = real(V7_4)
+IV7 = imag(V7_4)
+RV8 = real(V8_4)
+IV8 = imag(V8_4)
+AmpV1 = sqrt(RV1*RV1 + IV1*IV1)
+AmpV2 = sqrt(RV2*RV2 + IV2*IV2)
+AmpV3 = sqrt(RV3*RV3 + IV3*IV3)
+AmpV5 = sqrt(RV5*RV5 + IV5*IV5)
+AmpV6 = sqrt(RV6*RV6 + IV6*IV6)
+AmpV7 = sqrt(RV7*RV7 + IV7*IV7)
+AmpV8 = sqrt(RV8*RV8 + IV8*IV8)
 
 t=0:1e-6:20e-3;
 V6_forced = V6_4*sin(2*pi*f*t);
@@ -194,22 +201,23 @@ print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
-#s = tf('s');                                      
-#G = 1+/(C*Req*s+1);
-#r = sqrt(square(RV6_4)+square(IV6_4))
-#teta = atan(IV6_4/RV6_4)
-#V6_bode = r*exp(i*2*pi*f+teta)                                 
+s = tf('s');                                      
+G = 1/(C*Req*s+1);
+r = sqrt(square(RV6)+square(IV6))
+teta = atan(IV6/RV6)
+V6_bode1 = r*exp(i*2*pi*f+teta)  
+V6_bode2 = G + V8_4
+                               
 #bode(G)
-#V6_bode = G + V8_4
+bode(V6_bode1)
 #f = logspace(-1, 6, 200);
 #[mag, phase] = bode(G ,2*pi*f) ;
 #subplot(2,1,1);
-
 #semilogx(f, 20*log10(abs(mag)));
-
 #subplot(2,1,2);
-
 #semilogx(f, phase);
+
+
 #bode(V8_bode)
 #bode(G+V8_bode)
 % bode
@@ -235,7 +243,7 @@ close(hf2);
 
 save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id", "IR1", "IR2", "IR3", "IR4", "IR5", "IR6", "IR7");
 save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau");
-save("-ascii","../doc/theoretical_4.tex", "RV1_4", "IV1_4", "RV2_4", "IV2_4", "RV3_4", "IV3_4", "RV5_4", "IV5_4", "RV6_4", "IV6_4", "RV7_4", "IV7_4",  "RV8_4", "IV8_4");
+save("-ascii","../doc/theoretical_4.tex", "RV1", "IV1", "RV2", "IV2", "RV3", "IV3", "RV5", "IV5", "RV6", "IV6", "RV7", "IV7", "RV8", "IV8", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8");
 
 
 
