@@ -81,10 +81,10 @@ else
 	IR3 = -(V2 - V5)*G3
 endif
 
-if (V5 > V4)
-	IR4 = (V5 - V4)*G4
+if (V5 > 0)
+	IR4 = V5*G4
 else 
-	IR4 = -(V5 - V4)*G4
+	IR4 = -V5*G4
 endif
 
 if (V5 > V6)
@@ -93,10 +93,10 @@ else
 	IR5 = -(V5 - V6)*G5
 endif
 
-if (V7 > V4)
-	IR6 = (V7 - V4)*G6
+if (V7 > 0)
+	IR6 = V7*G6
 else 
-	IR6 = -(V7 - V4)*G6
+	IR6 = -V7*G6
 endif
 
 if (V7 > V8)
