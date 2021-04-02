@@ -195,7 +195,7 @@ close(hf2);
 
 #--------------------  Alínea 6  -----------------------
 #s = tf('s');                                      
-#G = (1+(V8_4*(C*Req*s+1)))/(C*Req*s+1);
+#G = 1+/(C*Req*s+1);
 #r = sqrt(square(RV6_4)+square(IV6_4))
 #teta = atan(IV6_4/RV6_4)
 #V6_bode = r*exp(i*2*pi*f+teta)                                 
@@ -219,28 +219,17 @@ close(hf2);
 #G = V6_6/Vs_6
 
 #magnitude
-f=logspace(-1,6,200);
-w=2*pi*f;
-p=-1/(Req*C)-V8_4;
-u=-20*log10(sqrt(1+(w*Req*C).^2));
-h=semilogx(f,u); hold on;
-wn=-p;
-plot([wn/(2*pi) wn/(2*pi)], get(gca,'YLim'),'k--');
-text(wn/(2*pi),5,'|p|/2\pi');
-f1=-p/(2*pi);
-fmax=max(f);
-asymp=-20*log10((fmax-f1)/f1);
-plot([min(f) f1 fmax],[0 0 asymp ],'k--');
-hold off
-poles=[-p -p];
-figure(1);
-grid off;
-axis([min(f) max(f) -80 40]);
-xlabel('frequency [Hz]'); ylabel('20log| H(t)|');
-leg=[strread(num2str(R,1),'%s');'asymptote'];
-t=['Bode Magnitude in dB(f), C=' num2str(C*1e9) 'nF, R=' num2str(Req) '\Omega'];
-title(t, "fontsize", 15);
-hold off;
+#syms f
+#f = logspace(-1, 6, 200);
+#Vc = 1./(1+i.*2.*pi.*Req.*f.*C)
+#Vc_abs = abs(Vc)
+#Vc_phase = atan(imag(Vc)/real(Vc))
+#subplot(2,1,1);
+#semilogx(f, 20*log10(Vc_abs));
+#subplot(2,1,2);
+#semilogx(f, Vc_phase);
+
+
 
 #--------------------  Guardar para Tabelas -----------------------
 
