@@ -25,15 +25,15 @@ echo "********************************************"
 
 ac dec 1000 0.1 1MEG
 settype decibel out
-hardcopy acm.ps vdb(V6) xlimit 1 1000k ylabel 'small signal gain'
+hardcopy acm.eps vdb(V6) xlimit 1 1000k ylabel 'small signal gain'
 settype phase out
 
-hardcopy acm1.ps cph(V6) xlimit 1 1000k ylabel 'phase (in rad)'
+hardcopy acm1.eps cph(V6) xlimit 1 1000k ylabel 'phase (in rad)'
 
 let outd = 180/PI*cph(V6)
 
 settype phase outd
-hardcopy acm2.ps outd  xlimit 1 1000k ylabel 'phase'
+hardcopy acm2.eps outd  xlimit 1 1000k ylabel 'phase'
 
 quit
 

@@ -15,8 +15,6 @@ echo "********************************************"
 
 echo  "op_TAB2"
 print all
-print v(V5,V2)
-print v(V8,V5)
 echo  "op_END2"
 
 

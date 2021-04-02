@@ -24,7 +24,7 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-hardcopy trans3.ps v(V6) 
+hardcopy trans3.eps v(V6) 
 
 
 quit

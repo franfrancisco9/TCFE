@@ -2,7 +2,12 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-In this section we proceed to do the anlysis of the circuit through the use of the Ngspice simulation programm. In figure~\ref{fig:circuit_simulation} we have the circuit that was inputed into Ngspice (and also the considered current flows and nodes). The file can be found at the $sim$ folder inside the $T1$ folder.
+
+\subsection{Exercise 1}
+\label{Exercise 1}
+
+%---------------Simulation Analysis Exercise 1--------------------------------------------------------%
+In this section we proceed to do the anlysis of the circuit through the use of the Ngspice simulation programm. In figure~\ref{fig:circuit_simulation} we have the circuit that was inputed into Ngspice (and also the considered current flows and nodes). The file can be found at the $sim$ folder inside the $T2$ folder.
 
 \begin{figure}[!ht] \centering
 \includegraphics[width=0.8\linewidth]{circuit_simulation.pdf}
@@ -10,10 +15,10 @@ In this section we proceed to do the anlysis of the circuit through the use of t
 \label{fig:circuit_simulation}
 \end{figure}
 
-$V_8$ refers to an extra ficticious node created specifically for the Ngspice simulation, and it is below $V_2$ and above resistor R6 as it can be seen above in figure~\ref{fig:circuit_simulation}.The reason this node is necessary is because when creating a current controlled voltage source, Ngspice gets the current value by refering to a voltage source from where the current goes through. Since $I_c$ does not go through any voltage source in the circuit (does not go through $V_a$) we used this extra node to create a voltage source of 0$V$ (Which can be confirmed since $V_8 - V_2 = 0$) from which we are certain $I_c$ is passing by. 
+$V_9$ refers to an extra ficticious node created specifically for the Ngspice simulation, and it is below $0(GND)$ and above resistor R6 as it can be seen above in figure~\ref{fig:circuit_simulation}.The reason this node is necessary is because when creating a current controlled voltage source, Ngspice gets the current value by refering to a voltage source from where the current goes through. Since $I_d$ does not go through any voltage source in the circuit (does not go through $V_s$) we used this extra node to create a voltage source of 0$V$ (Which can be confirmed since $V_9 = $GND$ = 0$) from which we are certain $I_d$ is passing by. 
 
 Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis given the values found on Table~\ref{tab:op1}. The variables representation and format are automatically determined by Ngspice.
+under analysis given the values found on Table~\ref{tab:op}. The variables representation and format are automatically determined by Ngspice.
 
 \begin{table}[!ht]
   \centering
@@ -40,13 +45,15 @@ We can get all the missing values given the equations showed in section~\ref{sec
   => V_b = -3.3943*10^{-2} V
 \end{equation}
 
-From Table~\ref{tab:op} we can directly get the value of $I_c$:
+From Table~\ref{tab:op} we can directly get the value of $I_d$:
 
 \begin{equation}
-  I_c = @r6[i]
+  I_d = @r6[i]
 \end{equation}
 
 With this we have finalized the circuit anlysis through simulation with Ngspice.
+
+
 
 
 
