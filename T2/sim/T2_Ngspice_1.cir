@@ -35,6 +35,11 @@ echo "Kb = 7.23185131759 mS"
 echo "Kd = 8.12820254987 KΩ"
 echo "op_END1"
 
+
+*Vb and Vd
+print v(V2, V5)
+print v(V5, V8)
+
 quit
 
 .endc 

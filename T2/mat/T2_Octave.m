@@ -189,7 +189,7 @@ plot(t, V6_all, t, Vs_all);
 xlabel ("t[ms]");
 ylabel ("v_6(t) [V](blue) and v_s(t) [V](red)");
 title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
-print (hf2, "theoretical_5.eps", "-color");
+print (hf2, "theoretical_5.eps", "-color");3
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
