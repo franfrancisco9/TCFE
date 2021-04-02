@@ -1,4 +1,4 @@
-*voltage divider netlist
+*Total response of Node 6
 .options savecurrents
 
 *.include ../mat/ngspice_circuit_4.txt

@@ -1,4 +1,4 @@
-*voltage divider netlist
+*Natural Solution of V_6(t)
 .options savecurrents
 
 *.include ../mat/ngspice_circuit_3.txt

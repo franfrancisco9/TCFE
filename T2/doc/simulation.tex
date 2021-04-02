@@ -20,7 +20,7 @@ Table~\ref{tab:op} shows the simulated operating point results for the circuit u
 
 \begin{table}[!ht]
   \centering
-  \caption{Operating point for t<0. A variable preceded by @ is of type {\em current}
+  \caption{Operating point for $t<0$. A variable preceded by @ is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt. (the g in "gib" refers to the Ngspice notation of a voltage controlled current source)}
   \begin{tabular}{|l|r|}
@@ -52,7 +52,7 @@ Table~\ref{tab:op2} shows the simulated operating point results for the circuit 
 
 \begin{table}[!ht]
   \centering
-  \caption{Operating point for t = 0, $v_s(0) = 0$ and capacitor replaced with $V_x = V_6 - V_8$. A variable preceded by @ is of type {\em current}
+  \caption{Operating point for $t = 0$, $v_s(0) = 0$ and capacitor replaced with $V_x = V_6 - V_8$. A variable preceded by @ is of type {\em current}
     and expressed in Ampere; other variables are of type {\it voltage} and expressed in
     Volt. (the g in "gib" refers to the Ngspice notation of a voltage controlled current source)}
   \begin{tabular}{|l|r|}
@@ -66,16 +66,46 @@ Table~\ref{tab:op2} shows the simulated operating point results for the circuit 
 %---------------Simulation Analysis Exercise 3--------------------------------------------------------%
 \subsection{Exercise 3}
 \label{Simulation Exercise 3}
+In this section we used the results obtained in section \ref{Simulation Exercise 2} to determine the natural solution $v_{6n}(t)$ in the interval $[0,20]ms$ using the boundary conditions $V_6$ and $V_8$.
+
+Figure ~\ref{fig:simulation_3} shows the plot of the required result that was obtained using the transient analysis.
+
+\begin{figure}[!ht] \centering
+\caption{Natural solution, $v_{6n}(t)$ in $V$ in the interval $[0,20]ms$}
+\includegraphics[width=0.8\linewidth]{trans3.eps}
+\label{fig:simulation_3}
+\end{figure}
 
 %---------------Simulation Analysis Exercise 4--------------------------------------------------------%
 \subsection{Exercise 4}
 \label{Simulation Exercise 4}
+In this section we are required to simulate the total response in node 6 $v_{6}(t)$ by repeating the procedure of \ref{Simulation Exercise 3} with the initially given $v_s(t)$ (shown in \ref{fig:circuit}, with a frequency of $1000 Hz$.
+
+Figure ~\ref{fig:simulation_4} shows the plot of the required result that was obtained using the transient analysis as well as the stimulus (shown as $v(V_1)$ since $v_1(t) = v_s(t)$
+
+\begin{figure}[!ht] \centering
+\caption{Total response, $v_{6}(t)$ in $V$, and stimulus $v_s(t)$, in $V$ in the interval $[0,20]ms$}
+\includegraphics[width=0.8\linewidth]{trans4.eps}
+\label{fig:simulation_4}
+\end{figure}
+
 
 %---------------Simulation Analysis Exercise 5--------------------------------------------------------%
+\newpage
 \subsection{Exercise 5}
 \label{Simulation Exercise 5}
+In this section we are required to simulate the frequency response in node 6 $v_{6}(t)$ with the frequency in logscale, magnitude in $dB$ and phase in degrees for a range of $0.1Hz$ to $1MHz$.
 
+Figure ~\ref{fig:simulation_5} shows the plot of the required result, $v_6(f)$ as well as $v_s(f)$.
 
+\begin{figure}[!ht] \centering
+\caption{Frequency response, $v_{6}(f)$ in $V$, and $v_s(f)$, in $V$. Phase is in degrees and Magnitude in $dB$}
+\includegraphics[width=0.4\linewidth]{acm.eps}
+\includegraphics[width=0.4\linewidth]{acm2.eps}
+\label{fig:simulation_5}
+\end{figure}
+
+Since the source of of frequency change is $v_s$ itself, it is expected to not to show a frequency response since it changes alongside frequency, where as $v_6$ is dependant of the value that $v_s$ takes. 
 
 
 
