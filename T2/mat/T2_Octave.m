@@ -63,47 +63,15 @@ Ib = Nos_C(10)
 Ic = Nos_C(11)
 Id = Nos_C(12)
 
-if (V2 > V1)
-	IR1 = (V2 - V1)*G1
-else 
-	IR1 = -(V2 - V1)*G1
-endif
 
-if (V2 > V3)
-	IR2 = (V2 - V3)*G2
-else 
-	IR2 = -(V2 - V3)*G2
-endif
+IR1 = (V1 - V2)*G1
+IR2 = (V2 - V3)*G2
+IR3 = (V5 - V2)*G3
+IR4 = V5*G4
+IR5 = (V6 - V5)*G5
+IR6 = -V7*G6
+IR7 = (V7 - V8)*G7
 
-if (V2 > V5)
-	IR3 = (V2 - V5)*G3
-else 
-	IR3 = -(V2 - V5)*G3
-endif
-
-if (V5 > 0)
-	IR4 = V5*G4
-else 
-	IR4 = -V5*G4
-endif
-
-if (V5 > V6)
-	IR5 = (V5 - V6)*G5
-else 
-	IR5 = -(V5 - V6)*G5
-endif
-
-if (V7 > 0)
-	IR6 = V7*G6
-else 
-	IR6 = -V7*G6
-endif
-
-if (V7 > V8)
-	IR7 = (V7 - V8)*G7
-else 
-	IR7 = -(V7 - V8)*G7
-endif
 
 
 #--------------------  Alínea 2  ----------------------- 
@@ -248,7 +216,7 @@ save("-ascii","../doc/theoretical_4.tex", "RV1_4", "IV1_4", "RV2_4", "IV2_4", "R
         
 filename = 'ngspice_circuit_1.txt'
 file = fopen(filename, 'w');
-fprintf(file, "Vs V1 0 DC %.11e\nR1 V2 V1 %.11e\nR2 V3 V2 %.11e\nR3 V2 V5 %.11e\nR4 0 V5 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVd 0 V9 0V\nHVd V5 V8 VVd %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb, C); 
+fprintf(file, "Vs V1 0 DC %.11e\nR1 V1 V2 %.11e\nR2 V2 V3 %.11e\nR3 V5 V2 %.11e\nR4 V5 0 %.11e\nR5 V6 V5 %.11e\nR6 V9 V7 %.11e\nR7 V7 V8 %.11e\nVVd 0 V9 0V\nHVd V5 V8 VVd %.11e\nGIb V6 V3 V2 V5 %.11e\nC1 V6 V8 %.11e", Vs, R1, R2, R3, R4, R5, R6, R7, Kd, Kb, C); 
 fflush(filename);
 fclose(filename);
 

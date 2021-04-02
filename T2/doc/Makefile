@@ -64,7 +64,7 @@ T2_octave:
 clean:
 	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof *.txt *.log1 *.log2 *.log3 *.log4 *.log5 *tab2.tex
 	@rm -rf *.log *.lot *.nlo *.nls *.out *.toc *~ *.*% ./*.pdf ./*.ps ./*.txt
-	@rm -rf *_tab.tex octave-workspace *.eps *nos.tex *malhas.tex *_tab1.tex *.txt ../mat/*.txt ../mat/*.eps ../sim/*.ps
+	@rm -rf *_tab.tex octave-workspace *.eps *nos.tex *malhas.tex *_tab1.tex *.txt ../mat/*.txt ../mat/*.eps ../sim/*.ps *theoretical_*
 
 .PHONY: all clean ngspice octave
 
