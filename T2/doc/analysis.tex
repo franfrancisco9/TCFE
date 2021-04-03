@@ -106,7 +106,7 @@ A system with the 7 linearly independent equations and 7 variables (regarding th
 		0 & 0 & 0 & -1 & 0 & -K_dG_6 & 1 \\ 
 
 \end{array} \right]
-\times \left[ \begin{array}{c} V_1 \\ V_2 \\ V_3 \\  V_5 \\ V_6 \\ V_7 \\ V_8 \end{array} \right] =
+\times \left[ \begin{array}{c} V_1 \\ V_2 \\ V_3 \\ V_5 \\ V_6 \\ V_7 \\ V_8 \end{array} \right] =
 \left[ \begin{array}{c} V_s \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0  \end{array} \right]
 \label{eq:nodalmatrix1}
 \end{equation}
@@ -180,13 +180,6 @@ Here we have table~\ref{table:theoretical_1} in which the final values of the un
 \label{table:theoretical_1}
 \end{table}
 
-%\begin{figure}[!ht] \centering
-%\caption{Final solution of $v_6(t)$ and $v_s(t)$ in the interval $[-5,20]ms$}
-%\includegraphics[width=0.8\linewidth]{theoretical_5.eps}
-%\label{fig:circuit}
-%\end{figure}
-
-
 
 
 %---------------Theoretical Analysis Exercise 2--------------------------------------------------------%
@@ -195,7 +188,7 @@ Here we have table~\ref{table:theoretical_1} in which the final values of the un
 
 To solve this exercise, we first needed to get the value of $V_x$, which we did by applying the equation given by the professor (\ref{eq:vx2}), using the values of $V_6$ and $V_8$ we got from the matrix~\ref{eq:nodalmatrix1}. This value corresponds to the voltage in the capacitor that now functions as a voltage source, as seen in figure~\ref{fig:nodeanalysis2}. This happens because, as mentioned before, we can assume that an infinite time as passed until t=0 and it is fully charged, meaning it starts with the voltage given before we start the time.
 
-To get the value intended of $R_eq$, it is necessary to achieve the value of the current supplied by the new voltage source $V_x$, $I_x$. This is done by the following node analysis.
+To get the value intended of $R_eq$, it is necessary to achieve the value of the current supplied by the new voltage source ($V_x$), $I_x$. This is done by the following node analysis.
 
 Since $V_s$ is now null, it can be ignored, making it so that node 1 is the same as node 4, with a voltage of 0V. This means that the node 4 that could not be used for node analysis before provides another equation. However, the voltage source $V_x$ is connected to node 6, this one being no longer useful. For this exercise, we have 6 unkown variables for the node voltages ($V_2$, $V_3$, $V_5$, $V_6$, $V_7$ and $V_8$) and we can analyse the nodes 2, 3, 4 and 7.
 
@@ -269,11 +262,66 @@ Finally, we get the value of $R_{eq}$:
   \label{eq:ohm14}
 \end{equation}
 
-The value of $\tau$ is  $R_{eq} * C$ which is equal to $\partialinput{4}{4}{theoretical_2.tex}  \Omega*F$.
+The value of $\tau$ is  $R_{eq} * C$ which is equal to $\partialinput{4}{4}{theoretical_2.tex}  \Omega*uF$.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{ |c|c| |c|c|} 
+ \hline
+ {\bf Node} & {\bf Voltage[V]} & {\bf Branch} & {\bf Current[A]} \\ 
+ \hline\hline
+ $V_b$ & \partialinput{5}{5}{theoretical_2.tex} & $I_b$ & \partialinput{14}{14}{theoretical_2.tex} \\ 
+ \hline
+ $V_d$ & \partialinput{6}{6}{theoretical_2.tex} & $R_6 = I_d$ & \partialinput{15}{15}{theoretical_2.tex} \\ 
+ \hline
+ $V_1$ & \partialinput{7}{7}{theoretical_2.tex} & $R_1$ & \partialinput{16}{16}{theoretical_2.tex} \\
+ \hline
+ $V_2$ & \partialinput{8}{8}{theoretical_2.tex} & $R_2$ & \partialinput{17}{17}{theoretical_2.tex} \\
+ \hline
+ $V_3$ & \partialinput{9}{9}{theoretical_2.tex} & $R_3$ & \partialinput{18}{18}{theoretical_2.tex} \\
+ \hline
+ $V_5$ & \partialinput{10}{10}{theoretical_2.tex} &  $R_4$ & \partialinput{19}{19}{theoretical_2.tex} \\
+ \hline
+ $V_6$ & \partialinput{11}{11}{theoretical_2.tex} & $R_5$ & \partialinput{20}{20}{theoretical_2.tex} \\ 
+\hline
+ $V_6$ & \partialinput{12}{12}{theoretical_2.tex} & $R_7$ & \partialinput{22}{22}{theoretical_2.tex} \\
+ \hline
+ $V_8$ & \partialinput{13}{13}{theoretical_2.tex} & $I_x$ & \partialinput{2}{2}{theoretical_2.tex} \\
+ \hline
+ $V_x$ & \partialinput{1}{1}{theoretical_2.tex} &  & \\
+ \hline
+\end{tabular}
+\begin{tabular}{ |c|c| }
+\hline
+ {\bf Component} & {\bf Value} \\ 
+ \hline\hline
+ $R_{eq}$ & \partialinput{3}{3}{theoretical_2.tex}  $\Omega$ \\
+ \hline
+ $\tau$ & \partialinput{4}{4}{theoretical_2.tex}  $\Omega*uF$ \\ 
+ \hline
+\end{tabular}
+\caption{Voltage and Current values(Exercise 2)}
+\label{table:theoretical_2}
+\end{table}
 
 %---------------Theoretical Analysis Exercise 3--------------------------------------------------------%
 \subsection{Exercise 3}
 \label{sec:exercise3}
+
+For this exercise, we used the capacitor voltage $V_x$ for t<0 as the initial condition, as sugested. Using the equivalent resistance $R_eq$ calculated in the previous exercise, we can assume that the natural solution for $V_6$ is like the one on equation~\ref{eq:naturalsolution}, as this is a RC series.
+
+\begin{equation}
+  V_{6n}(t) = Ae^{-\frac{t}{RC}},
+  \label{eq:naturalsolution}
+\end{equation}
+
+Since the amplitude for which $V_6$ varies is given by the initial condition  $V_6$ = $V_x$ + $V_8$, the A in the equation above can be replaced by those two voltages. The value for $V_8$ was the one calculated on exercise 2 (\ref{sec:exercise2}). The equation for the natural solution $V_6$ is then represented below as the graph of $V_6n$ in function of t, in the interval [0, 20] ms (\ref{fig:theoretical_3}). 
+
+\begin{equation}
+  V_{6n}(t) = (V_{x} + V_{8})e^{-\frac{t}{RC}},
+  \label{eq:naturalsolution2}
+\end{equation}
+
 
 \begin{figure}[!ht] \centering
 \caption{Natural Response of $v_{6n}(t)$ in the interval $[0,20]ms$ using $V_x(t<0)$ as the initial condition}
@@ -323,14 +371,18 @@ Equations \ref{node42} to \ref{supernode4} were all obtained from the node analy
 
 The seventh and final equation (\ref{eq:node67}) necessary to complete the matrix is obtained by analysing node 6, using Kirchoff's Circuit Law and Ohm's Law for the resistor $R_5$. The equation for $V_b$ was secured previously (\ref{eq:vb1}). Because we are working with phasors, equations \ref{eq:caphasor1} and \ref{eq:caphasor2} are used to figure out the current flowing through the capacitor, by using its impendance $Z_c$.
 
-
 \begin{equation}
   I_{c}Z_{c} = V_{c},
   \label{eq:caphasor1}
 \end{equation}
 
 \begin{equation}
- Y_c = \frac{1}{Z_c},
+  Z_{c} = \frac{1}{jwC},
+  \label{eq:impedancecap}
+\end{equation}
+
+\begin{equation}
+ Y_{c} = \frac{1}{Z_c},
   \label{eq:caphasor2}
 \end{equation}
 
@@ -339,7 +391,7 @@ The seventh and final equation (\ref{eq:node67}) necessary to complete the matri
   \label{eq:node67}
 \end{equation}
 
-From this we get the following matrix, that was solved in Octave. The results are printed on the table~\ref{table:??}.
+From this we get the following matrix. Knowing that $w = 2\pi*f$ with $f = 1kHz$, the matricial equation was solved in Octave. The results are printed on the table~\ref{table:??}.
 
 \begin{equation}
 \left[ \begin{array}{ccccccc} 
@@ -357,11 +409,35 @@ From this we get the following matrix, that was solved in Octave. The results ar
 \label{eq:nodalmatrix4}
 \end{equation}
 
+
+
+\begin{figure}[!ht] \centering
+\caption{Forced solution $v_{6f}(t)$ for $f=1KHz$ in the interval $[-5,20]ms$}
+\includegraphics[width=0.8\linewidth]{theoretical_4.eps}
+\label{fig:theoretical_4}
+\end{figure}
+
 %---------------Theoretical Analysis Exercise 5--------------------------------------------------------%
 \newpage
 \subsection{Exercise 5}
 \label{sec:exercise5}
 
+%%%%%%%%%%%%%%%%%% NAO SEI A EXPRESSAO DE V6 FORÇADO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To figure out $V_6$, we simply had to convert the phasor to real time fuctions, being so that the value of $V_6$ is just the sum of the natural solution with the forced solution, calculated in exercises 3 and 4. The equation for $V_s$(t) is given and it is written below, as the one for $V_6$(t). The frequency used was 1000 Hz. 
+
+\begin{equation}
+   V_{s}(t) =  \sin{2{\pi}ft},
+  \label{eq:vsgiven}
+\end{equation}
+
+\begin{equation}
+  V_{6}(t) = (V_{x} + V_{8})e^{-\frac{t}{RC}} + V_{6f}(t),
+  \label{eq:v6tot}
+\end{equation}
+
+Finally, in figure \ref{fig:theoretical_5}, we have the graph for both $V_s$ and $V_6$ in function of t, in the interval [-5, 20] ms. As stated in the simultation analyis, it was expected for $V_s$ to not show a frequency response, since it is the source of frequency change. The same is not the case for $V_6$ as is depends on $V_s$.
 
 \begin{figure}[!ht] \centering
 \caption{Final solution of $v_6(t)$ and $v_s(t)$ in the interval $[-5,20]ms$}

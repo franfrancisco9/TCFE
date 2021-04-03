@@ -107,6 +107,14 @@ Id_2 = Nos_C_2(9)
 Vb_2 = Nos_C_2(10)
 Vd_2 = Nos_C_2(11)
 
+IR1_2 = (V1_2 - V2_2)*G1
+IR2_2 = (V2_2 - V3_2)*G2
+IR3_2 = (V5_2 - V2_2)*G3
+IR4_2 = V5_2*G4
+IR5_2 = (V6_2 - V5_2)*G5
+IR6_2 = -V7_2*G6
+IR7_2 = (V7_2 - V8_2)*G7
+
 Vx = V6_2 - V8_2
 Ix = Ib_2 + (V6_2 - V5_2)*G5
 Req = Vx/Ix
@@ -349,7 +357,7 @@ disp("\nfigure saved");
 #--------------------  Guardar para Tabelas -----------------------
 
 save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id", "IR1", "IR2", "IR3", "IR4", "IR5", "IR6", "IR7");
-save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau");
+save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau", "Vb_2", "Vd_2", "V1_2", "V2_2", "V3_2", "V5_2", "V6_2", "V7_2", "V8_2", "Ib_2", "Id_2", "IR1_2", "IR2_2", "IR3_2", "IR4_2", "IR5_2", "IR6_2", "IR7_2");
 save("-ascii","../doc/theoretical_4.tex", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8", "PhaseV1", "PhaseV2", "PhaseV3", "PhaseV5", "PhaseV6", "PhaseV7", "PhaseV8");
 
 
