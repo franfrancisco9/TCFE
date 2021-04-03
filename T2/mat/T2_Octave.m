@@ -122,6 +122,7 @@ hf = figure ();
 plot(t*1000, v6);
 xlabel ("t[ms]");
 ylabel ("V_{6n}(t) [V]");
+legend("v6");
 #title ("Natural Response of v_{6n}(t) in the interval [0,20]ms using Vx(t<0) as the initial condition");
 print (hf, "theoretical_3.eps", "-color");
 
@@ -203,8 +204,9 @@ Vs_all(t<0) = Vs;
 hf2 = figure();
 plot(t, V6_all, t, Vs_all);
 xlabel ("t[ms]");
-ylabel ("v_6(t) [V](blue) and v_s(t) [V](red)");
-title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
+ylabel ("v_6(t) [V] and v_s(t) [V]");
+legend("v6","vs");
+#title ("Final solution of v_6(t) and v_s(t) in the interval [-5,20]ms");
 print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
 
@@ -318,7 +320,7 @@ plot (f, 20*log10(abs(vs)), "r");
 legend("vc","v6","vs");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("v^~_c(f), v^~_6(f), v^~_s(f) [dB]");
-print (hf, "dB.eps", "-depsc");
+print (hf, "theoretical_6_dB.eps", "-depsc");
 disp("\nfigure saved");
 
 av6 = 180/pi*(angle(v6));
@@ -340,7 +342,7 @@ plot (f, 180/pi*angle(vs), "r");
 legend("vc","v6","vs");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
-print (hf, "phase.eps", "-depsc");
+print (hf, "theoretical_6_phase.eps", "-depsc");
 disp("\nfigure saved");
 
 
