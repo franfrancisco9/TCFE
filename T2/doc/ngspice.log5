@@ -1,0 +1,24 @@
+
+Circuit: *frequency response of node 6
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 1
+********************************************
+Frequency analysis
+********************************************
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 7001
+Error: no such vector out.
+
+The file "acm.eps" may be printed on a postscript printer.
+Error: no such vector out.
+
+The file "acm1.eps" may be printed on a postscript printer.
+Error: no such vector outd.
+
+The file "acm2.eps" may be printed on a postscript printer.
+ngspice-31 done

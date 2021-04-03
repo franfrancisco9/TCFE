@@ -171,6 +171,14 @@ AmpV5 = sqrt(RV5*RV5 + IV5*IV5)
 AmpV6 = sqrt(RV6*RV6 + IV6*IV6)
 AmpV7 = sqrt(RV7*RV7 + IV7*IV7)
 AmpV8 = sqrt(RV8*RV8 + IV8*IV8)
+PhaseV1 = atan(IV1/RV1)
+PhaseV2 = atan(IV2/RV2)
+PhaseV3 = atan(IV3/RV3)
+PhaseV5 = atan(IV5/RV5)
+PhaseV6 = atan(IV6/RV6)
+PhaseV7 = atan(IV7/RV7)
+PhaseV8 = atan(IV8/RV8)
+
 
 t=0:1e-6:20e-3;
 V6_forced = V6_4*sin(2*pi*f*t);
@@ -340,7 +348,7 @@ disp("\nfigure saved");
 
 save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id", "IR1", "IR2", "IR3", "IR4", "IR5", "IR6", "IR7");
 save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau");
-save("-ascii","../doc/theoretical_4.tex", "RV1", "IV1", "RV2", "IV2", "RV3", "IV3", "RV5", "IV5", "RV6", "IV6", "RV7", "IV7", "RV8", "IV8", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8");
+save("-ascii","../doc/theoretical_4.tex", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8", "PhaseV1", "PhaseV2", "PhaseV3", "PhaseV5", "PhaseV6", "PhaseV7", "PhaseV8");
 
 
 

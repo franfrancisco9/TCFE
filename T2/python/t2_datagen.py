@@ -75,9 +75,11 @@ def main():
     print
     print
     dataset = DataSet(number)
+    
 
     #print test
     dataset.printDataSet()
+    print(number)
     
 if __name__ == "__main__": main()
 
