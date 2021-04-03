@@ -201,15 +201,39 @@ print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
-s = tf('s');                                      
-G = 1/(C*Req*s+1);
-r = sqrt(square(RV6)+square(IV6))
-teta = atan(IV6/RV6)
-V6_bode1 = r*exp(i*2*pi*f+teta)  
-V6_bode2 = G + V8_4
-                               
+
+#Plot do Vc(w)
+#Temos de por f a ir de 0.1 a 10⁶ e tirar rad/s do título do angulo, mas dá bem
+#s = tf('s');                                      
+#G = 1/(C*Req*s/(2*pi)+1);                               
 #bode(G)
-bode(V6_bode1)
+
+
+#Não consegui seguir os passos do Francisco Branco e pôr isto a funcionar por causa de uma coisa deste género:
+#syms t
+#syms v6(t)
+#t=0:1e-6:20e-3;
+#v6 = (V8_2 + Vx_2) * exp(-(t/tau)); #-> Esta puta de expressão não dá erro
+#v6 = 1/(1+i*2*pi*t*C*Req) -> Mas esta pua de expressão já dá erro
+#hf = figure ();
+#plot(t*1000, v6);
+#xlabel ("t[ms]");
+#ylabel ("V_{6n}(t) [V]");
+#title ("Natural Response of v_{6n}(t) in the interval [0,20]ms using Vx(t<0) as the initial condition");
+#print (hf, "theoretical_3.eps", "-color");
+
+
+#Plot do V6(w): Ideias
+#v6 = V8_4 + 1/(C*Req*2*pi*f*i+1); ;
+
+#IDEIAS
+#Usar a ideia do exercício 3, mas com o f em logscale
+
+#r = sqrt(square(RV6)+square(IV6))
+#teta = atan(IV6/RV6)
+#V6_bode1 = r*exp(i*2*pi*f+teta)  
+#V6_bode2 = G + V8_4
+
 #f = logspace(-1, 6, 200);
 #[mag, phase] = bode(G ,2*pi*f) ;
 #subplot(2,1,1);
@@ -217,10 +241,18 @@ bode(V6_bode1)
 #subplot(2,1,2);
 #semilogx(f, phase);
 
+#syms f
+#r = sqrt(RV6*RV6+IV6*IV6)
+#teta = atan(IV6/RV6)
+#f = logspace(-1, 6, 200);
+#for aux=1:200
+#  v6(aux)=r*exp(2*pi*f(aux)*i + teta)
+#endfor
+#plot(v6)
 
 #bode(V8_bode)
 #bode(G+V8_bode)
-% bode
+#bode
 
 
 
