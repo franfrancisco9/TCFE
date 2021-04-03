@@ -33,8 +33,8 @@ settype phase out
 
 hardcopy acm1.eps cph(V6) cph(V1) xlimit 1 1000k ylabel 'phase (in rad)'
 
-let outd(V6) = 180/PI*cph(V6)
-let outd(Vs) = 180/PI*cph(V1)
+let outd(V6) = 180/PI*cph(V6) + 90
+let outd(Vs) = 180/PI*cph(V1) + 90
 
 settype phase outd
 hardcopy acm2.eps outd(V6) outd(Vs) xlimit 1 1000k ylabel 'phase'

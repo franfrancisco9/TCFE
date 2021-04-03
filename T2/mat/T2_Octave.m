@@ -268,7 +268,72 @@ close(hf2);
 #semilogx(f, 20*log10(Vc_abs));
 #subplot(2,1,2);
 #semilogx(f, Vc_phase);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+printf("\n\nPasso 6:\n");
+phi_vs = pi/2
+vsp= 1*power(e,-j*phi_vs)
+f =-1:0.1:6; %Hz
+w = 2*pi*power(10,f);
 
+vsp= 1*power(e,-j*phi_vs);
+Zc=1. ./ (j .* w .* C);
+
+N = [Kb+1./R2, -1./R2, -Kb, 0;
+     1./R3-Kb,  0, Kb-1./R3-1./R4, -1./R6;
+     Kb-1./R1-1./R3, 0, 1./R3-Kb, 0;
+     0, 0, 1., Kd/R6-R7/R6-1.];
+b = [0; 0; -vsp/R1; 0];
+
+V=linsolve(N,b); % v2, v3, v5, v7
+ 
+v8 = R7*(1./R1+1./R6)*V(4) + 0*Zc;
+v6 = ((1./R5+Kb)*V(3)-Kb*V(1)+ (v8 ./ Zc)) ./ (1./R5 + 1. ./ Zc);
+vc = v6 - v8;
+vs = power(e,j*pi/2) + 0*w;
+
+#{
+Tvc= 1 ./ (1 + j*w*Req*C);
+Tv6= Tvc;
+
+vs = power(e,j*pi/2) + 0*w;
+vc = Tvc .* vs;
+v6 = vc + v8p;
+#}
+
+hf = figure ();
+plot (f, 20*log10(abs(vc)), "m");
+hold on;
+plot (f, 20*log10(abs(v6)), "b");
+hold on;
+plot (f, 20*log10(abs(vs)), "r");
+
+legend("vc","v6","vs");
+xlabel ("log_{10}(f) [Hz]");
+ylabel ("v^~_c(f), v^~_6(f), v^~_s(f) [dB]");
+print (hf, "dB.eps", "-depsc");
+disp("\nfigure saved");
+
+av6 = 180/pi*(angle(v6));
+for  i=1:length(av6)
+	if(av6(i)<=-90) 
+		av6(i) += 180;
+	elseif (av6(i)>=90) 
+		av6(i) -= 180;
+endif
+endfor
+
+hf = figure ();
+plot (f, 180/pi*(angle(vc) + pi), "m");
+hold on;
+plot (f, av6, "b");
+hold on;
+plot (f, 180/pi*angle(vs), "r");
+
+legend("vc","v6","vs");
+xlabel ("log_{10}(f) [Hz]");
+ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
+print (hf, "phase.eps", "-depsc");
+disp("\nfigure saved");
 
 
 #--------------------  Guardar para Tabelas -----------------------
