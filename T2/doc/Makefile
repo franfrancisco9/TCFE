@@ -14,7 +14,7 @@ $(FILE).pdf: $(wildcard *.tex) $(LODFIGS) python T2_octave ngspice1 ngspice2 ngs
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 python:
-	python2 ../python/t2_datagen.py 95789 > data.txt
+	python2 ../python/t2_datagen.py 95772 > data.txt
 	
 ngspice1: ngspice.log1 
 	$(eval NGSFIGS1=$(shell grep _FIG1 $< | sed 's/_FIG1//g' | sed ':a;N;$!ba;s/\n/ /g'))

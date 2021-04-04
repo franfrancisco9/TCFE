@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.5)  3 APR 2021 21:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.5)  4 APR 2021 00:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -989,10 +989,10 @@ LaTeX Warning: Reference `table:??' on page 6 undefined on input line 233.
 
 [6]
 Package epstopdf Info: Source file: <theoretical_3.eps>
-(epstopdf)                    date: 2021-04-03 21:27:05
+(epstopdf)                    date: 2021-04-04 00:53:02
 (epstopdf)                    size: 363340 bytes
 (epstopdf)             Output file: <theoretical_3-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:08
+(epstopdf)                    date: 2021-04-04 00:53:16
 (epstopdf)                    size: 118082 bytes
 (epstopdf)             Command: <repstopdf --outfile=theoretical_3-eps-converte
 d-to.pdf theoretical_3.eps>
@@ -1017,79 +1017,79 @@ LaTeX Warning: Reference `table:??' on page 8 undefined on input line 394.
 
 [8 <./theoretical_3-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <theoretical_4.eps>
-(epstopdf)                    date: 2021-04-03 21:27:05
+(epstopdf)                    date: 2021-04-04 00:53:03
 (epstopdf)                    size: 717648 bytes
 (epstopdf)             Output file: <theoretical_4-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:10
+(epstopdf)                    date: 2021-04-04 00:53:23
 (epstopdf)                    size: 202577 bytes
 (epstopdf)             Command: <repstopdf --outfile=theoretical_4-eps-converte
 d-to.pdf theoretical_4.eps>
-(epstopdf)             \includegraphics on input line 416.
+(epstopdf)             \includegraphics on input line 439.
 Package epstopdf Info: Output file is already uptodate.
 <theoretical_4-eps-converted-to.pdf, id=268, 578.16pt x 433.62pt>
 File: theoretical_4-eps-converted-to.pdf Graphic file (type pdf)
 <use theoretical_4-eps-converted-to.pdf>
 Package pdftex.def Info: theoretical_4-eps-converted-to.pdf  used on input line
- 416.
+ 439.
 (pdftex.def)             Requested size: 364.19667pt x 273.14235pt.
  [9 <./theoretical_4-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <theoretical_5.eps>
-(epstopdf)                    date: 2021-04-03 21:27:05
+(epstopdf)                    date: 2021-04-04 00:53:04
 (epstopdf)                    size: 898139 bytes
 (epstopdf)             Output file: <theoretical_5-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:11
+(epstopdf)                    date: 2021-04-04 00:53:31
 (epstopdf)                    size: 221494 bytes
 (epstopdf)             Command: <repstopdf --outfile=theoretical_5-eps-converte
 d-to.pdf theoretical_5.eps>
-(epstopdf)             \includegraphics on input line 444.
+(epstopdf)             \includegraphics on input line 467.
 Package epstopdf Info: Output file is already uptodate.
-<theoretical_5-eps-converted-to.pdf, id=282, 578.16pt x 433.62pt>
+<theoretical_5-eps-converted-to.pdf, id=283, 578.16pt x 433.62pt>
 File: theoretical_5-eps-converted-to.pdf Graphic file (type pdf)
 <use theoretical_5-eps-converted-to.pdf>
 Package pdftex.def Info: theoretical_5-eps-converted-to.pdf  used on input line
- 444.
+ 467.
 (pdftex.def)             Requested size: 364.19667pt x 273.14235pt.
  [10 <./theoretical_5-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <theoretical_6_dB.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:06
 (epstopdf)                    size: 12855 bytes
 (epstopdf)             Output file: <theoretical_6_dB-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:12
+(epstopdf)                    date: 2021-04-04 00:53:32
 (epstopdf)                    size: 7505 bytes
 (epstopdf)             Command: <repstopdf --outfile=theoretical_6_dB-eps-conve
 rted-to.pdf theoretical_6_dB.eps>
-(epstopdf)             \includegraphics on input line 456.
+(epstopdf)             \includegraphics on input line 479.
 Package epstopdf Info: Output file is already uptodate.
-<theoretical_6_dB-eps-converted-to.pdf, id=295, 578.16pt x 433.62pt>
+<theoretical_6_dB-eps-converted-to.pdf, id=296, 578.16pt x 433.62pt>
 File: theoretical_6_dB-eps-converted-to.pdf Graphic file (type pdf)
 <use theoretical_6_dB-eps-converted-to.pdf>
 Package pdftex.def Info: theoretical_6_dB-eps-converted-to.pdf  used on input l
-ine 456.
+ine 479.
 (pdftex.def)             Requested size: 250.38564pt x 187.78949pt.
 Package epstopdf Info: Source file: <theoretical_6_phase.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:07
 (epstopdf)                    size: 12504 bytes
 (epstopdf)             Output file: <theoretical_6_phase-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:12
+(epstopdf)                    date: 2021-04-04 00:53:33
 (epstopdf)                    size: 7685 bytes
 (epstopdf)             Command: <repstopdf --outfile=theoretical_6_phase-eps-co
 nverted-to.pdf theoretical_6_phase.eps>
-(epstopdf)             \includegraphics on input line 457.
+(epstopdf)             \includegraphics on input line 480.
 Package epstopdf Info: Output file is already uptodate.
-<theoretical_6_phase-eps-converted-to.pdf, id=296, 578.16pt x 433.62pt>
+<theoretical_6_phase-eps-converted-to.pdf, id=297, 578.16pt x 433.62pt>
 File: theoretical_6_phase-eps-converted-to.pdf Graphic file (type pdf)
 <use theoretical_6_phase-eps-converted-to.pdf>
 Package pdftex.def Info: theoretical_6_phase-eps-converted-to.pdf  used on inpu
-t line 457.
+t line 480.
 (pdftex.def)             Requested size: 250.38564pt x 187.78949pt.
 
-Overfull \hbox (47.84856pt too wide) in paragraph at lines 456--459
+Overfull \hbox (47.84856pt too wide) in paragraph at lines 479--482
 [][]  []
  []
 
 ) (./simulation.tex [11 <./theoretical_6_dB-eps-converted-to.pdf> <./theoretica
 l_6_phase-eps-converted-to.pdf>]
-<circuit_simulation.pdf, id=313, 794.97pt x 614.295pt>
+<circuit_simulation.pdf, id=314, 794.97pt x 614.295pt>
 File: circuit_simulation.pdf Graphic file (type pdf)
 <use circuit_simulation.pdf>
 Package pdftex.def Info: circuit_simulation.pdf  used on input line 12.
@@ -1101,31 +1101,31 @@ Underfull \vbox (badness 1424) has occurred while \output is active []
 
  [13]
 Package epstopdf Info: Source file: <trans3.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:08
 (epstopdf)                    size: 16425 bytes
 (epstopdf)             Output file: <trans3-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:12
+(epstopdf)                    date: 2021-04-04 00:53:35
 (epstopdf)                    size: 8062 bytes
 (epstopdf)             Command: <repstopdf --outfile=trans3-eps-converted-to.pd
 f trans3.eps>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
-<trans3-eps-converted-to.pdf, id=345, 560.0925pt x 560.0925pt>
+<trans3-eps-converted-to.pdf, id=346, 560.0925pt x 560.0925pt>
 File: trans3-eps-converted-to.pdf Graphic file (type pdf)
 <use trans3-eps-converted-to.pdf>
 Package pdftex.def Info: trans3-eps-converted-to.pdf  used on input line 75.
 (pdftex.def)             Requested size: 364.19667pt x 364.20964pt.
 Package epstopdf Info: Source file: <trans4.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:08
 (epstopdf)                    size: 88835 bytes
 (epstopdf)             Output file: <trans4-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:13
+(epstopdf)                    date: 2021-04-04 00:53:37
 (epstopdf)                    size: 16479 bytes
 (epstopdf)             Command: <repstopdf --outfile=trans4-eps-converted-to.pd
 f trans4.eps>
 (epstopdf)             \includegraphics on input line 88.
 Package epstopdf Info: Output file is already uptodate.
-<trans4-eps-converted-to.pdf, id=349, 560.0925pt x 560.0925pt>
+<trans4-eps-converted-to.pdf, id=350, 560.0925pt x 560.0925pt>
 File: trans4-eps-converted-to.pdf Graphic file (type pdf)
 <use trans4-eps-converted-to.pdf>
 Package pdftex.def Info: trans4-eps-converted-to.pdf  used on input line 88.
@@ -1133,31 +1133,31 @@ Package pdftex.def Info: trans4-eps-converted-to.pdf  used on input line 88.
 
 [14 <./trans3-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <acm.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:08
 (epstopdf)                    size: 24198 bytes
 (epstopdf)             Output file: <acm-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:13
+(epstopdf)                    date: 2021-04-04 00:53:38
 (epstopdf)                    size: 8398 bytes
 (epstopdf)             Command: <repstopdf --outfile=acm-eps-converted-to.pdf a
 cm.eps>
 (epstopdf)             \includegraphics on input line 103.
 Package epstopdf Info: Output file is already uptodate.
-<acm-eps-converted-to.pdf, id=362, 560.0925pt x 560.0925pt>
+<acm-eps-converted-to.pdf, id=363, 560.0925pt x 560.0925pt>
 File: acm-eps-converted-to.pdf Graphic file (type pdf)
 <use acm-eps-converted-to.pdf>
 Package pdftex.def Info: acm-eps-converted-to.pdf  used on input line 103.
 (pdftex.def)             Requested size: 204.85846pt x 204.8551pt.
 Package epstopdf Info: Source file: <acm2.eps>
-(epstopdf)                    date: 2021-04-03 21:27:06
+(epstopdf)                    date: 2021-04-04 00:53:08
 (epstopdf)                    size: 24148 bytes
 (epstopdf)             Output file: <acm2-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-03 21:27:13
+(epstopdf)                    date: 2021-04-04 00:53:40
 (epstopdf)                    size: 8477 bytes
 (epstopdf)             Command: <repstopdf --outfile=acm2-eps-converted-to.pdf 
 acm2.eps>
 (epstopdf)             \includegraphics on input line 104.
 Package epstopdf Info: Output file is already uptodate.
-<acm2-eps-converted-to.pdf, id=363, 560.0925pt x 560.0925pt>
+<acm2-eps-converted-to.pdf, id=364, 560.0925pt x 560.0925pt>
 File: acm2-eps-converted-to.pdf Graphic file (type pdf)
 <use acm2-eps-converted-to.pdf>
 Package pdftex.def Info: acm2-eps-converted-to.pdf  used on input line 104.
@@ -1198,10 +1198,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 19296 strings out of 481239
- 336465 string characters out of 5920378
- 750206 words of memory out of 5000000
- 33956 multiletter control sequences out of 15000+600000
+ 19299 strings out of 481239
+ 336519 string characters out of 5920378
+ 750280 words of memory out of 5000000
+ 33958 multiletter control sequences out of 15000+600000
  582954 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,10n,79p,925b,746s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1216,10 +1216,10 @@ lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
 elvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on report.pdf (17 pages, 946223 bytes).
+Output written on report.pdf (17 pages, 947304 bytes).
 PDF statistics:
- 462 PDF objects out of 1000 (max. 8388607)
- 381 compressed objects within 4 object streams
- 94 named destinations out of 1000 (max. 500000)
+ 463 PDF objects out of 1000 (max. 8388607)
+ 382 compressed objects within 4 object streams
+ 95 named destinations out of 1000 (max. 500000)
  19642 words of extra memory for PDF output out of 20736 (max. 10000000)
 
