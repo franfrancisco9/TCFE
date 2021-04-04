@@ -188,20 +188,6 @@ PhaseV6 = atan(IV6/RV6)
 PhaseV7 = atan(IV7/RV7)
 PhaseV8 = atan(IV8/RV8)
 
-
-t=0:1e-6:20e-3;
-V6_forced = V6_4*sin(2*pi*f*t);
-Vs_all = sin(2*pi*f*t); 
-
-hf1 = figure();
-plot(t*1000, V6_forced, t*1000, Vs_all);
-axis ([0, 20, -2, 2]);
-xlabel ("t[ms]");
-ylabel ("v_{6f}(t) [V]");
-#title ("Forced Response of v_{6f}(t) in the interval [0,20]ms");
-print (hf1, "theoretical_4.eps", "-color");
-close(hf1);
-
 #--------------------  Alínea 5  -----------------------
 t=-5e-3:1e-6:20e-3;
 V6_all(t>=0)= V6_4*sin(2*pi*f*t(t>=0)) + Vx*exp(-t(t>=0)/tau);
@@ -219,146 +205,68 @@ print (hf2, "theoretical_5.eps", "-color");
 close(hf2);
 
 #--------------------  Alínea 6  -----------------------
-
-#Plot do Vc(w)
-#Temos de por f a ir de 0.1 a 10⁶ e tirar rad/s do título do angulo, mas dá bem
-#s = tf('s');                                      
-#G = 1/(C*Req*s/(2*pi)+1);                               
-#bode(G)
-
-
-#Não consegui seguir os passos do Francisco Branco e pôr isto a funcionar por causa de uma coisa deste género:
-#syms t
-#syms v6(t)
-#t=0:1e-6:20e-3;
-#v6 = (V8_2 + Vx_2) * exp(-(t/tau)); #-> Esta puta de expressão não dá erro
-#v6 = 1/(1+i*2*pi*t*C*Req) -> Mas esta pua de expressão já dá erro
-#hf = figure ();
-#plot(t*1000, v6);
-#xlabel ("t[ms]");
-#ylabel ("V_{6n}(t) [V]");
-#title ("Natural Response of v_{6n}(t) in the interval [0,20]ms using Vx(t<0) as the initial condition");
-#print (hf, "theoretical_3.eps", "-color");
-
-
-#Plot do V6(w): Ideias
-#v6 = V8_4 + 1/(C*Req*2*pi*f*i+1); ;
-
-#IDEIAS
-#Usar a ideia do exercício 3, mas com o f em logscale
-
-#r = sqrt(square(RV6)+square(IV6))
-#teta = atan(IV6/RV6)
-#V6_bode1 = r*exp(i*2*pi*f+teta)  
-#V6_bode2 = G + V8_4
-
-#f = logspace(-1, 6, 200);
-#[mag, phase] = bode(G ,2*pi*f) ;
-#subplot(2,1,1);
-#semilogx(f, 20*log10(abs(mag)));
-#subplot(2,1,2);
-#semilogx(f, phase);
-
-#syms f
-#r = sqrt(RV6*RV6+IV6*IV6)
-#teta = atan(IV6/RV6)
-#f = logspace(-1, 6, 200);
-#for aux=1:200
-#  v6(aux)=r*exp(2*pi*f(aux)*i + teta)
-#endfor
-#plot(v6)
-
-#bode(V8_bode)
-#bode(G+V8_bode)
-#bode
-
-
-
-#G = V6_6/Vs_6
-
-#magnitude
-#syms f
-#f = logspace(-1, 6, 200);
-#Vc = 1./(1+i.*2.*pi.*Req.*f.*C)
-#Vc_abs = abs(Vc)
-#Vc_phase = atan(imag(Vc)/real(Vc))
-#subplot(2,1,1);
-#semilogx(f, 20*log10(Vc_abs));
-#subplot(2,1,2);
-#semilogx(f, Vc_phase);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-printf("\n\nPasso 6:\n");
-phi_vs = pi/2
-vsp= 1*power(e,-j*phi_vs)
+phi_Vs = pi/2
+Vs_p= 1*power(e,-j*phi_Vs)
 f =-1:0.1:6; %Hz
 w = 2*pi*power(10,f);
 
-vsp= 1*power(e,-j*phi_vs);
+Vs_p= 1*power(e,-j*phi_Vs);
 Zc=1. ./ (j .* w .* C);
 
-N = [Kb+1./R2, -1./R2, -Kb, 0;
+Ex6_A = [Kb+1./R2, -1./R2, -Kb, 0;
      1./R3-Kb,  0, Kb-1./R3-1./R4, -1./R6;
      Kb-1./R1-1./R3, 0, 1./R3-Kb, 0;
      0, 0, 1., Kd/R6-R7/R6-1.];
-b = [0; 0; -vsp/R1; 0];
+Ex6_B = [0; 0; -Vs_p/R1; 0];
 
-V=linsolve(N,b); % v2, v3, v5, v7
+Ex6_C=linsolve(Ex6_A,Ex6_B); % v2, v3, v5, v7
  
-v8 = R7*(1./R1+1./R6)*V(4) + 0*Zc;
-v6 = ((1./R5+Kb)*V(3)-Kb*V(1)+ (v8 ./ Zc)) ./ (1./R5 + 1. ./ Zc);
-vc = v6 - v8;
-vs = power(e,j*pi/2) + 0*w;
+V8_6 = R7*(1./R1+1./R6)*Ex6_C(4) + 0*Zc;
+V6_6 = ((1./R5+Kb)*Ex6_C(3)-Kb*Ex6_C(1)+ (V8_6 ./ Zc)) ./ (1./R5 + 1. ./ Zc);
+Vc = V6_6  - V8_6;
+Vs_6 = power(e,j*pi/2) + 0*w;
 
-#{
-Tvc= 1 ./ (1 + j*w*Req*C);
-Tv6= Tvc;
-
-vs = power(e,j*pi/2) + 0*w;
-vc = Tvc .* vs;
-v6 = vc + v8p;
-#}
 
 hf = figure ();
-plot (f, 20*log10(abs(vc)), "m");
+plot (f, 20*log10(abs(Vc)), "r");
 hold on;
-plot (f, 20*log10(abs(v6)), "b");
+plot (f, 20*log10(abs(V6_6)), "b");
 hold on;
-plot (f, 20*log10(abs(vs)), "r");
+plot (f, 20*log10(abs(Vs_6)), "g");
 
-legend("vc","v6","vs");
+legend("v_c","v_6","v_s");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("v^~_c(f), v^~_6(f), v^~_s(f) [dB]");
 print (hf, "theoretical_6_dB.eps", "-depsc");
-disp("\nfigure saved");
 
-av6 = 180/pi*(angle(v6));
-for  i=1:length(av6)
-	if(av6(i)<=-90) 
-		av6(i) += 180;
-	elseif (av6(i)>=90) 
-		av6(i) -= 180;
+V6_a = 180/pi*(angle(V6_6));
+
+for  i=1:length(V6_a)
+	if(V6_a(i)<=-90) 
+		V6_a(i) += 180;
+	elseif (V6_a(i)>=90) 
+		V6_a(i) -= 180;
 endif
 endfor
 
 hf = figure ();
-plot (f, 180/pi*(angle(vc) + pi), "m");
+plot (f, 180/pi*(angle(Vc) + pi), "r");
 hold on;
-plot (f, av6, "b");
+plot (f, V6_a, "b");
 hold on;
-plot (f, 180/pi*angle(vs), "r");
+plot (f, 180/pi*angle(Vs_6), "g");
 
-legend("vc","v6","vs");
+legend("v_c","v_6","v_s");
 xlabel ("log_{10}(f) [Hz]");
 ylabel ("Phase v_c(f), v_6(f), v_s(f) [degrees]");
 print (hf, "theoretical_6_phase.eps", "-depsc");
-disp("\nfigure saved");
 
 
 #--------------------  Guardar para Tabelas -----------------------
 
 save("-ascii","../doc/theoretical_1.tex", "Vb", "Vd", "V1", "V2", "V3", "V5", "V6", "V7", "V8", "Ib", "Ic", "Id", "IR1", "IR2", "IR3", "IR4", "IR5", "IR6", "IR7");
 save("-ascii","../doc/theoretical_2.tex", "Vx", "Ix", "Req", "tau", "Vb_2", "Vd_2", "V1_2", "V2_2", "V3_2", "V5_2", "V6_2", "V7_2", "V8_2", "Ib_2", "Id_2", "IR1_2", "IR2_2", "IR3_2", "IR4_2", "IR5_2", "IR6_2", "IR7_2");
-save("-ascii","../doc/theoretical_4.tex", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8", "PhaseV1", "PhaseV2", "PhaseV3", "PhaseV5", "PhaseV6", "PhaseV7", "PhaseV8");
+save("-ascii","../doc/theoretical_4.tex", "AmpV1", "AmpV2", "AmpV3", "AmpV5", "AmpV6", "AmpV7", "AmpV8", "PhaseV1", "PhaseV2", "PhaseV3", "PhaseV5", "PhaseV6", "PhaseV7", "PhaseV8","RV6");
 
 
 

@@ -111,7 +111,7 @@ A system with the 7 linearly independent equations and 7 variables (regarding th
 \label{eq:nodalmatrix1}
 \end{equation}
 
-To find all the required branches' currents we can use Ohm's Law for each resistor, which can be seen in equations~\ref{eq:ohm11} to~\ref{eq:ohm17}: Now we no longer consider the currents to be diverging from the nodes, but assume the directions shown in figure~\ref{fig:nodeanalysis1}.
+To find all the required branches' currents we can use Ohm's Law for each resistor, which can be seen in equations~\ref{eq:ohm11} to~\ref{eq:ohm17}: Now we no longer consider the currents to be diverging from the nodes, but assume the directions shown in figure~\ref{fig:theoretical}.
 
 
 \begin{equation}
@@ -186,7 +186,7 @@ Here we have table~\ref{table:theoretical_1} in which the final values of the un
 \subsection{Exercise 2}
 \label{sec:exercise2}
 
-To solve this exercise, we first needed to get the value of $V_x$, which we did by applying the equation given by the professor (\ref{eq:vx2}), using the values of $V_6$ and $V_8$ we got from the matrix~\ref{eq:nodalmatrix1}. This value corresponds to the voltage in the capacitor that now functions as a voltage source, as seen in figure~\ref{fig:nodeanalysis2}. This happens because, as mentioned before, we can assume that an infinite time as passed until t=0 and it is fully charged, meaning it starts with the voltage given before we start the time.
+To solve this exercise, we first needed to get the value of $V_x$, which we did by applying the equation given by the professor (\ref{eq:vx2}), using the values of $V_6$ and $V_8$ we got from the matrix~\ref{eq:nodalmatrix1}. This value corresponds to the voltage in the capacitor that now functions as a voltage source. This happens because, as mentioned before, we can assume that an infinite time as passed until t=0 and it is fully charged, meaning it starts with the voltage given before we start the time.
 
 To get the value intended of $R_eq$, it is necessary to achieve the value of the current supplied by the new voltage source ($V_x$), $I_x$. This is done by the following node analysis.
 
@@ -230,7 +230,7 @@ The following equations are also trivial. The first one, equation~\ref{eq:vd2} i
   \label{eq:given2}
 \end{equation}
 
-These equations are now enough to solve for the value of $V_2$, $V_3$, $V_5$, $V_6$, $V_7$ and $V_8$, using the matrix below. This was solve in Octave as it was not pratical to solve it normally and the results are presented in table~\ref{table:??}.
+These equations are now enough to solve for the value of $V_2$, $V_3$, $V_5$, $V_6$, $V_7$ and $V_8$, using the matrix below. This was solve in Octave as it was not pratical to solve it normally and the results are presented in table~\ref{table:theoretical_2}.
 
 \begin{equation}
 \left[ \begin{array}{cccccc} 
@@ -340,7 +340,7 @@ For this exercise, to find the forced solution $V_6f$(t), we will work with the 
 
 The node analysis for this exercise is pretty similar to the one in \ref{sec:exercise1} as the voltage source is once again $V_s$ and the capacitor no longer works as a voltage source. This means that we now have 7 varibles $V_1$, $V_2$, $V_3$, $V_5$, $V_6$, $V_7$ and $V_8$ and we can use the node method in nodes 2, 3, 6 and 7, since all the other ones are connected to voltage sources.
 
-Equations \ref{node42} to \ref{supernode4} were all obtained from the node analysis in exercise 1. The first three are achieved, correspondingly, by nodes 2,3 and 7. The second to last equation refers to the current controlled voltage source $V_d$. Finally, the last one is the supernode that we got from merging the two branches placed on the left side of circuit.
+Equations \ref{eq:node42} to \ref{eq:supernode4} were all obtained from the node analysis in exercise 1. The first three are achieved, correspondingly, by nodes 2,3 and 7. The second to last equation refers to the current controlled voltage source $V_d$. Finally, the last one is the supernode that we got from merging the two branches placed on the left side of circuit.
 
 \begin{equation}
   (V_{3} - V_{1})G_{1} + (V_{2} - V_{3})G_{2} + (V_{2} - V_{5})G_{3}= 0,
@@ -391,7 +391,7 @@ The seventh and final equation (\ref{eq:node67}) necessary to complete the matri
   \label{eq:node67}
 \end{equation}
 
-From this we get the following matrix. Knowing that $w = 2\pi*f$ with $f = 1kHz$, the matricial equation was solved in Octave. The results are printed on the table~\ref{table:??}.
+From this we get the following matrix. Knowing that $w = 2\pi*f$ with $f = 1kHz$, the matricial equation was solved in Octave. The results are printed on the table~\ref{table:theoretical_4}.
 
 \begin{equation}
 \left[ \begin{array}{ccccccc} 
@@ -434,19 +434,14 @@ From this we get the following matrix. Knowing that $w = 2\pi*f$ with $f = 1kHz$
 \label{table:theoretical_4}
 \end{table}
 
-\begin{figure}[!ht] \centering
-\caption{Forced solution $v_{6f}(t)$ for $f=1KHz$ in the interval $[-5,20]ms$}
-\includegraphics[width=0.8\linewidth]{theoretical_4.eps}
-\label{fig:theoretical_4}
-\end{figure}
+Passing the obtained values into real time function the following expression for the forced solution is obtained: $v_6(t)$ = ($\partialinput{15}{15}{theoretical_4.tex}$)*sin(2*pi*1000*t)
+
+
 
 %---------------Theoretical Analysis Exercise 5--------------------------------------------------------%
-\newpage
 \subsection{Exercise 5}
 \label{sec:exercise5}
 
-%%%%%%%%%%%%%%%%%% NAO SEI A EXPRESSAO DE V6 FORÇADO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To figure out $V_6$, we simply had to convert the phasor to real time fuctions, being so that the value of $V_6$ is just the sum of the natural solution with the forced solution, calculated in exercises 3 and 4. The equation for $V_s$(t) is given and it is written below, as the one for $V_6$(t). The frequency used was 1000 Hz. 
 
@@ -467,12 +462,11 @@ Finally, in figure \ref{fig:theoretical_5}, we have the graph for both $V_s$ and
 \includegraphics[width=0.8\linewidth]{theoretical_5.eps}
 \label{fig:theoretical_5}
 \end{figure}
-
+\newpage 
 %---------------Theoretical Analysis Exercise 6--------------------------------------------------------%
-\newpage
 \subsection{Exercise 6}
 \label{sec:exercise6}
-
+We know that $v_c(f)$ and $v_6(f)$ only depend on frequency. Using the method applied on section \ref{sec:exercise4} but for a vector of frequency values, allows for a determintation of all phasors in function of frequency. After determining  $\tilde{V}_6$ and  $\tilde{V}_8$ we can find  $\tilde{V}_c$, since  $\tilde{V}_c =  \tilde{V}_6 - \tilde{V}_8$, getting all thdata required to plot the magnitude in $dB$ and phase in degrees of $v_c(f)$, $v_6(f)$ and $v_s(f)$. 
 
 \begin{figure}[!ht] 
 \caption{Frequency response, $v_{c}(f)$, $v_6(f)$, and $v_s(f)$ in $V$. Magnitude in $dB$ and Phase is in degrees}
@@ -481,7 +475,10 @@ Finally, in figure \ref{fig:theoretical_5}, we have the graph for both $V_s$ and
 \label{fig:theoretical_6}
 \end{figure}
 
+The graphics above confirmed our expectations seen that, considering $V_s$ = 1 (as suggested by the Professor) and analyzing a simple equivalent RC circuit, it becomes clear that $V_c = \frac{1}{1 + jwRC}$. Having this in consideration, it is trivial to infer that $V_c$ decreases when frequency increases. Applying the same thinking to $V_6$ (which is equal to $V_c + V_8$, with $V_8$ being independent from the frequency), this voltage must also decrease when frequency increases.
+\newpage 
 
+\newpage 
 
 
 
