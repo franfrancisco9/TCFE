@@ -1,0 +1,88 @@
+\newpage
+\section{Conclusion}
+\label{sec:conclusion}
+
+By analysing the circuit theoretically and then simulating the circuit using Ngspice, we can verify that the values of the unknown components match almost perfectly and all approaches agree on the final currents' directions across the circuit's branches (which can be seen below in figure~\ref{fig:circuit_final}).
+
+\begin{figure}[!ht] \centering
+\includegraphics[width=0.8\linewidth]{circuit_final.pdf}
+\caption{Representation of the final circuit with all the correct directions for the currents.}
+\label{fig:circuit_final}
+\end{figure}
+
+To better understand the discrepancies and compare results we present the several tables obtained side by side on octave and ngspice, respectively, in tables \ref{tab:conclusion 1} to \ref{tab:conclusion 2}.
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{op_tab}
+  \end{tabular}
+  \begin{tabular}{ |c|c| |c|c|} 
+ \hline
+ {\bf Node} & {\bf Voltage[V]} & {\bf Branch} & {\bf Current[A]} \\ 
+ \hline\hline
+  $V_b$ & \partialinput{1}{1}{theoretical_1.tex} & $I_b$ & \partialinput{10}{10}{theoretical_1.tex} \\ 
+ \hline
+  $V_d$ & \partialinput{2}{2}{theoretical_1.tex} & $I_c$ & \partialinput{11}{11}{theoretical_1.tex} \\ 
+ \hline
+ $V_1$ & \partialinput{3}{3}{theoretical_1.tex} & $R_6 = I_d$ & \partialinput{12}{12}{theoretical_1.tex} \\
+ \hline
+ $V_2$ & \partialinput{4}{4}{theoretical_1.tex} & $R_1$ & \partialinput{13}{13}{theoretical_1.tex} \\
+ \hline
+ $V_3$ & \partialinput{5}{5}{theoretical_1.tex} & $R_2$ & \partialinput{14}{14}{theoretical_1.tex} \\
+ \hline
+ $V_5$ & \partialinput{6}{6}{theoretical_1.tex} &  $R_3$ & \partialinput{15}{15}{theoretical_1.tex} \\
+ \hline
+ $V_6$ & \partialinput{7}{7}{theoretical_1.tex} & $R_4$ & \partialinput{16}{16}{theoretical_1.tex} \\ 
+\hline
+ $V_6$ & \partialinput{8}{8}{theoretical_1.tex} & $R_5$ & \partialinput{17}{17}{theoretical_1.tex} \\
+ \hline
+ $V_8$ & \partialinput{9}{9}{theoretical_1.tex} & $R_7$ & \partialinput{19}{19}{theoretical_1.tex} \\
+ \hline
+\end{tabular}
+\caption{Comparison of exercises 1 (Upper-Ngspice, Lower-Octave)}
+  \label{tab:conclusion 1}
+\end{table}
+
+
+\begin{table}[t]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{op_tab2}
+  \end{tabular}
+ \begin{tabular}{ |c|c| |c|c|} 
+ \hline
+ {\bf Node} & {\bf Voltage[V]} & {\bf Branch} & {\bf Current[A]} \\ 
+ \hline\hline
+ $V_b$ & \partialinput{5}{5}{theoretical_2.tex} & $I_b$ & \partialinput{14}{14}{theoretical_2.tex} \\ 
+ \hline
+ $V_d$ & \partialinput{6}{6}{theoretical_2.tex} & $R_6 = I_d$ & \partialinput{15}{15}{theoretical_2.tex} \\ 
+ \hline
+ $V_1$ & \partialinput{7}{7}{theoretical_2.tex} & $R_1$ & \partialinput{16}{16}{theoretical_2.tex} \\
+ \hline
+ $V_2$ & \partialinput{8}{8}{theoretical_2.tex} & $R_2$ & \partialinput{17}{17}{theoretical_2.tex} \\
+ \hline
+ $V_3$ & \partialinput{9}{9}{theoretical_2.tex} & $R_3$ & \partialinput{18}{18}{theoretical_2.tex} \\
+ \hline
+ $V_5$ & \partialinput{10}{10}{theoretical_2.tex} &  $R_4$ & \partialinput{19}{19}{theoretical_2.tex} \\
+ \hline
+ $V_6$ & \partialinput{11}{11}{theoretical_2.tex} & $R_5$ & \partialinput{20}{20}{theoretical_2.tex} \\ 
+\hline
+ $V_6$ & \partialinput{12}{12}{theoretical_2.tex} & $R_7$ & \partialinput{22}{22}{theoretical_2.tex} \\
+ \hline
+ $V_8$ & \partialinput{13}{13}{theoretical_2.tex} & $I_x$ & \partialinput{2}{2}{theoretical_2.tex} \\
+ \hline
+ $V_x$ & \partialinput{1}{1}{theoretical_2.tex} &  & \\
+ \hline
+\end{tabular}
+\caption{Comparison of exercises 2 (Upper-Ngspice, Lower-Octave)}
+  \label{tab:conclusion 2}
+\end{table}
+
+Some small discrepancies are due to the different number of decimal places considered by Octave and Ngspice leading to slight inaccuracies. However, considering that the circuit complexity is still not considered, the differences are negligible. Furthermore, any differences in the order of $10^{-15}$ (or lower), are very likely related to the way the computer programs deal with mathematical operations (seen that $10^{-15}$ is extremely close to the precision of a double's mantissa). Note that the format of the data presented in the Ngspice tables are automatically chosen by the program.
+
+All of this leads to the conclusion that the making of this laboratory assignment was coherent and that the main goal was attained: to achieve the circuit analysis through a theoretical and simulated approach.

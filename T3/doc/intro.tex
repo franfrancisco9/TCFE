@@ -1,0 +1,41 @@
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+
+% state the learning objective 
+
+The objective of this laboratory assignment is to analyze a RC circuit to find the natural and forced response as well as doing a frequency analysis. Furthermore, it is asked to run a simulation using NgSpice to detect small diferences between the different approaches and understand why said differences happen. The circuit can be seen in Figure~\ref{fig:circuit}.
+
+In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
+presented. In Section~\ref{sec:simulation}, the circuit is analysed by
+simulation and the results are compared to the theoretical results obtained in
+Section~\ref{sec:analysis}. The conclusions of this study are outlined in
+Section~\ref{sec:conclusion}.
+
+
+\bigskip 
+
+\begin{figure}[!ht] \centering
+\caption{RC Circuit with alternate voltage source ($V_s$), linear dependent sources ($V_d$-linear current controlled voltage source and $I_b$-linear voltage controlled current source) and capacitor $C$}
+\squeezeup 
+\includegraphics[width=0.9\textwidth, scale=1.0]{circuit.pdf}
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\label{fig:circuit}
+\end{figure}
+The values given for this report can be found in table~\ref{tab:op1}(Obtained with the number $\partialinput{21}{21}{data.txt}$). 
+
+\begin{table}[hb]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Values} \\ \hline
+    \input{op_tab1}
+  \end{tabular}
+  \caption{Values obtained by using the Python program that can be found in folder $python$.}
+  \label{tab:op1}
+\end{table}
+
+
