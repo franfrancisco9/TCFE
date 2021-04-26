@@ -1,0 +1,59 @@
+* T3
+
+* forces current values to be saved
+.options savecurrents
+
+*Source n = 17
+Vin 0 1 SIN(0 13.53 50 0 0 90)
+
+*Envelop Detector
+
+D1 1 3 default
+D2 0 3 default
+D3 0 2 default
+D4 1 2 default
+
+R1 2 3 5k
+
+C 2 0 5u
+
+*Voltage Regulator
+
+R2 2 4 5k
+D1vr 4 5 default
+D2vr 5 6 default
+D3vr 6 7 default
+D4vr 7 8 default
+D5vr 8 9 default
+D6vr 9 10 default
+D7vr 10 11 default
+D8vr 11 12 default
+D9vr 12 13 default
+D10vr 13 14 default
+D11vr 14 15 default
+D12vr 15 16 default
+D13vr 16 17 default
+D14vr 17 18 default
+D15vr 18 19 default
+D16vr 19 20 default
+D17vr 20 0 default
+
+
+
+* Transient simulation:
+.control
+
+set hcopypscolor=1
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+tran 1e-05 0.2
+hardcopy T3.eps V(1) V(2) 
+quit
+.endc
+.end
