@@ -4,22 +4,22 @@
 .options savecurrents
 
 *Source n = 17
-Vin 0 1 SIN(0 13.53 50 0 0 90)
+Vin 0 1 SIN(0 13.94 50 0 0 90)
 
 *Envelop Detector
 
-D1 1 3 default
-D2 0 3 default
-D3 0 2 default
-D4 1 2 default
+D1 1 2 default
+D2 3 2 default
+D3 0 3 default
+D4 0 1 default
 
-R1 2 3 5k
+R1 2 0 10k
 
-C 2 0 5u
+C 2 0 10u
 
 *Voltage Regulator
 
-R2 2 4 5k
+R2 2 4 1k
 D1vr 4 5 default
 D2vr 5 6 default
 D3vr 6 7 default
@@ -36,7 +36,9 @@ D13vr 16 17 default
 D14vr 17 18 default
 D15vr 18 19 default
 D16vr 19 20 default
-D17vr 20 0 default
+D17vr 20 21 default
+D18vr 21 22 default
+D19vr 22 0 default
 
 
 
@@ -52,8 +54,40 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-tran 1e-05 0.2
-hardcopy T3.eps V(1) V(2) 
+
+
+
+tran 1e-05 0.2 
+
+***Average***
+meas tran yavg AVG v(4) from=50m to=250m
+
+*** max and min v0***
+meas tran ymax MAX v(4) from=50m to=250m
+meas tran ymin MIN v(4) from=50m to=250m
+
+let vripple_reg = ymax - ymin
+
+print yavg ymax ymin vripple_reg
+
+plot  v(2)
+hardcopy vrect.ps v(2)-v(3)
+echo vrect_FIG
+
+plot  v(4)
+hardcopy vout.ps v(4)
+echo vout_FIG
+
+*5)
+plot v(4)-12
+hardcopy var_output.ps v(4)-12
+echo var_output_FIG
+
+
+plot v(1)-v(3) v(2) v(4)
+hardcopy vs_vout.ps v(1)-v(3) v(2) v(4)
+echo vs_vout_FIG
+
 quit
 .endc
 .end
