@@ -4,7 +4,7 @@
 .options savecurrents
 
 *Source n = 17
-Vin 0 1 SIN(0 13.94 50 0 0 90)
+Vin 3 1 SIN(0 14.623335 50 0 0 90)
 
 *Envelop Detector
 
@@ -13,13 +13,13 @@ D2 3 2 default
 D3 0 3 default
 D4 0 1 default
 
-R1 2 0 10k
+R1 2 0 9k
 
-C 2 0 10u
+C 2 0 11u
 
 *Voltage Regulator
 
-R2 2 4 1k
+R2 2 4 2500
 D1vr 4 5 default
 D2vr 5 6 default
 D3vr 6 7 default
@@ -39,6 +39,12 @@ D16vr 19 20 default
 D17vr 20 21 default
 D18vr 21 22 default
 D19vr 22 0 default
+*D20vr 23 0 default
+*D21vr 24 0 default
+*D22vr 25 26 default
+*D23vr 26 0 default
+*D24vr 27 28 default
+*D25vr 28 0 default
 
 
 

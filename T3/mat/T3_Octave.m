@@ -17,7 +17,7 @@ R2 = 1000;
 
 #------------------------Transformador-----------------------------------
 
-n = 16.5;
+n = 17;
 A = Vin_A/n;
 
 #------------------------Envelope Detector---------------------------------
@@ -57,7 +57,7 @@ ripple = max(vO) - min(vO);
 #-------------------------Voltage Regulator----------------------------------
 
 diodes = 19;
-Von = 0,7;
+Von = 0.7;
 
 vO_2 = zeros(1, length(t));
 vO_2_dc = 0;
@@ -113,10 +113,7 @@ print (hfc, "deviation.eps", "-depsc");
 average_reg = mean(vO_2)
 ripple_reg = max(vO_2)-min(vO_2) 
 
-cost = R1/1000 + R2/1000 + C*1e6 + diodes*0.1*2; %o 0.1 e do diodo do envelope detector 
-
-cost = cost + 0.4
-
+cost = R1/1000 + R2/1000 + C*1e6 + diodes*0.1 + 0.4 %o 0.1 e do diodo do envelope detector 
 
 MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6))
 
