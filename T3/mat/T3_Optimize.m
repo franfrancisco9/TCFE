@@ -9,7 +9,7 @@ pkg load signal
 Vin_A = 230;
 f=50;
 w=2*pi*f;
-n = 17;
+n = 10;
 A = Vin_A/n;
 
 Merit_final = 0;
@@ -19,12 +19,12 @@ Ripple_Final = 0;
 R1_Final = 0;
 R2_Final = 0;
 C_Final = 0;
-C = 8e-6;
-while (C <= 12e-6)
+C = 10e-6;
+while (C <= 20e-6)
   R1 = 8000;
-  while  (R1 <= 12000)
-    R2 = 600;
-    while  (R2 <= 1300 )
+  while  (R1 <= 16000)
+    R2 = 2000;
+    while  (R2 <= 8000 )
       
       t=linspace(0, 0.2, 1000);
 
@@ -61,7 +61,7 @@ while (C <= 12e-6)
 
           #-------------------------Voltage Regulator----------------------------------
 
-          diodes = 19;
+          diodes = 18;
           Von = 0.7;
 
           vO_2 = zeros(1, length(t));
@@ -99,6 +99,7 @@ while (C <= 12e-6)
           cost = R1/1000 + R2/1000 + C*1e6 + diodes*0.1 + 0.4; %o 0.1 e do diodo do envelope detector 
 
           MERIT = 1/(cost*(ripple_reg + abs(average_reg - 12) + 1e-6));
+          
           if Merit_final < MERIT
             Merit_final = MERIT;
             Cost_final = cost;
@@ -110,11 +111,11 @@ while (C <= 12e-6)
             
           endif    
           
-         R2 = R2 +10;
+         R2 = R2 +1000;
     end
-         R1 = R1 + 500;
+         R1 = R1 + 1000;
   end
-          C = C + 0.5e-6
+          C = C + 1e-6
 end
 
 disp("Merit")

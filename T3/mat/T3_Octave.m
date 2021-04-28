@@ -4,20 +4,20 @@ format short e
 pkg load symbolic
 pkg load control
 pkg load signal
-#--------------------  DADOS  ----------------------- 
+#--------------------  DADOS  -----------------------          
 
 Vin_A = 230;
 f=50;
 w=2*pi*f;
 
-R1 = 10000;
-C = 10e-6;
+R1 = 8000;
+C = 0.0001;
 
-R2 = 1000;
+R2 = 62.84e3;
 
 #------------------------Transformador-----------------------------------
 
-n = 17;
+n = 11;
 A = Vin_A/n;
 
 #------------------------Envelope Detector---------------------------------
@@ -30,7 +30,7 @@ vO = zeros(1, length(t));
 
 tOFF = 1/w * atan(1/w/R1/C);
 
-vOnexp = A*cos(w*tOFF)*exp(-(t-tOFF)/R1/C);
+vOnexp = A*cos(w*tOFF)*exp(-(t-tOFF)/(R1*C));
 
 for i=1:length(t)
 	  vOhr(i) = abs(vS(i));
@@ -43,21 +43,21 @@ for i=1:length(t)
     vO(i) = vOnexp(i);
   else 
     tOFF = tOFF + 1/(2*f) ;
-    vOnexp = A*abs(cos(w*tOFF))*exp(-(t-tOFF)/R1/C);
+    vOnexp = A*abs(cos(w*tOFF))*exp(-(t-tOFF)/(R1*C));
     vO(i) = vOhr(i);
   endif
 endfor
 
-average = mean(vO);
-ripple = max(vO) - min(vO);
+average = mean(vO)
+ripple = max(vO) - min(vO)
 
 
 
 
 #-------------------------Voltage Regulator----------------------------------
 
-diodes = 19;
-Von = 0.7;
+diodes = 20;
+Von = 0.6;
 
 vO_2 = zeros(1, length(t));
 vO_2_dc = 0;
@@ -71,7 +71,7 @@ else
 endif
 
 %ac component regulator -----------------
-vt = 0.026;
+vt = 0.025;
 Is = 1e-14;
 new = 1;
 
@@ -94,7 +94,8 @@ vO_2 = vO_2_dc + vO_2_ac;
 %output voltages at rectifier, envelope detector and regulator
 hfc = figure(1);
 title("Regulator and envelope output voltage v_o(t)")
-plot (t*1000, vS, ";vs_{transformer}(t);", t*1000,vO, ";vo_{envelope}(t);", t*1000,vO_2, ";vo_{regulator}(t);");
+x = 12;
+plot (t*1000,x,t*1000, vS, ";vs_{transformer}(t);", t*1000,vO, ";vo_{envelope}(t);", t*1000,vO_2, ";vo_{regulator}(t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');

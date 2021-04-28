@@ -4,7 +4,7 @@
 .options savecurrents
 
 *Source n = 17
-Vin 3 1 SIN(0 14.623335 50 0 0 90)
+Vin 3 1 SIN(0 20.9090909 50 0 0 90)
 
 *Envelop Detector
 
@@ -13,13 +13,13 @@ D2 3 2 default
 D3 0 3 default
 D4 0 1 default
 
-R1 2 0 9k
+R1 2 0 8k
 
-C 2 0 11u
+C 2 0 100u
 
 *Voltage Regulator
 
-R2 2 4 2500
+R2 2 4 68.84k
 D1vr 4 5 default
 D2vr 5 6 default
 D3vr 6 7 default
@@ -38,13 +38,9 @@ D15vr 18 19 default
 D16vr 19 20 default
 D17vr 20 21 default
 D18vr 21 22 default
-D19vr 22 0 default
-*D20vr 23 0 default
-*D21vr 24 0 default
-*D22vr 25 26 default
-*D23vr 26 0 default
-*D24vr 27 28 default
-*D25vr 28 0 default
+D19vr 22 23 default
+D20vr 23 0 default
+
 
 
 
@@ -63,12 +59,23 @@ set color6=rgb:4/0/0
 
 
 
-tran 1e-05 0.2 
+tran 0.0002 205m 5m
 
-***Average***
+Average
+meas tran yavg AVG v(2) from=50m to=250m
+
+ max and min v0
+meas tran ymax MAX v(2) from=50m to=250m
+meas tran ymin MIN v(2) from=50m to=250m
+
+let vripple_env = ymax - ymin
+
+print yavg ymax ymin vripple_env
+
+Average
 meas tran yavg AVG v(4) from=50m to=250m
 
-*** max and min v0***
+ max and min v0
 meas tran ymax MAX v(4) from=50m to=250m
 meas tran ymin MIN v(4) from=50m to=250m
 
@@ -76,18 +83,18 @@ let vripple_reg = ymax - ymin
 
 print yavg ymax ymin vripple_reg
 
+
 plot  v(2)
-hardcopy vrect.ps v(2)-v(3)
-echo vrect_FIG
+hardcopy venv.ps v(2)
+
 
 plot  v(4)
 hardcopy vout.ps v(4)
-echo vout_FIG
+
 
 *5)
 plot v(4)-12
-hardcopy var_output.ps v(4)-12
-echo var_output_FIG
+hardcopy vout(ac+dc).ps v(4)-12
 
 
 plot v(1)-v(3) v(2) v(4)
