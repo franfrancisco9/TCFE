@@ -10,14 +10,14 @@ Vin_A = 230;
 f=50;
 w=2*pi*f;
 
-R1 = 8000;
-C = 0.0001;
+R1 = 15750;
+C = 2.01e-6;
 
-R2 = 62.84e3;
+R2 = 18750;
 
 #------------------------Transformador-----------------------------------
 
-n = 11;
+n = 1.352941176;
 A = Vin_A/n;
 
 #------------------------Envelope Detector---------------------------------
@@ -31,6 +31,8 @@ vO = zeros(1, length(t));
 tOFF = 1/w * atan(1/w/R1/C);
 
 vOnexp = A*cos(w*tOFF)*exp(-(t-tOFF)/(R1*C));
+
+
 
 for i=1:length(t)
 	  vOhr(i) = abs(vS(i));
@@ -56,8 +58,8 @@ ripple = max(vO) - min(vO)
 
 #-------------------------Voltage Regulator----------------------------------
 
-diodes = 20;
-Von = 0.6;
+diodes = 17;
+Von = 0.7051476;
 
 vO_2 = zeros(1, length(t));
 vO_2_dc = 0;
@@ -73,7 +75,7 @@ endif
 %ac component regulator -----------------
 vt = 0.025;
 Is = 1e-14;
-new = 1;
+new = 2;
 
 Rd = new*vt/(Is*exp(Von/(new*vt)))
 

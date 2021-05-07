@@ -3,43 +3,25 @@
 * forces current values to be saved
 .options savecurrents
 
-*Source n = 17
-Vin 3 1 SIN(0 20.9090909 50 0 0 90)
+Vin 3 1 DC 0 SIN(0  230.1 50 0 0 90)
 
 *Envelop Detector
 
-D1 1 2 default
+D1 0 3 default
 D2 3 2 default
-D3 0 3 default
+D3 1 2 default
 D4 0 1 default
 
-R1 2 0 8k
+R1 2 0 920k
 
-C 2 0 100u
+C 2 0 920u
 
 *Voltage Regulator
 
-R2 2 4 68.84k
-D1vr 4 5 default
-D2vr 5 6 default
-D3vr 6 7 default
-D4vr 7 8 default
-D5vr 8 9 default
-D6vr 9 10 default
-D7vr 10 11 default
-D8vr 11 12 default
-D9vr 12 13 default
-D10vr 13 14 default
-D11vr 14 15 default
-D12vr 15 16 default
-D13vr 16 17 default
-D14vr 17 18 default
-D15vr 18 19 default
-D16vr 19 20 default
-D17vr 20 21 default
-D18vr 21 22 default
-D19vr 22 23 default
-D20vr 23 0 default
+R2 2 4 30.3k
+Dr 4 0 Dmine
+.MODEL Default D
+.MODEL Dmine D (N=17)
 
 
 
@@ -56,33 +38,10 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
+op
 
 
-
-tran 0.0002 205m 5m
-
-Average
-meas tran yavg AVG v(2) from=50m to=250m
-
- max and min v0
-meas tran ymax MAX v(2) from=50m to=250m
-meas tran ymin MIN v(2) from=50m to=250m
-
-let vripple_env = ymax - ymin
-
-print yavg ymax ymin vripple_env
-
-Average
-meas tran yavg AVG v(4) from=50m to=250m
-
- max and min v0
-meas tran ymax MAX v(4) from=50m to=250m
-meas tran ymin MIN v(4) from=50m to=250m
-
-let vripple_reg = ymax - ymin
-
-print yavg ymax ymin vripple_reg
-
+tran 1e-5 0.2 0.0
 
 plot  v(2)
 hardcopy venv.ps v(2)
@@ -92,14 +51,24 @@ plot  v(4)
 hardcopy vout.ps v(4)
 
 
-*5)
 plot v(4)-12
 hardcopy vout(ac+dc).ps v(4)-12
 
 
 plot v(1)-v(3) v(2) v(4)
-hardcopy vs_vout.ps v(1)-v(3) v(2) v(4)
+hardcopy vs_vout.ps v(1)-v(3) v(2) 12 v(4) 
 echo vs_vout_FIG
+
+meas tran Output_average AVG v(4) 
+meas tran Max MAX v(4)
+meas tran Min MIN v(4) 
+
+let ripple = Max - Min
+
+print Output_average ripple
+
+print 1/ (1877.5* ((maximum(v(4))-minimum(v(4))) + abs(mean(v(4)-12)) + 10e-6))
+
 
 quit
 .endc

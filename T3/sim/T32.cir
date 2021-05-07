@@ -1,0 +1,78 @@
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+
+*AC-DC converter
+
+* forces current values to be saved
+.options savecurrents
+
+Vs 3 1 0.0 SIN(0 25.255298 50 0 0 90)
+
+Da 0 3 Default
+Db 3 2 Default
+Dc 1 2 Default
+Dd 0 1 Default
+
+Ra 2 0 900k
+C 2 0 900u
+
+Rd 2 4 100k
+
+Dr 4 0 Dmine
+.MODEL Default D
+.MODEL Dmine D (N=20)
+
+.op
+.end 
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+echo "********************************************"
+echo  "Transient analysis
+echo "********************************************"
+
+tran 1e-5 4.2 4.0
+
+let vs = v(3)-v(1)
+plot vs
+hardcopy ac.ps vs
+echo AC_FIG
+
+plot v(2)
+hardcopy first2.ps v(2)
+echo first2_FIG
+
+plot v(4)
+hardcopy first.ps v(4)
+echo first_FIG
+
+plot v(4)-12
+hardcopy output.ps v(4)-12
+echo output_FIG
+
+hardcopy total.ps vs v(2) v(4)
+echo total_FIG
+
+meas tran Output_average AVG v(4) 
+meas tran Max MAX v(4)
+meas tran Min MIN v(4) 
+
+let ripple = Max - Min
+
+print Output_average ripple
+
+print 1/ (1902.4* ((maximum(v(4))-minimum(v(4))) + abs(mean(v(4)-12)) + 10e-6))
+quit
+.endc
+.end
