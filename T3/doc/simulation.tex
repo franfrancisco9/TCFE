@@ -2,34 +2,55 @@
 \section{Simulation Analysis and Results Comparison}
 \label{sec:simulation}
 
-Here we will compare the theoretical results achieved by the method in the previous section to the ones obtained by simulating the chosen circuit in Ngspice. 
+In this section, we will the obtained results by simulating the referred circuit in Ngspice. 
 
-The first plots shown are of the variables $V_{in}$, $V_{o}$ and $V_{out}$ in function of time. Plot \ref{fig:gteo1} corresponds to the theoretical analysis and plot \ref{fig:gsim1} is the simulation one. The values for the ripple and deviation are in tables \ref{tab:tteo1} and \ref{tab:tsim1}.
+In order to analyze the circuit and achieve the main goal of this laboratory assignment, we have developed an optimization ocatve algorithm that would give us the values which would leat to the greater merit value. The obtianed values were the following ones, presented in table \ref{tab:vsim1}:
 
-%%%%???? O QUE POR AQUI NAO TENHO NADA NA PASTA NA PARTE DA SIM PQ DA ERRO
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    {\bf Element } & {\bf Value } 
+    \hline \hline
+    n (Transformer) & !!!!!!! \hline
+    Number of diodes & !!!!!!! \hline
+    $C [{$\mu$F]$ & !!!!!!! \hline
+    $R_envelope [$k\Omega$] $ & !!!!!!! \hline
+    $R_regulator [$k\Omega$] $ & !!!!!!! \hline
+    \end{tabular}
+    \caption{Obtained values by optimization ocatve script}
+    \label{tab:vsim1}
+\end{table}
+
+Then, we can automatically compute the cost: $Cost = !!!!!!!!$.
+
+The plots shown below are related to the variables $V_{input}$, $V_{envelope}$ and $V_{output}$ in function of time. The values for the ripple and deviation are in table \ref{tab:tsim1}.
 
 \begin{figure}[!ht] \centering
-\caption{The theoretical values of $V_{in}$, $V_{o}$ and $V_{out}$ in function of time}
-\includegraphics[width=0.6\linewidth]{trans3.eps}
+\caption{Envelope detector voltage}
+\includegraphics[width=0.6\linewidth]{venv.eps}
 \label{fig:gteo1}
 \end{figure}
 \newpage
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|l|c|}
-    \hline
-    {\bf Symbol} & {\bf Value [V]} \\ \hline
-    \input{theo_table_del.tex} 
-    \end{tabular}
-    \caption{Theoretical Values for Ripple and Deviation.}
-    \label{tab:tteo1}
-\end{table}
+\begin{figure}[!ht] \centering
+\caption{Output voltage - AC + DC component}
+\includegraphics[width=0.6\linewidth]{vout.eps}
+\label{fig:gteo2}
+\end{figure}
+\newpage
 
 \begin{figure}[!ht] \centering
-\caption{The simulation values of $V_{in}$, $V_{o}$ and $V_{out}$ in function of time}
-\includegraphics[width=0.6\linewidth]{trans3.eps}
-\label{fig:gsim1}
+\caption{Output voltage ripple}
+\includegraphics[width=0.6\linewidth]{vout(ac+dc).eps}
+\label{fig:gteo3}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Input, Envelope and Output voltages}
+\includegraphics[width=0.6\linewidth]{vs_vout.eps}
+\label{fig:gteo4}
 \end{figure}
 \newpage
 
@@ -37,10 +58,13 @@ The first plots shown are of the variables $V_{in}$, $V_{o}$ and $V_{out}$ in fu
     \centering
     \begin{tabular}{|l|c|}
     \hline
-    {\bf Symbol} & {\bf Value [V]} \\ \hline
-    \input{theo_table_del.tex} 
+    {\bf Element } & {\bf Value }
+    \hline \hline
+    Average Output Voltage [V] & !!!!!!! \hline
+    Output Voltage Ripple [V] & !!!!!!! \hline
+    Merit & !!!!!!! \hline
     \end{tabular}
-    \caption{Simulation Values for Ripple and Deviation.}
+    \caption{Simulation Values for Average, Ripple and Merit.}
     \label{tab:tsim1}
 \end{table}
 
