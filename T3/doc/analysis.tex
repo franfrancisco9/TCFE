@@ -33,7 +33,7 @@ $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By defi
 \label{sec:envelope}
 
 \begin{figure}[!ht] \centering
-\includegraphics[width=0.8\linewidth]{envelope.pdf} %por aqui figura
+\includegraphics[width=0.8\linewidth]{envelopedetector.pdf} %por aqui figura
 \squeezeup 
 \caption{Envelope Detector Circuit.}
 \label{fig:envelope}
@@ -41,7 +41,7 @@ $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By defi
 
 As seen in figure \ref{fig:envelope}, the envelope detector part of the circuit consists on a full wave bridge rectifier, a resistor ($R_ef$) and a capacitator ($C$), the last two in paralell. To reach the mininum ripple possible, we can increase the resistor impedance and the capacitor capacity, so that the time constant $\tau$ of the capacitor discharge is high enough ($\tau=RC$). Another method was to use a full wave rectifier, as said above, since the time of discharge of $C$ is half of what it would be using a half wave rectifier. This part of the circuit was used to envelope the $V_{in}$ sinusoidal wave, being $V_{in}$ achieved from the following equation.
 
-The envelope detector can be on a positive cycle where $D_0$ and $D_2$ let current pass or a negative cycle that corresponds to $D_1$ and $D_2$ letting the current pass.
+The envelope detector can be on a positive cycle where $D_0$ and $D_2$ let current pass or a negative cycle that corresponds to $D_1$ and $D_3$ letting the current pass.
 \begin{equation}
   V_{in} = \frac{230V}{n},
   \label{eq:vin}
@@ -73,16 +73,16 @@ where $R_{eq}=R_{env}||R_{vreg}$
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.5]{Regulator.pdf}
+    \includegraphics[scale=0.5]{voltageregulator.pdf}
     \caption{Voltage Regulator Circuit.}
     \label{fig:Regulator}
 \end{figure}
 
-This part of this circuit was implemented so as to limit the voltage value and to soften the riple of the voltage that came from the previous part of the circuit (\ref{sec:envelope}). It involves a resistor and seventeen diodes in paralell.
+This part of this circuit was implemented so as to limit the voltage value and to soften the riple of the voltage that came from the previous part of the circuit (\ref{sec:envelope}). It involves a resistor and seventeen diodes in series.
 
 COPIADO NAO SEI REESCREVER ISTO, NAO PERCEBO NADA DESCULPEM  (parte em baixo)
 
-This circuit is analysed in the following way: first, one should separate in DC and AC components. The DC simulation using the diode model described yields that the condition $V_o=N\cdot V_{ON}$ which ensures forward bias at all the diodes, and so, each one can be substituted by an equivalent voltage source $V_{ON}$. Of course, if $V_o<N\cdot V_{ON}$, the output voltage $V_{out}$ is $V_o$, since the diodes are off, which means the circuit can be considered to be open. The AC incremental analysis is explained in further detail in the next section.
+The analysis has to be made by seperating the DC and AC components. The DC simulation uses the condition $V_o=N * V_{ON}$, so that we can replace each diode with $V_{ON}$. 
 
 In this section, the theoretical analysis requires we think about the DC and AC components separately ($V_o=V_O+v_o$). 
 
