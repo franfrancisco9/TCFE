@@ -9,7 +9,7 @@ LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
 all: $(FILE).pdf
 	evince $< &
 
-$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) ngspice1 
+$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) ngspice1 T3_octave
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
@@ -32,7 +32,7 @@ ngspice.log1: ../sim/T3.cir
 	ngspice -b $< -o $@
 	
 
-T2_octave:
+T3_octave:
 	octave ../mat/T3_Octave.m > octave.log
 
 

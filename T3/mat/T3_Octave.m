@@ -101,7 +101,8 @@ plot (t*1000,x,t*1000, vS, ";vs_{transformer}(t);", t*1000,vO, ";vo_{envelope}(t
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
-print (hfc, "all_vout.eps", "-depsc");
+print (hfc, "all_vout.pdf", "-dpdf");
+saveas (hfc, "all_vout.eps");
 
 %Deviations (vO - 12) 
 hfc = figure(2);
@@ -110,8 +111,8 @@ plot (t*1000,vO_2-12, ";vo-12 (t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
-print (hfc, "deviation.eps", "-depsc");
-
+print (hfc, "deviation.pdf", "-dpdf");
+saveas (2, "deviation.eps");
 
 average_reg = mean(vO_2)
 ripple_reg = max(vO_2)-min(vO_2) 
