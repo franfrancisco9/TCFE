@@ -2,15 +2,51 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-By analysing the circuit theoretically and then simulating the circuit using Ngspice, we can verify that the values of the unknown components match almost perfectly and all approaches agree on the final currents' directions across the circuit's branches (which can be seen below in figure~\ref{fig:circuit_final}).
+We can finally compare side by side the plots for the output voltages for the Envelope Detector and the Voltage Regulator, as well as the output AC component + DC deviation. 
 
 
-To better understand the discrepancies and compare results we present the several tables obtained side by side on octave and ngspice, respectively, in tables \ref{tab:conclusion 1} to \ref{tab:conclusion 2}.
+\begin{figure}[!ht] \centering
+\caption{Simulation envelope detector voltage}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:sim1}
+\end{figure}
+
+\begin{figure}[!ht] \centering
+\caption{Theoretical envelope detector voltage}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:theo1}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Simulation voltage regulator voltage}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:sim2}
+\end{figure}
 
 
+\begin{figure}[!ht] \centering
+\caption{Theoretical voltage regulator voltage}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:theo2}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Simulation output AC component + DC deviation}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:sim3}
+\end{figure}
 
 
+\begin{figure}[!ht] \centering
+\caption{Theoretical output AC component + DC deviation}
+\includegraphics[width=0.6\linewidth]{venv.ps}
+\label{fig:theo3}
+\end{figure}
+\newpage
 
-Some small discrepancies are due to the different number of decimal places considered by Octave and Ngspice leading to slight inaccuracies. However, considering that the circuit complexity is still not considered, the differences are negligible. Furthermore, any differences in the order of $10^{-15}$ (or lower), are very likely related to the way the computer programs deal with mathematical operations (seen that $10^{-15}$ is extremely close to the precision of a double's mantissa). Note that the format of the data presented in the Ngspice tables are automatically chosen by the program.
+Here we can see that the plots obtained are similar and any differences are within the expected discrepancy. Those can be due to the complexity and non-linearity of the used model, both theoretically and in the simulation. For the simulation deviation we obtained a value of [INSERIR] and as for theoretically we obtained a value of [INSERIR]. These are also similar, making this laboratory considerably sucessful. Another reason for this can be the fact that we used the same values for $V_{on}, Is, \eta, V_{T}$ as Ngspice uses for the circuit model.
 
-All of this leads to the conclusion that the making of this laboratory assignment was coherent and that the main goal was attained: to achieve the circuit analysis through a theoretical and simulated approach.
+Finally, we can say we obtained a prince of [INSERIR] and a merit of [INSERIR].
+
