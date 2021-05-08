@@ -10,15 +10,15 @@ Vin_A = 230;
 f=50;
 w=2*pi*f;
 
-R1 = 15750;
-C = 2.01e-6;
+R1 = 26000;
+C =  3.3750e-05;
 
-R2 = 18750;
+R2 = 10000;
 
 #------------------------Transformador-----------------------------------
 
 n = 1.352941176;
-A = Vin_A/n;
+A = 14.64891221288435;
 
 #------------------------Envelope Detector---------------------------------
 t=linspace(0, 0.2, 1000);
@@ -58,8 +58,8 @@ ripple = max(vO) - min(vO)
 
 #-------------------------Voltage Regulator----------------------------------
 
-diodes = 17;
-Von = 0.7051476;
+diodes = 20;
+Von = 0.6;
 
 vO_2 = zeros(1, length(t));
 vO_2_dc = 0;
@@ -95,9 +95,29 @@ vO_2 = vO_2_dc + vO_2_ac;
 
 %output voltages at rectifier, envelope detector and regulator
 hfc = figure(1);
+title("Envelope output voltage v_o(t)")
+plot (t*1000,vO, ";vo_{envelope}(t);");
+xlabel ("t[ms]")
+ylabel ("v_O [Volts]")
+legend('Location','northeast');
+print (hfc, "env_vout.pdf", "-dpdf");
+saveas (hfc, "env_vout.eps");
+
+%output voltages at rectifier, envelope detector and regulator
+hfc = figure(2);
+title("Regulator output voltage v_o(t)")
+plot (t*1000,vO_2, ";vo_{regulator}(t);");
+xlabel ("t[ms]")
+ylabel ("v_O [Volts]")
+legend('Location','northeast');
+print (hfc, "t_vout.pdf", "-dpdf");
+saveas (hfc, "t_vout.eps");
+
+%output voltages at rectifier, envelope detector and regulator
+hfc = figure(3);
 title("Regulator and envelope output voltage v_o(t)")
 x = 12;
-plot (t*1000,x,t*1000, vS, ";vs_{transformer}(t);", t*1000,vO, ";vo_{envelope}(t);", t*1000,vO_2, ";vo_{regulator}(t);");
+plot (t*1000, vS, ";vs_{transformer}(t);", t*1000,vO, ";vo_{envelope}(t);", t*1000,vO_2, ";vo_{regulator}(t);");
 xlabel ("t[ms]")
 ylabel ("v_O [Volts]")
 legend('Location','northeast');
@@ -105,7 +125,7 @@ print (hfc, "all_vout.pdf", "-dpdf");
 saveas (hfc, "all_vout.eps");
 
 %Deviations (vO - 12) 
-hfc = figure(2);
+hfc = figure(4);
 title("Deviations from desired DC voltage")
 plot (t*1000,vO_2-12, ";vo-12 (t);");
 xlabel ("t[ms]")

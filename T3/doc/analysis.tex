@@ -15,12 +15,12 @@ $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By defi
     \begin{tabular}{|l|c|}
     \hline
     {\bf Symbol} & {\bf Value} \\ \hline
-    $V_{ON}$ & $988745938$ \\ \hline
+    $V_{ON}$ & $0.6$ \\ \hline
     $A_f$ & $14.64891221288435 V$ \\ \hline
     $R_{ef}$ & $26 k\Omega$  \\ \hline
     $R_{rf}$ & $10 k\Omega$\\ \hline
     $C$ & $3.3750e-05 F$ \\ \hline
-    $n (transformer constant)$ & $20$  \\ \hline
+    $number of diodes$ & $20$  \\ \hline
     $\eta$ & $1$  \\ \hline
     \end{tabular}
     \caption{Values for theoretical analysis}
@@ -65,13 +65,26 @@ where $R_{eq}=R_{env}||R_{vreg}$
     V_o=V_o|_{t_{OFF}}e^{-\frac{t-t_{OFF}}{R_{eq}C}}
 \end{equation}
 
-
+\begin{figure}[!ht] \centering
+\caption{Envelope detector voltage}
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+ 
+\includegraphics[width=0.8\linewidth]{env_vout.pdf} %FAZER PLOT EM OCTAVE
+\label{fig:gteo1}
+\end{figure}
+\newpage
 \subsection{Voltage Regulator}
 \label{sec:regulator}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale=0.5]{voltageregulator.pdf}
+\begin{figure}[!ht] \centering
+    \includegraphics[width=1\linewidth]{voltageregulator.pdf}
     \caption{Voltage Regulator Circuit.}
     \label{fig:Regulator}
 \end{figure}
@@ -106,54 +119,47 @@ The cost is obviously the same as obtained above in the simulation analysis \ref
 
 The plots shown below are related to the variables $V_{input}$, $V_{envelope}$ and $V_{output}$ in function of time. Those were a result of the analysis in Ngspice. The values for the merit, ripple and average output voltage are in table \ref{tab:teotab1}.
 
-\begin{figure}[!ht] \centering
-\caption{Envelope detector voltage}
-\includegraphics[width=0.6\linewidth]{venv.eps} %FAZER PLOT EM OCTAVE
-\label{fig:gteo1}
-\end{figure}
-\newpage
 
 \begin{figure}[!ht] \centering
-\caption{Output voltage}
-\includegraphics[width=0.6\linewidth]{vout.eps} %FAZER PLOT EM OCTAVE
-\label{fig:gteo2}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht] \centering
-\caption{Output voltage - 12 V}
-\includegraphics[width=0.6\linewidth]{deviation.pdf}
-\label{fig:gteo3}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht] \centering
+\caption{Output voltage and Output voltage - 12 V}
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\includegraphics[width=0.45\linewidth]{t_vout.pdf}
+\includegraphics[width=0.45\linewidth]{deviation.pdf}
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
 \caption{Input, Envelope and Output voltages}
-\includegraphics[width=0.6\linewidth]{all_vout.pdf}
-\label{fig:gteo4}
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\squeezeup 
+\includegraphics[width=0.7\linewidth]{all_vout.pdf}
+\label{fig:simulation_5}
 \end{figure}
-\newpage
 
-\begin{table}[h]
+\begin{table}[!ht]
     \centering
     \begin{tabular}{|l|c|}
     \hline
     {\bf Element } & {\bf Value } \\
     \hline \hline
-    Average Output Voltage [V] & !!!!!!! \\   %VALORES!!!
+    Average Output Voltage [V] & 1.2000e+01 \\   
     \hline
-    Output Voltage Ripple [V] & !!!!!!! \\
-    \hline
-    Merit & !!!!!!! \\  %CALCULAR MERIT NO OCTAVE OU ENTÃO PÔR O MÉRITO SÓ NA CONCLUSÃO E NÃO SE COMPARA
+    Output Voltage Ripple [V] & 1.5813e-01 \\
     \hline
     \end{tabular}
-    \caption{Simulation Values for Average, Ripple and Merit.}
+    \caption{Theoretical Values for Average and ripple.}
     \label{tab:teotab1}
 \end{table}
-
-\newpage 
-
-\newpage 
+\newpage
 
 
 

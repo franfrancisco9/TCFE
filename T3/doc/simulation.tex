@@ -1,5 +1,6 @@
 \newpage
-\section{Simulation Analysis and Results Comparison}
+
+\section{Simulation Analysis}
 \label{sec:simulation}
 
 In this section, we will the obtained results by simulating the referred circuit in Ngspice. 
@@ -12,15 +13,15 @@ In order to analyze the circuit and achieve the main goal of this laboratory ass
     \hline
     {\bf Element } & {\bf Value} \\
     \hline \hline
-    n (Transformer) & !!!!!!! \\
+    n (Transformer) & 15.70082452 \\
     \hline
-    Number of diodes & !!!!!!! \\
+    Number of diodes & 20 \\
     \hline
-    C F & !!!!!!! \\
+    C F & 3.3750e-05 F \\
     \hline
-    Renvelope & !!!!!!! \\
+    Renvelope & 26k \\
     \hline
-    Rregulator  & !!!!!!! \\
+    Rregulator  & 10k \\
     \hline
     \end{tabular}
     \caption{Obtained values by optimization ocatve script}
@@ -30,7 +31,7 @@ In order to analyze the circuit and achieve the main goal of this laboratory ass
 Then, using the expression given by the Professor, we can automatically compute the cost: 
 
 \begin{equation}
-    $Cost = !!!!!!!!$. %ESCREVER CUSTO!!!,
+    Cost = 72.15 
     \label{eq:Cost}
 \end{equation}
 
@@ -41,28 +42,20 @@ The plots shown below are related to the variables $V_{input}$, $V_{envelope}$ a
 \includegraphics[width=0.6\linewidth]{venv.eps}
 \label{fig:gteo1}
 \end{figure}
-\newpage
 
 \begin{figure}[!ht] \centering
-\caption{Output voltage}
-\includegraphics[width=0.6\linewidth]{vout.eps}
+\caption{Output voltage and Output voltage - 12 V}
+\includegraphics[width=0.45\linewidth]{vout.eps}
+\includegraphics[width=0.45\linewidth]{vout(ac+dc).eps}
 \label{fig:gteo2}
 \end{figure}
-\newpage
 
-\begin{figure}[!ht] \centering
-\caption{Output voltage - 12 V}
-\includegraphics[width=0.6\linewidth]{vout(ac+dc).eps}
-\label{fig:gteo3}
-\end{figure}
-\newpage
 
 \begin{figure}[!ht] \centering
 \caption{Input, Envelope and Output voltages}
 \includegraphics[width=0.6\linewidth]{vs_vout.eps}
 \label{fig:gteo4}
 \end{figure}
-\newpage
 
 \begin{table}[h]
     \centering
@@ -70,11 +63,11 @@ The plots shown below are related to the variables $V_{input}$, $V_{envelope}$ a
     \hline
     {\bf Element } & {\bf Value } \\
     \hline \hline
-    Average Output Voltage [V] & !!!!!!! \\   %POR VALORES!!
+    Average Output Voltage [V] & 1.199998e+01 \\  
     \hline
-    Output Voltage Ripple [V] & !!!!!!! \\
+    Output Voltage Ripple [V] & 7.809000e-02 \\
     \hline
-    Merit & !!!!!!! \\
+    Merit &  1.774688e-01 \\
     \hline
     \end{tabular}
     \caption{Simulation Values for Average, Ripple and Merit.}

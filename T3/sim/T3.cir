@@ -3,7 +3,7 @@
 * forces current values to be saved
 .options savecurrents
 
-Vin 3 1 DC 0 SIN(0  230.1 50 0 0 90)
+Vin 3 1 DC 0 SIN(0  14.64891221288435 50 0 0 90)
 
 *Envelop Detector
 
@@ -12,16 +12,16 @@ D2 3 2 default
 D3 1 2 default
 D4 0 1 default
 
-R1 2 0 920k
+R1 2 0 26k
 
-C 2 0 920u
+C 2 0 33.75u
 
 *Voltage Regulator
 
-R2 2 4 30.3k
+R2 2 4 10k
 Dr 4 0 Dmine
 .MODEL Default D
-.MODEL Dmine D (N=17)
+.MODEL Dmine D (N=20)
 
 
 
@@ -66,7 +66,7 @@ let ripple = Max - Min
 
 print Output_average ripple
 
-print 1/ (1877.5* ((maximum(v(4))-minimum(v(4))) + abs(mean(v(4)-12)) + 10e-6))
+print 1/ (72.150* ((maximum(v(4))-minimum(v(4))) + abs(mean(v(4)-12)) + 10e-6))
 
 
 quit
