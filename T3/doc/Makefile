@@ -12,6 +12,7 @@ all: $(FILE).pdf
 $(FILE).pdf: $(wildcard *.tex) $(LODFIGS) ngspice1 
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
+	pdflatex  $(FILE).tex
 
 	
 ngspice1: ngspice.log1 
@@ -36,8 +37,9 @@ T2_octave:
 
 
 #convert libreoffice draw figures to pdf
-%.pdf: %.odg
+%.pdf: %.odg 
 	soffice --headless --convert-to pdf $<
+
 
 clean:
 	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof *.txt *.log1 *.log2 *.log3 *.log4 *.log5 *tab2.tex

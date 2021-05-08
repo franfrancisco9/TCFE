@@ -44,20 +44,19 @@ op
 tran 1e-5 0.2 0.0
 
 plot  v(2)
-hardcopy venv.ps v(2)
+hardcopy venv.eps v(2)
 
 
 plot  v(4)
-hardcopy vout.ps v(4)
+hardcopy vout.eps v(4)
 
 
 plot v(4)-12
-hardcopy vout(ac+dc).ps v(4)-12
+hardcopy vout(ac+dc).eps v(4)-12
 
 
 plot v(1)-v(3) v(2) v(4)
-hardcopy vs_vout.ps v(1)-v(3) v(2) 12 v(4) 
-echo vs_vout_FIG
+hardcopy vs_vout.eps v(1)-v(3) v(2) 12 v(4) 
 
 meas tran Output_average AVG v(4) 
 meas tran Max MAX v(4)
