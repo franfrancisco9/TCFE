@@ -20,20 +20,19 @@ $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By defi
     $R_{ef}$ & $26 k\Omega$  \\ \hline
     $R_{rf}$ & $10 k\Omega$\\ \hline
     $C$ & $3.3750e-05 F$ \\ \hline
-    $n$\footnotemark & $20$  \\ \hline
+    $n (transformer constant)$ & $20$  \\ \hline
     $\eta$ & $1$  \\ \hline
     \end{tabular}
     \caption{Values for theoretical analysis}
     \label{tab:values}
 \end{table}
 
-\footnotetext{This refers to the n constant in the transformer.}
 
 \subsection{Envelope Detector}
 \label{sec:envelope}
 
 \begin{figure}[!ht] \centering
-\includegraphics[width=0.8\linewidth]{envelopedetector.pdf} %por aqui figura
+\includegraphics[width=0.8\linewidth]{envelopedetector.pdf} 
 \squeezeup 
 \caption{Envelope Detector Circuit.}
 \label{fig:envelope}
@@ -56,7 +55,6 @@ Regardless of the cicle the envelope detector is on, using KVL we achieve the fo
 
 When the current on the resistor is equal to the current on the capacitor, the diodes shut off, leading to the following equation.
 
-%EQUACAO COPIADA NAO SEI SE ESTA CERTA
 
 \begin{equation}
     \frac{Acos(\omega t|_{OFF})-2V_{ON}}{R_{eq}}=A\omega sin(\omega t|_{OFF})
@@ -80,7 +78,6 @@ where $R_{eq}=R_{env}||R_{vreg}$
 
 This part of this circuit was implemented so as to limit the voltage value and to soften the riple of the voltage that came from the previous part of the circuit (\ref{sec:envelope}). It involves a resistor and seventeen diodes in series.
 
-%COPIADO NAO SEI REESCREVER ISTO, NAO PERCEBO NADA DESCULPEM  (parte em baixo)
 
 The analysis has to be made by seperating the DC and AC components. The DC simulation uses the condition $V_o=N * V_{ON}$, so that we can replace each diode with $V_{ON}$. 
 
@@ -104,6 +101,55 @@ As for AC, we achieve equation \ref{eq:Ac1} by using equations \ref{eq:Ac2} and 
     V_{T} = \frac{kT}{q},
     \label{eq:Ac3}
 \end{equation}
+
+The cost is obviously the same as obtained above in the simulation analysis \ref{eq:Cost}.
+
+The plots shown below are related to the variables $V_{input}$, $V_{envelope}$ and $V_{output}$ in function of time. Those were a result of the analysis in Ngspice. The values for the merit, ripple and average output voltage are in table \ref{tab:teotab1}.
+
+\begin{figure}[!ht] \centering
+\caption{Envelope detector voltage}
+\includegraphics[width=0.6\linewidth]{venv.eps} %FAZER PLOT EM OCTAVE
+\label{fig:gteo1}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Output voltage}
+\includegraphics[width=0.6\linewidth]{vout.eps} %FAZER PLOT EM OCTAVE
+\label{fig:gteo2}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Output voltage - 12 V}
+\includegraphics[width=0.6\linewidth]{deviation.pdf}
+\label{fig:gteo3}
+\end{figure}
+\newpage
+
+\begin{figure}[!ht] \centering
+\caption{Input, Envelope and Output voltages}
+\includegraphics[width=0.6\linewidth]{all_vout.pdf}
+\label{fig:gteo4}
+\end{figure}
+\newpage
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    {\bf Element } & {\bf Value } \\
+    \hline \hline
+    Average Output Voltage [V] & !!!!!!! \\   %VALORES!!!
+    \hline
+    Output Voltage Ripple [V] & !!!!!!! \\
+    \hline
+    Merit & !!!!!!! \\  %CALCULAR MERIT NO OCTAVE OU ENTÃO PÔR O MÉRITO SÓ NA CONCLUSÃO E NÃO SE COMPARA
+    \hline
+    \end{tabular}
+    \caption{Simulation Values for Average, Ripple and Merit.}
+    \label{tab:teotab1}
+\end{table}
 
 \newpage 
 
