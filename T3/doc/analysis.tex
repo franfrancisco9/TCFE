@@ -2,11 +2,11 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section we will discuss the theoretical analysis of our circuit. For this purpose, we will first explain seperately the envelope detector and the voltage regulator circuits on the AC/DC converter. The values used throughout this analysis are shown below. $V_ON$ is achieved by using the Ngspice value for $V_out$. Theoretically, $V_ON$ is given by equation~\ref{eq:von}.
+In this section we will discuss the theoretical analysis of our circuit. For this purpose, we will first explain seperately the envelope detector and the voltage regulator circuits on the AC/DC converter. The values used throughout this analysis are shown below. $V_ON$ is achieved by using the Ngspice value for $V_out$. Theoretically, $V_ON$ is given by equation~\ref{eq:eqvon}.
 
 \begin{equation}
-  V_{ON} = \frac{V_{out}}{N_{diodes},
-  \label{eq:von}
+  V_{ON} = \frac{V_{out}}{N_{diodes}},
+  \label{eq:eqvon}
 \end{equation}
 
 $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By definition, $V_{ON}=\frac{V_{out}}{N_{diodes}}$
@@ -15,7 +15,7 @@ $V_{ON}$ value is computed using \textit{Ngspice} results for $V_{out}$. By defi
     \begin{tabular}{|l|c|}
     \hline
     {\bf Symbol} & {\bf Value} \\ \hline
-    $V_{ON}$ & $???$ \\ \hline
+    $V_{ON}$ & $988745938$ \\ \hline
     $A_f$ & $14.64891221288435 V$ \\ \hline
     $R_{ef}$ & $26 k\Omega$  \\ \hline
     $R_{rf}$ & $10 k\Omega$\\ \hline
@@ -56,7 +56,7 @@ Regardless of the cicle the envelope detector is on, using KVL we achieve the fo
 
 When the current on the resistor is equal to the current on the capacitor, the diodes shut off, leading to the following equation.
 
-EQUACAO COPIADA NAO SEI SE ESTA CERTA
+%EQUACAO COPIADA NAO SEI SE ESTA CERTA
 
 \begin{equation}
     \frac{Acos(\omega t|_{OFF})-2V_{ON}}{R_{eq}}=A\omega sin(\omega t|_{OFF})
@@ -80,7 +80,7 @@ where $R_{eq}=R_{env}||R_{vreg}$
 
 This part of this circuit was implemented so as to limit the voltage value and to soften the riple of the voltage that came from the previous part of the circuit (\ref{sec:envelope}). It involves a resistor and seventeen diodes in series.
 
-COPIADO NAO SEI REESCREVER ISTO, NAO PERCEBO NADA DESCULPEM  (parte em baixo)
+%COPIADO NAO SEI REESCREVER ISTO, NAO PERCEBO NADA DESCULPEM  (parte em baixo)
 
 The analysis has to be made by seperating the DC and AC components. The DC simulation uses the condition $V_o=N * V_{ON}$, so that we can replace each diode with $V_{ON}$. 
 

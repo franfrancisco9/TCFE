@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.2)  8 MAY 2021 00:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.5)  8 MAY 2021 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -44,9 +44,9 @@ File: babel.def 2020/02/14 3.40 Babel common definitions
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
 Package babel Info: \l@australian = using hyphenrules for ukenglish
-(babel)             (\language16) on input line 105.
+(babel)             (\language14) on input line 105.
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
-(babel)             (\language16) on input line 108.
+(babel)             (\language14) on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/notoccite/notoccite.sty
 Package: notoccite 2000/07/20
@@ -942,208 +942,137 @@ Package pdftex.def Info: ../../figlib/IST_A_CMYK_POS.pdf  used on input line 15
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-))
-\tf@toc=\write4
-\openout4 = `report.toc'.
-
- (./intro.tex
+)) (./intro.tex
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../../figlib/IST_A_CMYK_PO
 S.pdf>]
+<DesenhoT3.pdf, id=29, 1195.01572pt x 845.04686pt>
+File: DesenhoT3.pdf Graphic file (type pdf)
+<use DesenhoT3.pdf>
+Package pdftex.def Info: DesenhoT3.pdf  used on input line 12.
+(pdftex.def)             Requested size: 1195.01282pt x 845.0448pt.
+) (./analysis.tex [2 <./DesenhoT3.pdf>]
 
-LaTeX Warning: Reference `fig:circuit' on page 2 undefined on input line 7.
+LaTeX Warning: Reference `eq:eqvon' on page 3 undefined on input line 5.
 
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 30.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 30.
+<envelopedetector.pdf, id=44, 1195.01572pt x 845.04686pt>
+File: envelopedetector.pdf Graphic file (type pdf)
+<use envelopedetector.pdf>
+Package pdftex.def Info: envelopedetector.pdf  used on input line 36.
+(pdftex.def)             Requested size: 364.19667pt x 257.53905pt.
 
-LaTeX Warning: Reference `sec:analysis' on page 2 undefined on input line 9.
+LaTeX Warning: Reference `fig:envelope' on page 3 undefined on input line 42.
 
+[3 <./envelopedetector.pdf>]
+<voltageregulator.pdf, id=68, 1195.01572pt x 845.04686pt>
+File: voltageregulator.pdf Graphic file (type pdf)
+<use voltageregulator.pdf>
+Package pdftex.def Info: voltageregulator.pdf  used on input line 76.
+(pdftex.def)             Requested size: 597.50641pt x 422.5224pt.
 
-LaTeX Warning: Reference `sec:simulation' on page 2 undefined on input line 10.
-
-
-
-LaTeX Warning: Reference `sec:analysis' on page 2 undefined on input line 12.
-
-
-LaTeX Warning: Reference `sec:conclusion' on page 2 undefined on input line 13.
-
-
-<circuit.pdf, id=30, 794.97pt x 614.295pt>
-File: circuit.pdf Graphic file (type pdf)
-<use circuit.pdf>
-Package pdftex.def Info: circuit.pdf  used on input line 21.
-(pdftex.def)             Requested size: 794.96806pt x 614.29349pt.
-
-LaTeX Warning: Reference `tab:op1' on page 2 undefined on input line 28.
-
-! File `data.txt' doesn't exist!.
-\reserved@a ...ge {File `data.txt' doesn't exist!}
-                                                  
-l.28 ...he number $\partialinput{21}{21}{data.txt}
-                                                  $).
-? 
-
-! LaTeX Error: File `op_tab1.tex' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tex)
-
-Enter file name: 
-) (./analysis.tex [2 <./circuit.pdf>]
-
-LaTeX Warning: Reference `eq:von' on page 3 undefined on input line 5.
-
-)
-Runaway argument?
-{N_{diodes}, \label {eq:von} \end {equation} \par $V_{ON}$ value is c\ETC.
-! File ended while scanning use of \frac .
-<inserted text> 
-                \par 
-l.202 \input{analysis}
-                      
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.203 
-      
-? 
-! Display math should end with $$.
-<to be read again> 
-                   \par 
-l.203 
-      
-? 
-(./simulation.tex [3]
-
-LaTeX Warning: Reference `tab:vsim1' on page 4 undefined on input line 7.
+Overfull \hbox (142.2623pt too wide) in paragraph at lines 76--77
+ [][] 
+ []
 
 
-LaTeX Warning: Reference `tab:tsim1' on page 4 undefined on input line 32.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: File `venv.eps' not found on input line 36.
-
-Package epstopdf Info: Source file: <venv.eps>
-(epstopdf)             Output file: <venv-eps-converted-to.pdf>
-(epstopdf)             Command: <repstopdf --outfile=venv-eps-converted-to.pdf 
-venv.eps>
-(epstopdf)             \includegraphics on input line 36.
-Package epstopdf Info: Output file is already uptodate.
-
-! Package pdftex.def Error: File `venv-eps-converted-to.pdf' not found: using d
-raft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.36 ...udegraphics[width=0.6\linewidth]{venv.eps}
-                                                  
-? 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-6.
-(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [4]
-
-LaTeX Warning: File `vout.eps' not found on input line 43.
-
-Package epstopdf Info: Source file: <vout.eps>
-(epstopdf)             Output file: <vout-eps-converted-to.pdf>
-(epstopdf)             Command: <repstopdf --outfile=vout-eps-converted-to.pdf 
-vout.eps>
-(epstopdf)             \includegraphics on input line 43.
-Package epstopdf Info: Output file is already uptodate.
-
-! Package pdftex.def Error: File `vout-eps-converted-to.pdf' not found: using d
-raft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.43 ...udegraphics[width=0.6\linewidth]{vout.eps}
-                                                  
-? 
-[5]
-
-LaTeX Warning: File `vout(ac+dc).eps' not found on input line 50.
-
-Package epstopdf Info: Source file: <vout(ac+dc).eps>
-(epstopdf)             Output file: <vout(ac+dc)-eps-converted-to.pdf>
-(epstopdf)             Command: <repstopdf --outfile=vout(ac+dc)-eps-converted-
-to.pdf vout(ac+dc).eps>
-(epstopdf)             \includegraphics on input line 50.
-Package epstopdf Info: Output file is already uptodate.
-
-! Package pdftex.def Error: File `vout(ac+dc)-eps-converted-to.pdf' not found: 
-using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.50 ...hics[width=0.6\linewidth]{vout(ac+dc).eps}
-                                                  
-? 
-[6]
-
-LaTeX Warning: File `vs_vout.eps' not found on input line 57.
-
-Package epstopdf Info: Source file: <vs_vout.eps>
-(epstopdf)             Output file: <vs_vout-eps-converted-to.pdf>
-(epstopdf)             Command: <repstopdf --outfile=vs_vout-eps-converted-to.p
-df vs_vout.eps>
-(epstopdf)             \includegraphics on input line 57.
-Package epstopdf Info: Output file is already uptodate.
-
-! Package pdftex.def Error: File `vs_vout-eps-converted-to.pdf' not found: usin
-g draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.57 ...graphics[width=0.6\linewidth]{vs_vout.eps}
-                                                  
-? 
-[7]) (./conclusion.tex [8]
-
-LaTeX Warning: Reference `fig:circuit_final' on page 9 undefined on input line 
-5.
-
-<circuit_final.pdf, id=98, 794.97pt x 614.295pt>
-File: circuit_final.pdf Graphic file (type pdf)
-<use circuit_final.pdf>
-Package pdftex.def Info: circuit_final.pdf  used on input line 8.
-(pdftex.def)             Requested size: 364.19667pt x 281.4262pt.
-
-LaTeX Warning: Reference `tab:conclusion 1' on page 9 undefined on input line 1
-3.
+LaTeX Warning: Reference `sec:envelope' on page 4 undefined on input line 81.
 
 
-LaTeX Warning: Reference `tab:conclusion 2' on page 9 undefined on input line 1
-3.
+LaTeX Warning: Reference `eq:Ac1' on page 4 undefined on input line 91.
 
-)
 
-! LaTeX Error: \begin{equation} on input line 7 ended by \end{document}.
+LaTeX Warning: Reference `eq:Ac2' on page 4 undefined on input line 91.
+
+
+LaTeX Warning: Reference `eq:Ac3' on page 4 undefined on input line 91.
+
+
+LaTeX Warning: Reference `eq:Ac2' on page 4 undefined on input line 91.
+
+[4]) (./simulation.tex
+
+LaTeX Warning: Reference `tab:vsim1' on page 5 undefined on input line 7.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `tab:tsim1' on page 5 undefined on input line 32.
+
+
+! LaTeX Error: Unknown graphics extension: .ps.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.218 \end{document}
-                    
+l.36 ...ludegraphics[width=0.6\linewidth]{venv.ps}
+                                                  
 ? 
+[5 <./voltageregulator.pdf>]
+
+! LaTeX Error: Unknown graphics extension: .ps.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 ...ludegraphics[width=0.6\linewidth]{vout.ps}
+                                                  
+? 
+[6]
+
+! LaTeX Error: Unknown graphics extension: .ps.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50 ...phics[width=0.6\linewidth]{vout(ac+dc).ps}
+                                                  
+? 
+[7]
+
+! LaTeX Error: Unknown graphics extension: .ps.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.57 ...egraphics[width=0.6\linewidth]{vs_vout.ps}
+                                                  
+? 
+[8]) (./conclusion.tex [9]
+
+LaTeX Warning: Reference `fig:circuit_final' on page 10 undefined on input line
+ 5.
+
+<circuit_final.pdf, id=120, 794.97pt x 614.295pt>
+File: circuit_final.pdf Graphic file (type pdf)
+<use circuit_final.pdf>
+Package pdftex.def Info: circuit_final.pdf  used on input line 8.
+(pdftex.def)             Requested size: 364.19667pt x 281.4262pt.
+
+LaTeX Warning: Reference `tab:conclusion 1' on page 10 undefined on input line 
+13.
+
+
+LaTeX Warning: Reference `tab:conclusion 2' on page 10 undefined on input line 
+13.
+
+)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
-[9 <./circuit_final.pdf>]
+ [10 <./circuit_final.pdf>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
@@ -1156,7 +1085,7 @@ Package rerunfilecheck Warning: File `report.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `report.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  DC121E27EB3387D6292447A01DD6A64C;232.
+(rerunfilecheck)             After:  DAA009F90429B2F1A8805AA13713C867;372.
 
 LaTeX Warning: There were undefined references.
 
@@ -1164,32 +1093,30 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
- )
-(\end occurred inside a group at level 1)
-
-### semi simple group (level 1) entered at line 7 (\begingroup)
-### bottom level 
+ ) 
 Here is how much of TeX's memory you used:
- 18662 strings out of 481239
- 328054 string characters out of 5920378
- 734688 words of memory out of 5000000
- 33482 multiletter control sequences out of 15000+600000
- 573772 words of font info for 86 fonts, out of 8000000 for 9000
+ 18670 strings out of 481239
+ 328206 string characters out of 5920378
+ 737688 words of memory out of 5000000
+ 33443 multiletter control sequences out of 15000+600000
+ 602754 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 45i,8n,79p,925b,801s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texm
-f/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.e
-nc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texlive/texmf
--dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/lm/lmmi1
-0.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/pu
-blic/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on report.pdf (9 pages, 323515 bytes).
+ 45i,14n,79p,925b,740s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
+hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/typ
+e1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/te
+xmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+sy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/helvetic/uhvro8a.pfb>
+Output written on report.pdf (10 pages, 334201 bytes).
 PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 15376 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 27674 words of extra memory for PDF output out of 29859 (max. 10000000)
 
