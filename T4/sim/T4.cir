@@ -66,12 +66,28 @@ hardcopy vo1f.eps vdb(coll)
 
 plot vdb(out)
 plot vp(out)
-hardcopy vo2f.eps vdb(coll)
+hardcopy vo2f.eps vdb(out)
+
+echo v(out)
+echo $&v(out)
+echo v(coll)
+echo $&v(coll)
+echo v(in)
+echo $&v(in)
+echo v(out)/v(in)
+
+print v(out)/v(in)
+
+let threshold = vecmax(vdb(out))-3
+
+meas ac lco WHEN vdb(out) = threshold RISE = 1
+meas ac uco WHEN vdb(out) = threshold CROSS = LAST
 
 *input impedance in kohm
 print v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
 
 *need a different setup to measure output impedance
+print lco uco threshold vecmax(abs(v(out)/v(in)))> result_sim.txt 
 quit
 .endc 
 

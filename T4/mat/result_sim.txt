@@ -1,0 +1,4 @@
+lco = 8.880418e+03
+uco = 1.603742e+06
+threshold = 3.490405e+01
+vecmax(abs(v(out)/v(in))) = 7.856021e+01

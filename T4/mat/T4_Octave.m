@@ -1,5 +1,6 @@
 %gain stage
 
+
 VT=25e-3
 BFN=178.7
 VAFN=69.7
@@ -66,3 +67,11 @@ AV2 = gm2/(gm2+gpi2+go2+ge2)
 ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
 
 ZO2 = 1/(gm2+gpi2+go2+ge2)
+cost = 2101.508
+dataf = fopen('result_sim.txt','r');
+DATA = fscanf(dataf,'%*s = %f');
+fclose(dataf);
+lco = DATA(1)
+bandwidth = DATA(2) - DATA(1)
+gain = DATA(4)
+MERIT = gain*bandwidth/(cost*lco)
