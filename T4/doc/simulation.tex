@@ -5,9 +5,51 @@
 
 In this section, we will the obtained results by simulating the referred circuit in Ngspice. 
 
+We started with the given ngspice file to simulate the audio amplifier, and further improved my doing incremental modifications, while respecting the suitable parameters.
+
+To decide the final best values, an optimizer was used with octave, that created a new ngspice document in each iteration as to find the suitable and most optimal values.
+
+The obtained values of interest can be found in table \ref{tab:sim1}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    {\bf Element } & {\bf Value} \\
+    \hline \hline
+    Cost & FALTA \\
+    \hline
+    Lower Cut Off & FALTA Hz\\
+    \hline
+    Upper Cut Off & FALTA Hz \\
+    \hline
+    Bandwidth & FALTA Hz \\
+    \hline
+    Voltage Gain ($\frac{V_{o}}{V_{i}}$)  & FALTA \\
+    \hline
+    Input Impedance & FALTA \\
+    \hline
+    Output Impedance & FALTA \\
+    \hline 
+    \end{tabular}
+    \caption{Obtained values from Ngspice}
+    \label{tab:sim1}
+\end{table}
 
 
+Using the given expression for the merit it follows that:
 
+\begin{equation}
+    Merit = FALTA 
+    \label{eq:merit}
+\end{equation}
 
+It becomes clear from changing the values the different effects the resistors and capacitors have in the bandwidth and gain.
+
+The coupling capacitors have the clear goal of FALTA , which is FALTA
+
+The bypass capacitor on the other hand, is meant to FALTA, as to FALTA
+
+The $R_c$ resistor also affects gain, since FALTA
 
 
