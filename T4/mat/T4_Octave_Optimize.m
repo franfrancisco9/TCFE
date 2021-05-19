@@ -30,11 +30,12 @@ AV1 = RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1
 
 AV1simple = gm1*RC1/(1+gm1*RE1)
 
+RE1aux=RE1
 RE1=0
 AV1 = RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
 AV1simple = gm1*RC1/(1+gm1*RE1)
 
-RE1=100
+RE1=RE1aux
 
 ZI1 = ((ro1+RC1+RE1)*(RB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)
 
@@ -68,7 +69,7 @@ ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
 
 ZO2 = 1/(gm2+gpi2+go2+ge2)
 cost = 2101.508
-dataf = fopen('/home/mcarvalho2001/Desktop/TCFE/T4/mat/result_sim.txt','r');
+dataf = fopen('result_sim.txt','r');
 DATA = fscanf(dataf,'%*s = %f');
 fclose(dataf);
 lco = DATA(1)
