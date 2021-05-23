@@ -1,7 +1,0 @@
-\babel@toc {english}{}
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
-\contentsline {section}{\numberline {2}Theoretical Analysis}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Gain Stage}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Output Stage}{3}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Simulation Analysis}{4}{section.3}%
-\contentsline {section}{\numberline {4}Conclusion}{6}{section.4}%

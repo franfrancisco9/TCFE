@@ -2,4 +2,40 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
+In this laboratory we designed and adapted the structure of an audio amplifier circuit.
 
+We can now compare the obtained results by theory and by simulation:
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    {\bf Parameter} & {\bf Value} \\ 
+    \hline\hline
+    Total: & \\ \hline
+     Voltage Gain ($\frac{V_{o}}{V_{i}}$)  & 69.438 \\ \hline
+    Input Impedance & 798.3355 \\ \hline
+    Output Impedance  & 6.567979  \\ \hline
+    \end{tabular}
+    \caption{Values for gain and impedances in simulation.}
+    \label{tab:values}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+    \hline
+    {\bf Element } & {\bf Value} \\
+    \hline \hline
+    Total: & \\ \hline
+     Voltage Gain ($\frac{V_{o}}{V_{i}}$)  & 156.57\\ \hline
+    Input Impedance & 683.51 \\ \hline
+    Output Impedance  & 3.6897 \\ \hline
+    \end{tabular}
+    \caption{Values for gain and impedances in theoretical.}
+    \label{tab:sim1}
+\end{table}
+
+There are some clear differences between the results, which are main due to the transistor model apllied in Ngspice is much more realistic and complex than the model apllied theoretically. Considering this, the results are quite satisfactory.
+
+Final merit obtained was FALTA (Ngspice). 

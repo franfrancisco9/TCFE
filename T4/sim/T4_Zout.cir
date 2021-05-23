@@ -1,15 +1,15 @@
-.options savecurrents
+options savecurrents
 
 * PHILIPS BJT'S
 .MODEL BC557A PNP(IS=2.059E-14 ISE=2.971f ISC=1.339E-14 XTI=3 BF=227.3 BR=7.69 IKF=0.08719 IKR=0.07646 XTB=1.5 VAF=37.2 VAR=11.42 VJE=0.5912 VJC=0.1 RE=0.688 RC=0.6437 RB=1 RBM=1 IRB=1E-06 CJE=1.4E-11 CJC=1.113E-11 XCJC=0.6288 FC=0.7947 NF=1.003 NR=1.007 NE=1.316 NC=1.15 MJE=0.3572 MJC=0.3414 TF=7.046E-10 TR=1m2 ITF=0.1947 VTF=5.367 XTF=4.217 EG=1.11)
 .MODEL BC547A NPN(IS=1.533E-14 ISE=7.932E-16 ISC=8.305E-14 XTI=3 BF=178.7 BR=8.628 IKF=0.1216 IKR=0.1121 XTB=1.5 VAF=69.7 VAR=44.7 VJE=0.4209 VJC=0.2 RE=0.6395 RC=0.6508 RB=1 RBM=1 IRB=1E-06 CJE=1.61E-11 CJC=4.388p XCJC=0.6193 FC=0.7762 NF=1.002 NR=1.004 NE=1.436 NC=1.207 MJE=0.3071 MJC=0.2793 TF=4.995E-10 TR=1m2 ITF=0.7021 VTF=3.523 XTF=139 EG=1.11)
 
 Vcc vcc 0 12.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
-Rin in in2 100
+
+Vin in2 0 0
 
 * input coupling capacitor
-Ci in2 base 0.001   
+Ci in2 base 0.001
 
 * bias circuit
 R1 vcc base 105k
@@ -31,14 +31,15 @@ Rout emit2 vcc 100
 * output coupling capacitor
 Co emit2 out 0.001
 
-* load
-RL out 0 8
+F1 a 0 Vo 1
+Rteste a 0 1
+
+Vo out 0 0 ac 1 sin(0 1 1k)
 
 .op
 .end
 
 .control
-
 print all
 
 set hcopypscolor=1
@@ -50,52 +51,33 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-* time analysis
-tran 1e-5 1e-2
-plot v(coll)
-hardcopy vo1.eps vdb(coll)
-
-
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
-hardcopy vo1f.eps vdb(coll)
+*plot vdb(coll)
+*plot vp(coll)
+hardcopy vo1f_inc.ps vdb(coll)
 
 
+*plot vdb(out)
+*plot vp(out)
+hardcopy vo2f_inc.ps vdb(out)
 
-plot vdb(out)
-plot vp(out)
-hardcopy out_gain.eps vdb(out)
-
-echo v(out)
-echo $&v(out)
-echo v(coll)
-echo $&v(coll)
-echo v(in)
-echo $&v(in)
-echo v(out)/v(in)
-
-print v(out)/v(in)
-
-let threshold = vecmax(vdb(out))-3
-
-meas ac lco WHEN vdb(out) = threshold RISE = 1
-meas ac uco WHEN vdb(out) = threshold CROSS = LAST
-
-*input impedance in kohm
-print -v(in2)[40]/vin#branch[40]
-hardcopy impe_in.eps abs(-v(in2)/vin#branch)
-
-hardcopy zin_db.eps 20*log(abs(-v(in2)/vin#branch))/log(10)
-
-let zin = -v(in2)[40]/vin#branch[40]
-let gain = v(out)[40]/v(in)[40]
+echo Zo
+let Zo = -v(out)/Vo#branch
 
 
-print lco uco threshold re(gain) im(gain) abs(gain) re(zin) im(zin) abs(zin) > results.txt
-*need a different setup to measure output impedance
+*plot 20*log(abs(Zo))
+hardcopy impe_out.eps abs(Zo)
+
+hardcopy impe_out_db.ps 20*log(abs(Zo))/log(10)
+
+
+*print Vo#branch
+
+*print Zo
+*print abs(Zo)
+
+print re(Zo[40]) im(Zo[40]) abs(Zo[40])
 
 quit
 .endc 
-

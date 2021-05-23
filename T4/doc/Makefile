@@ -9,7 +9,7 @@ LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
 all: $(FILE).pdf
 	evince $< &
 
-$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) ngspice1 T4_octave
+$(FILE).pdf: $(wildcard *.tex) $(LODFIGS) ngspice1 ngspice2  T4_octave
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
@@ -28,9 +28,13 @@ ngspice1: ngspice.log1
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	$(foreach i, $(NGSFIGPS), ps2pdf $i;)
 	
+ngspice2: ngspice.log2
+	
 ngspice.log1: ../sim/T4.cir
 	ngspice -b $< -o $@
 	
+ngspice.log2: ../sim/T4_Zout.cir
+	ngspice -b $< -o $@
 
 T4_octave:
 	octave ../mat/T4_Octave.m > octave.log
