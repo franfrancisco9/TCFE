@@ -12,16 +12,16 @@ Vin in2 0 0
 Ci in2 base 0.001
 
 * bias circuit
-R1 vcc base 105k
+R1 vcc base 122k
 R2 base 0 20k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 800
+Rc vcc coll 550
 Re emit 0 100
 
 * bypass capacitor
-Cb emit 0 0.0025
+Cb emit 0 0.0042
 
 
 * output stage
@@ -29,7 +29,7 @@ Q2 0 coll emit2 BC557A
 Rout emit2 vcc 100
 
 * output coupling capacitor
-Co emit2 out 0.001
+Co emit2 out 0.0018
 
 F1 a 0 Vo 1
 Rteste a 0 1

@@ -9,13 +9,13 @@ Vinm = 1
 Vinf = 1000
 Rin = 100
 Ci = 1e-3
-R1 = 105e3
+R1 = 122e3
 R2 = 20e3
-Rc = 0.8e3
+Rc = 0.55e3
 Re = 100
-Cb = 2.5e-3
+Cb = 4.2e-3
 Rout = 100
-Co = 1e-3
+Co = 1.8e-3
 RL = 8
 system ("ngspice T4.cir");
 cost = Rin/1000 + Ci*1e6 + R1/1000 + R2/1000 + Rc/1000 + Re/1000 + Cb*1e6 + Rout/1000 + Co*1e6 + 2*0.1
