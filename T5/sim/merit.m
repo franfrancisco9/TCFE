@@ -3,30 +3,28 @@ pkg load symbolic;
 #PRIMEIRA PARTE
 
 %gain stage
+
 format short e
-Vcc = 12
-Vinm = 1
-Vinf = 1000
-Rin = 100
-Ci = 1e-3
-R1 = 122e3
-R2 = 20e3
-Rc = 0.55e3
-Re = 100
-Cb = 4.2e-3
-Rout = 100
-Co = 1.8e-3
-RL = 8
+
+C1 = 220e-9
+R1 = 1e3
+C2 = 110e-9
+R2 = 1e3
+R3 = 150e3
+R4 = 1e3
+
 system ("ngspice T4.cir");
-cost = Rin/1000 + Ci*1e6 + R1/1000 + R2/1000 + Rc/1000 + Re/1000 + Cb*1e6 + Rout/1000 + Co*1e6 + 2*0.1
+cost_opamp = (8.661e-12 + 30e-12)*1000000 + (100000 + 5305 + 5305 + 1836 + 1836 + 13190000 + 50 + 100 + 18160)/1000 + (2*0.1)
+cost = cost_opamp + (R1 + R2 + R3 + R4)/1000 + (C1 + C2)*1000000;
 
 dataf = fopen('results.txt','r');
 DATA = fscanf(dataf,'%*s = %f')
 fclose(dataf);
 
-uco = DATA(2);
-lco = DATA(1);
-gain = DATA(6)
-bandwidth = uco-lco
+gaindevdb = DATA(1);
+freqdevdb = DATA(2);
 
-MERIT = gain*bandwidth/(cost*lco)
+gaindev = 10 ^ (gaindevdb/20);
+freqdev = 10 ^ (freqdevdb/20);
+
+MERIT = 1/(cost*gaindev*freqdev + 1e-6)

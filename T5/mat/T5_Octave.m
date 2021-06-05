@@ -1,181 +1,119 @@
-pkg load symbolic;
-
 %gain stage
 
-Vcc =  12
-Vinm =  1
-Vinf =  1000
-Rin =  100
-Ci =  0.0010000
-R1 =  122000
-R2 =  20000
-Rc =  550
-Re =  100
-Cb =  0.0042000
-Rout =  100
-Co =  0.0018000
-RL =  8
+C1 = 220e-9
+R1 = 1e3
+C2 = 110e-9
+R2 = 1e3
+R3 = 150e3
+R4 = 1e3
 
-VT=25e-3
-BFN=178.7
-VAFN=69.7
-RE1=Re
-RC1=Rc
-RB1=R1
-RB2=R2
-VBEON=0.7
-VCC = Vcc
-RS=Rin
-Vin = Vinm
+f = 1000
+w = 2*pi*f
+
+Zc1 = 1/j/w/C1
+Zc2 = 1/j/w/C2
 
 
-RB=1/(1/RB1+1/RB2)
-VEQ=RB2/(RB1+RB2)*VCC
-IB1=(VEQ-VBEON)/(RB+(1+BFN)*RE1)
-IC1=BFN*IB1
-IE1=(1+BFN)*IB1
-VE1=RE1*IE1
-VO1=VCC-RC1*IC1
-VCE=VO1-VE1
+Zip = abs(Zc1+R1)
+Zop = abs(1/(1/R2+1/Zc2))
+
+vm = R1/(R1+Zc1)
+Va = (1+R3/R4)*vm
+Gainp = abs(Zc2/(Zc2+R2)*Va)
+Gainp_db = 20*log10(Gainp)
 
 
-gm1=IC1/VT
-rpi1=BFN/gm1
-ro1=VAFN/IC1
+f = logspace(1, 5, 41);
+w = 2*pi*f;
 
-RSB=RB*RS/(RB+RS)
-
-AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-AVI_DB = 20*log10(abs(AV1))
-AV1simple = RB/(RB+RS) * gm1*RC1/(1+gm1*RE1)
-AVIsimple_DB = 20*log10(abs(AV1simple))
-
-RE1=0
-AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-AVI_DB = 20*log10(abs(AV1))
-AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
-AVIsimple_DB = 20*log10(abs(AV1simple))
-
-RE1=Re
-ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
-ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)))
-ZX = ro1*(1/RE1+1/(rpi1+RSB)+1/ro1+gm1*rpi1/(rpi1+RSB))/(1/RE1+1/(rpi1+RSB) ) 
-ZO1 = 1/(1/ZX+1/RC1)
-
-RE1=0
-ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
-ZO1 = 1/(1/ro1+1/RC1)
-
-%ouput stage
-BFP = 227.3
-VAFP = 37.2
-RE2 = Rout
-VEBON = 0.7
-VI2 = VO1
-IE2 = (VCC-VEBON-VI2)/RE2
-IC2 = BFP/(BFP+1)*IE2
-VO2 = VCC - RE2*IE2
-
-gm2 = IC2/VT
-go2 = IC2/VAFP
-gpi2 = gm2/BFP
-ge2 = 1/RE2
-
-AV2 = gm2/(gm2+gpi2+go2+ge2)
-ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
-ZO2 = 1/(gm2+gpi2+go2+ge2)
+Zc1 = 1./(j*w*C1);
+Zc2 = 1./(j*w*C2);
 
 
-%total
-gB = 1/(1/gpi2+ZO1)
-AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
-AV_DB = 20*log10(abs(AV))
-ZI=ZI1
-ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
+Zi = abs(Zc1+R1);
+Zo = abs(1./(1/R2+1./Zc2));
 
-Gain = abs(AV)
-Gain1 = abs(AV1)
-Gain2 = abs(AV2)
-
-%gain stage
-
-frequency = logspace(1, 8, 70);
-gain = zeros(1,70);
-
-for aux = 1:1:70
-  f = frequency(aux);
-  w = 2*pi*f
-
-  Vin = Vinm*e^(i*w);
-
-  VT=25e-3; 
-  BFN=178.7;
-  VAFN=69.7; 
-  RE1=Re;
-  RC1=Rc;
-  RB1=R1;
-  RB2=R2;
-  VBEON=0.7;
-  VCC = Vcc; 
-
-  RS = Rin;
-  Zci = 1/(Ci*w*i); 
-  Zcb = 1/(Cb*w*i); 
-  Zco = 1/(Co*w*i); 
+vm = R1./(R1+Zc1);
+Va = (1+R3/R4).*vm;
+Ts = Zc2./(Zc2+R2).*Va;
+Gain = abs(Ts);
+Gain_db = 20*log10(Gain);
+phase = angle(Ts)*180/pi;
 
 
-  RB=1/(1/RB1+1/RB2); 
-  VEQ=RB2/(RB1+RB2)*VCC;
-  IB1=(VEQ-VBEON)/(RB+(1+BFN)*RE1); 
-  IC1=BFN*IB1; 
-  IE1=(1+BFN)*IB1;
-  VE1=RE1*IE1;
-  VO1=VCC-RC1*IC1;
-  VCE=VO1-VE1;
-
-
-  gm1=IC1/VT; 
-  rpi1=BFN/gm1; 
-  ro1=VAFN/IC1;
-
-  RSB=RB*RS/(RB+RS);
-
-  %ouput stage
-  BFP = 227.3;
-  VAFP = 37.2; 
-  RE2 = Rout; 
-  VEBON = 0.7;
-  VI2 = VO1; 
-  IE2 = (VCC-VEBON-VI2)/RE2;
-  IC2 = BFP/(BFP+1)*IE2; 
-  VO2 = VCC - RE2*IE2;
-
-  gm2 = IC2/VT; 
-  ro2 = VAFP/IC2; 
-  rpi2 = BFP/gm2;  
-
-  aux2 = -gm2-1/rpi2;
-
-  A =[1,0,0,0,0,0,0;
-  -1/Rin, 1/Rin+1/Zci, -1/Zci, 0,0,0,0;
-  0, -1/Zci, 1/Zci+1/RB+1/rpi1, -1/rpi1,0,0,0;
-  0,0,-gm1-1/rpi1, gm1+1/rpi1 + 1/RE1 + 1/Zcb + 1/ro1, -1/ro1, 0,0;
-  0,0, gm1, -gm1-1/ro1, 1/ro1 + 1/RC1 + 1/rpi2, -1/rpi2, 0;
-  0,0,0,0,0, -1/Zco, 1/Zco + 1/RL;
-  0,0,0,0, aux2, gm2 + 1/rpi2 + 1/RE2 + 1/Zco + 1/ro2, -1/Zco;
-  ];
-  B=[Vin; 0; 0; 0; 0; 0; 0];
-  X = A\B;
-
-  gain(aux) = abs(X(7)/X(1));
-  vout_vec(aux) = abs(X(7));
+MaxAv = max(Gain_db)
+  low = 0;
+for i=1:length(Gain_db)
+	if (Gain_db(i) >= MaxAv-3 && !low)
+	  %lowCOf = (f(i)+f(i-1))/2
+	  lowCOf = f(i-1)
+	    low = 1;
+	endif
+	if (Gain_db(i) <= MaxAv-3 && low)
+	  %highCOf = (f(i)+f(i-1))/2
+	  highCOf = f(i-1)
+	    low = 0;
+	endif
+	if(Gain_db(i) == MaxAv)
+	  Maxf = f(i)
+	endif
 endfor
 
-hf = figure (1);
-semilogx(frequency, gain,";gain(f);");
-xlabel ("f [Hz]");
-ylabel ("gain");
-print (hf, "frequency.pdf", "-dpdf");
+centralFreq = sqrt(lowCOf*highCOf)	
+	
+hf = figure ();
+
+plot(log10(f), phase, "-", log10(f), Gain_db, "-")
+hold
+
+title("Frequency response")
+xlabel ("log10(f) [Hz]")
+legend("phase [deg]", "gain [dB]")
+print (hf,"gain.eps", "-depsc");
+close(hf);
 
 
 
+ff = fopen("tabz.tex","w");
+fprintf(ff,"\\begin{tabular}{cc}\n");
+fprintf(ff,"\\toprule\n");
+fprintf(ff," & Value\\\\ \\midrule\n");
+fprintf(ff,"$LowFreq$ & %g \\\\\n", lowCOf);
+fprintf(ff,"$HighFreq$ & %g \\\\\n", highCOf);
+fprintf(ff,"$CentralFreq$ & %g \\\\\n", centralFreq);
+fprintf(ff,"$Z_{I}$ & %g \\\\\n", Zip);
+fprintf(ff,"$Z_{O}$ & %g \\\\\n", Zop);
+fprintf(ff,"$Gain$ & %g \\\\\n", Gainp);
+fprintf(ff,"$Gain\\ (dB)$ & %g \\\\ \\bottomrule\n", Gainp_db);
+fprintf(ff,"\\end{tabular}");
+fclose(ff);
+
+
+
+ff = fopen("tab-line1.tex","w");
+fprintf(ff,"$LowFreq$ & %g \n", lowCOf);
+fclose(ff);
+
+ff = fopen("tab-line2.tex","w");
+fprintf(ff,"$HighFreq$ & %g \n", highCOf);
+fclose(ff);
+
+ff = fopen("tab-line3.tex","w");
+fprintf(ff,"$CentralFreq$ & %g \n", centralFreq);
+fclose(ff);
+
+ff = fopen("tab-line4.tex","w");
+fprintf(ff,"$Z_{I}$ & %g \n", Zip);
+fclose(ff);
+
+ff = fopen("tab-line5.tex","w");
+fprintf(ff,"$Z_{O}$ & %g \n", Zop);
+fclose(ff);
+
+ff = fopen("tab-line6.tex","w");
+fprintf(ff,"$Gain$ & %g \n", Gainp);
+fclose(ff);
+
+ff = fopen("tab-line7.tex","w");
+fprintf(ff,"$Gain\\ (dB)$ & %g \n", Gainp_db);
+fclose(ff);
