@@ -1,0 +1,83 @@
+
+Circuit: *-----------------------------------------------------------------------------
+
+
+**********************
+* frequency analysis *
+**********************
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 41
+
+The file "lab-vo1f.ps" may be printed on a postscript printer.
+
+****************
+* Cut-off Freq *
+****************
+voltgaindb          =  3.997705e+01 at=  1.000000e+03
+voltgain            =  9.973609e+01 at=  1.000000e+03
+lowcof              =  4.036113e+02
+maxf                =  1.000000e+03 with=  3.997705e+01
+highcof             =  2.386174e+03
+avgcof = 9.813699e+02
+
+* op-amp *
+
+ingain              =  9.999733e-01 at=  1.000000e+05
+outgain             =  1.363212e+02 at=  1.995262e+03
+
+*********
+* merit *
+*********
+gain_deviation = 2.295000e-02
+f_deviation = 1.863015e+01
+
+****************
+* relative dev *
+****************
+gainperc = 5.737500e-02
+fperc = 1.863015e+00
+
+******************
+* impedance ohm *
+******************
+abs(v(vin)[20]/vin#branch[20]/(-1)) = 1.234314e+03
+
+**********
+* TABLES *
+"**********"5 euros
+inputZ_TAB
+Zin = 999.979 + -723.583 j
+ $|$ Zin $|$ = 1234.31
+inputZ_END
+merit_TAB
+voltgaindb = 3.997705e+01
+gaindeviation = 2.295000e-02
+centralfreq = 9.813699e+02
+centralfreqdev = 1.863015e+01
+merit_END
+zin_TAB
+1234.31
+zin_END
+gain1_TAB
+99.7361
+gain1_END
+gain2_TAB
+39.977
+gain2_END
+freq1_TAB
+403.611
+freq1_END
+freq2_TAB
+2386.17
+freq2_END
+freq3_TAB
+981.37
+freq3_END
+percentages_TAB
+gainperc = 5.737500e-02
+fperc = 1.863015e+00
+percentages_END
+ngspice-31 done

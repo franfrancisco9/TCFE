@@ -1,0 +1,21 @@
+
+Circuit: *-----------------------------------------------------------------------------
+
+Reducing trtol to 1 for xspice 'A' devices
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+No. of Data Rows : 41
+
+*****************
+* impedance ohm *
+*****************
+abs(v(vo)[20]/vout#branch[20]/(-1)) = 8.261942e+02
+outputZ_TAB
+Zo = 681.72 + -466.75 j
+$|$ Zo $|$ = 826.194
+outputZ_END
+zout_TAB
+826.194
+zout_END
+ngspice-31 done

@@ -148,9 +148,10 @@ echo "*********"
 
 let gain_deviation = abs(voltGainDB - 40)
 let f_deviation = abs(avgCOf - 1k)
-let cost = (100*3 + 1*3) + (0.220*3)
-let merit = 1/(cost*gain_deviation*f_deviation)
-print gain_deviation f_deviation cost merit
+*let cost = 13323 + 
+*let merit = 1/(cost*gain_deviation*f_deviation + 1/1000000)
+print gain_deviation f_deviation 
+*print cost merit
 
 echo ""
 echo "****************"
@@ -194,8 +195,9 @@ print voltGainDB
 print gainDeviation
 print CentralFreq
 print CentralFreqDev
-print cost
-print merit
+*print cost
+*print merit
+print gainDeviation CentralFreqDev > results.txt
 echo "merit_END"
 
 
