@@ -49,53 +49,185 @@
 
 .options savecurrents
 
-Vcc vcc 0 5.0
-Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vcc vcc 0 10.0
+Vee vee 0 -10.0
+Vin vin 0 0 ac 1.0 sin(0 700m 1k)
 
-X1 0 inv_in vcc vee out uA741
+X1 in_p inv_in vcc vee out uA741
 
-R1 in inv_in 1000
-R2 inv_in out 10000
+* non-inv +
+C1 vin in_p 220n
+R1 in_p 0 1k
+
+* inv -
+R3 inv_in r3b 100k
+R3b r3b out 100k
+R3c r3b out 100k
+
+R4 inv_in 0 1k
 
 * load
-RL out 0 8
+R2 out vo 1k
+C2 vo 0 110n
 
 .op
 .end
 
 .control
 
-
-set hcopypscolor=1
+*makes plots in color
+set hcopypscolor=0
 set color0=white
 set color1=black
 set color2=red
-set color3=blue
+set color3=rgb:0/9/9
 set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-print all
+
+
+*op
+*print all
 
 * time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps vdb(out)
+*tran 1e-5 1e-2
+*plot v(out)
+*hardcopy lab-vo1.ps v(vo) v(vin)
+*print v(vin)[45] v(vo)[45]
 
 
-* frequency analysis
-ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out)
 
-*input impedance in kohm
-print v(in)[40]/R1[i]/1000
+
+echo ""
+echo "**********************"
+echo "* frequency analysis *"
+echo "**********************"
+
+ac dec 10 10 100k
+*plot vdb(out)
+*plot vp(out)
+hardcopy lab-vo1f.ps vdb(vo) vp(vo)*180/pi
+
+
+echo ""
+echo "****************"
+echo "* Cut-off Freq *"
+echo "****************"
+
+* cut-off freqs
+
+let Av_db = vdb(vo)-vdb(vin)
+meas ac voltGainDB MAX Av_db
+let Av_m = vm(vo)/vm(vin)
+meas ac voltGain MAX Av_m
+let voltG3 = voltGainDB-3
+*print voltG3
+
+meas ac lowCOf WHEN Av_db=voltG3
+meas ac Maxf MAX_AT Av_db
+meas ac highCOf WHEN Av_db=voltG3 CROSS=LAST
+
+let avgCOf = sqrt(lowCOf*highCOf)
+print avgCOf
+
+echo ""
+echo "* op-amp *"
+echo ""
+
+let in_m = vm(in_p)/vm(vin)
+meas ac inGain MAX in_m
+let out_m = vm(out)/vm(vin)
+meas ac outGain MAX out_m
+
+
+echo ""
+echo "*********"
+echo "* merit *"
+echo "*********"
+
+let gain_deviation = abs(voltGainDB - 40)
+let f_deviation = abs(avgCOf - 1k)
+let cost = (100*3 + 1*3) + (0.220*3)
+let merit = 1/(cost*gain_deviation*f_deviation)
+print gain_deviation f_deviation cost merit
+
+echo ""
+echo "****************"
+echo "* relative dev *"
+echo "****************"
+
+let gainperc = gain_deviation/40*100
+let fperc = f_deviation/1k*100
+print gainperc fperc
+
+
+echo ""
+echo "******************"
+echo "* impedance ohm *"
+echo "******************"
+*input impedance in ohm
+print abs(v(vin)[20]/vin#branch[20]/(-1))
+
+let Zin = v(vin)[20]/vin#branch[20]/(-1)
+let real=Re(Zin)
+let imag=Im(Zin)
+let absl=abs(Zin)
+
+
+***************************** TABLES ******************************
+echo ""
+echo "**********"
+echo "* TABLES *"
+echo "**********"5 euros 
+
+echo "inputZ_TAB"
+echo "Zin = $&real + $&imag j"
+echo " $|$\ Zin $|$\ = $&absl"
+echo "inputZ_END"
+
+let CentralFreq = avgCOf
+let CentralFreqDev = f_deviation
+let gainDeviation = gain_deviation
+echo "merit_TAB"
+print voltGainDB
+print gainDeviation
+print CentralFreq
+print CentralFreqDev
+print cost
+print merit
+echo "merit_END"
+
+
+echo "zin_TAB"
+echo "$&absl"
+echo "zin_END"
+
+echo "gain1_TAB"
+echo "$&voltGain"
+echo "gain1_END"
+echo "gain2_TAB"
+echo "$&voltGainDB"
+echo "gain2_END"
+
+echo "freq1_TAB"
+echo "$&lowCOf"
+echo "freq1_END"
+echo "freq2_TAB"
+echo "$&highCOf"
+echo "freq2_END"
+echo "freq3_TAB"
+echo "$&CentralFreq"
+echo "freq3_END"
+
+echo "percentages_TAB"
+print gainperc fperc
+echo "percentages_END"
+
 
 *need a different setup to measure output impedance
+
 quit
 .endc 
-
 
 

@@ -1,48 +1,81 @@
-options savecurrents
+*-----------------------------------------------------------------------------
+*
+* To use a subcircuit, the name must begin with 'X'.  For example:
+* X1 1 2 3 4 5 uA741
+*
+* connections:   non-inverting input
+*                |  inverting input
+*                |  |  positive power supply
+*                |  |  |  negative power supply
+*                |  |  |  |  output
+*                |  |  |  |  |
+.subckt uA741    1  2  3  4  5
+*
+  c1   11 12 8.661E-12
+  c2    6  7 30.00E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 10.61E6 -10E6 10E6 10E6 -10E6
+  ga    6  0 11 12 188.5E-6
+  gcm   0  6 10 99 5.961E-9
+  iee  10  4 dc 15.16E-6
+  hlim 90  0 vlim 1K
+  q1   11  2 13 qx
+  q2   12  1 14 qx
+  r2    6  9 100.0E3
+  rc1   3 11 5.305E3
+  rc2   3 12 5.305E3
+  re1  13 10 1.836E3
+  re2  14 10 1.836E3
+  ree  10 99 13.19E6
+  ro1   8  5 50
+  ro2   7 99 100
+  rp    3  4 18.16E3
+  vb    9  0 dc 0
+  vc    3 53 dc 1
+  ve   54  4 dc 1
+  vlim  7  8 dc 0
+  vlp  91  0 dc 40
+  vln   0 92 dc 40
+.model dx D(Is=800.0E-18 Rs=1)
+.model qx NPN(Is=800.0E-18 Bf=93.75)
+.ends
 
-* PHILIPS BJT'S
-.MODEL BC557A PNP(IS=2.059E-14 ISE=2.971f ISC=1.339E-14 XTI=3 BF=227.3 BR=7.69 IKF=0.08719 IKR=0.07646 XTB=1.5 VAF=37.2 VAR=11.42 VJE=0.5912 VJC=0.1 RE=0.688 RC=0.6437 RB=1 RBM=1 IRB=1E-06 CJE=1.4E-11 CJC=1.113E-11 XCJC=0.6288 FC=0.7947 NF=1.003 NR=1.007 NE=1.316 NC=1.15 MJE=0.3572 MJC=0.3414 TF=7.046E-10 TR=1m2 ITF=0.1947 VTF=5.367 XTF=4.217 EG=1.11)
-.MODEL BC547A NPN(IS=1.533E-14 ISE=7.932E-16 ISC=8.305E-14 XTI=3 BF=178.7 BR=8.628 IKF=0.1216 IKR=0.1121 XTB=1.5 VAF=69.7 VAR=44.7 VJE=0.4209 VJC=0.2 RE=0.6395 RC=0.6508 RB=1 RBM=1 IRB=1E-06 CJE=1.61E-11 CJC=4.388p XCJC=0.6193 FC=0.7762 NF=1.002 NR=1.004 NE=1.436 NC=1.207 MJE=0.3071 MJC=0.2793 TF=4.995E-10 TR=1m2 ITF=0.7021 VTF=3.523 XTF=139 EG=1.11)
+.options savecurrents
 
-Vcc vcc 0 12.0
+Vcc vcc 0 10.0
+Vee vee 0 -10.0
+Vin vin 0 0 
 
-Vin in2 0 0
+X1 in_p inv_in vcc vee out uA741
 
-* input coupling capacitor
-Ci in2 base 0.001
+* non-inv +
+C1 vin in_p 220n
+R1 in_p 0 1k
 
-* bias circuit
-R1 vcc base 122k
-R2 base 0 20k
+* inv -
+R3 inv_in r3b 100k
+R3b r3b out 100k
+R3c r3b out 100k
 
-* gain stage
-Q1 coll base emit BC547A
-Rc vcc coll 550
-Re emit 0 100
+R4 inv_in 0 1k
 
-* bypass capacitor
-Cb emit 0 0.0042
-
-
-* output stage
-Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
-
-* output coupling capacitor
-Co emit2 out 0.0018
-
-F1 a 0 Vo 1
-Rteste a 0 1
-
-Vo out 0 0 ac 1 sin(0 1 1k)
+* load
+R2 out vo 1k
+C2 vo 0 110n
+Vout vo 0 0 ac 1.0 sin(0 700m 1k)
 
 .op
 .end
 
 .control
-print all
 
-set hcopypscolor=1
+*makes plots in color
+set hcopypscolor=0
 set color0=white
 set color1=black
 set color2=red
@@ -51,33 +84,33 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
+
 * frequency analysis
-ac dec 10 10 100MEG
-*plot vdb(coll)
-*plot vp(coll)
-hardcopy vo1f_inc.ps vdb(coll)
-
-
+ac dec 10 10 100k
 *plot vdb(out)
 *plot vp(out)
-hardcopy vo2f_inc.ps vdb(out)
+*hardcopy lab-vo1f.ps vdb(vo)
 
-echo Zo
-let Zo = -v(out)/Vo#branch
-
-
-*plot 20*log(abs(Zo))
-hardcopy impe_out.eps abs(Zo)
-
-hardcopy impe_out_db.ps 20*log(abs(Zo))/log(10)
+echo ""
+echo "*****************"
+echo "* impedance ohm *"
+echo "*****************"
+*input impedance in ohm
+print abs(v(vo)[20]/vout#branch[20]/(-1))
 
 
-*print Vo#branch
+let Zo=v(vo)[20]/vout#branch[20]/(-1)
+let real=Re(Zo)
+let imag=Im(Zo)
+let absl=abs(Zo)
+echo "outputZ_TAB"
+echo "Zo = $&real + $&imag j"
+echo "$|$\ Zo $|$\ = $&absl"
+echo "outputZ_END"
 
-*print Zo
-*print abs(Zo)
-
-print re(Zo[40]) im(Zo[40]) abs(Zo[40])
+echo "zout_TAB"
+echo "$&absl"
+echo "zout_END"
 
 quit
 .endc 
