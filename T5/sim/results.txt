@@ -1,0 +1,2 @@
+gaindeviation = 2.295000e-02
+centralfreqdev = 1.863015e+01
