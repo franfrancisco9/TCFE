@@ -23,7 +23,7 @@ Gainp = abs(Zc2/(Zc2+R2)*Va)
 Gainp_db = 20*log10(Gainp)
 
 
-f = logspace(1, 5, 41);
+f = logspace(1, 8, 1000);
 w = 2*pi*f;
 
 Zc1 = 1./(j*w*C1);
@@ -69,51 +69,6 @@ hold
 title("Frequency response")
 xlabel ("log10(f) [Hz]")
 legend("phase [deg]", "gain [dB]")
-print (hf,"gain.eps", "-depsc");
+print (hf,"theory.eps", "-depsc");
 close(hf);
 
-
-
-ff = fopen("tabz.tex","w");
-fprintf(ff,"\\begin{tabular}{cc}\n");
-fprintf(ff,"\\toprule\n");
-fprintf(ff," & Value\\\\ \\midrule\n");
-fprintf(ff,"$LowFreq$ & %g \\\\\n", lowCOf);
-fprintf(ff,"$HighFreq$ & %g \\\\\n", highCOf);
-fprintf(ff,"$CentralFreq$ & %g \\\\\n", centralFreq);
-fprintf(ff,"$Z_{I}$ & %g \\\\\n", Zip);
-fprintf(ff,"$Z_{O}$ & %g \\\\\n", Zop);
-fprintf(ff,"$Gain$ & %g \\\\\n", Gainp);
-fprintf(ff,"$Gain\\ (dB)$ & %g \\\\ \\bottomrule\n", Gainp_db);
-fprintf(ff,"\\end{tabular}");
-fclose(ff);
-
-
-
-ff = fopen("tab-line1.tex","w");
-fprintf(ff,"$LowFreq$ & %g \n", lowCOf);
-fclose(ff);
-
-ff = fopen("tab-line2.tex","w");
-fprintf(ff,"$HighFreq$ & %g \n", highCOf);
-fclose(ff);
-
-ff = fopen("tab-line3.tex","w");
-fprintf(ff,"$CentralFreq$ & %g \n", centralFreq);
-fclose(ff);
-
-ff = fopen("tab-line4.tex","w");
-fprintf(ff,"$Z_{I}$ & %g \n", Zip);
-fclose(ff);
-
-ff = fopen("tab-line5.tex","w");
-fprintf(ff,"$Z_{O}$ & %g \n", Zop);
-fclose(ff);
-
-ff = fopen("tab-line6.tex","w");
-fprintf(ff,"$Gain$ & %g \n", Gainp);
-fclose(ff);
-
-ff = fopen("tab-line7.tex","w");
-fprintf(ff,"$Gain\\ (dB)$ & %g \n", Gainp_db);
-fclose(ff);

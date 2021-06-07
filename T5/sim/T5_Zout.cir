@@ -53,21 +53,18 @@ Vin vin 0 0
 
 X1 in_p inv_in vcc vee out uA741
 
-* non-inv +
 C1 vin in_p 220n
 R1 in_p 0 1k
 
-* inv -
 R3 inv_in r3b 100k
 R3b r3b out 100k
 R3c r3b out 100k
 
 R4 inv_in 0 1k
 
-* load
 R2 out vo 1k
 C2 vo 0 110n
-Vout vo 0 0 ac 1.0 sin(0 700m 1k)
+Vout vo 0 0 ac 1.0 sin(0 10m 1k)
 
 .op
 .end
@@ -84,18 +81,8 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
+ac dec 10 10 100MEG
 
-* frequency analysis
-ac dec 10 10 100k
-*plot vdb(out)
-*plot vp(out)
-*hardcopy lab-vo1f.ps vdb(vo)
-
-echo ""
-echo "*****************"
-echo "* impedance ohm *"
-echo "*****************"
-*input impedance in ohm
 print abs(v(vo)[20]/vout#branch[20]/(-1))
 
 
@@ -103,14 +90,7 @@ let Zo=v(vo)[20]/vout#branch[20]/(-1)
 let real=Re(Zo)
 let imag=Im(Zo)
 let absl=abs(Zo)
-echo "outputZ_TAB"
-echo "Zo = $&real + $&imag j"
-echo "$|$\ Zo $|$\ = $&absl"
-echo "outputZ_END"
 
-echo "zout_TAB"
-echo "$&absl"
-echo "zout_END"
-
+print Zo >results2.txt
 quit
 .endc 
