@@ -2,42 +2,36 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-In this laboratory we designed and adapted the structure of an audio amplifier circuit.
+In this laboratory we dimensioned and implemented a BandPass Filter (BPF) using an OP-AMP.
 
 We can now compare the obtained results by theory and by simulation:
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|l|c|}
+    \begin{tabular}{|c|c|c|}
     \hline
-    {\bf Parameter} & {\bf Value} \\ 
+    {\bf Parameter} & {\bf Theoretical Value}& {\bf Simulation Value}\\
     \hline\hline
-    Total: & \\ \hline
-      Voltage Gain ($\frac{V_{o}}{V_{i}}$)  &  4.9543e+01 \\
+      Low Frequency [Hz] &  & \\
     \hline
-    Input Impedance & 7.983355e+02 \\
+    High Frequency [Hz] &  & \\
     \hline
-    Output Impedance & 6.567979e+00 \\\hline
+   Central Frequency [Hz] &  & \\
+   \hline
+     $Z{input}$ &  & \\
+    \hline
+     $Z{output}$ &  & \\
+    \hline
+      Gain [db] &  & \\
+    \hline
     \end{tabular}
-    \caption{Values for gain and impedances in simulation.}
+    \caption{Comparison of the theoretical and simulation values.}
     \label{tab:values}
 \end{table}
 
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|l|c|}
-    \hline
-    {\bf Element } & {\bf Value} \\
-    \hline \hline
-    Total: & \\ \hline
-    Voltage Gain ($\frac{V_{o}}{V_{i}}$)  & 91.805 \\ \hline
-    Input Impedance & 843.98 \\ \hline
-    Output Impedance  & 3.3993 \\ \hline
-    \end{tabular}
-    \caption{Values for gain and impedances in theoretical.}
-    \label{tab:sim1}
-\end{table}
+Contrary to our goal for the laboratory, there are some clear differences between the results. This could be due to the model applied in Ngspice being much more realistic as well as its parameters being more complex than the one analysed in the theoretical part or the fact that the components of the circuit, specially the OP-AMP, are not linear. 
+Despite all of this, we are satisfied with our results and we consider the model used to be valid.
 
-There are some clear differences between the results, which are main due to the transistor model apllied in Ngspice is much more realistic and complex than the model apllied theoretically. Considering this, the results are quite satisfactory.
 
-Final merit obtained was 2484.9 (Ngspice). 
+Final merit obtained was ?? (Ngspice)
+

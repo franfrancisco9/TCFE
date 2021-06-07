@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.5.19)  5 JUN 2021 20:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.3.14)  7 JUN 2021 15:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -44,9 +44,9 @@ File: babel.def 2020/02/14 3.40 Babel common definitions
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
 Package babel Info: \l@australian = using hyphenrules for ukenglish
-(babel)             (\language71) on input line 105.
+(babel)             (\language75) on input line 105.
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
-(babel)             (\language71) on input line 108.
+(babel)             (\language75) on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/notoccite/notoccite.sty
 Package: notoccite 2000/07/20
@@ -739,7 +739,11 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@zref@counter=\count322
 Package zref Info: New property: mdf@pagevalue on input line 895.
 )
-No file report.aux.
+(./report.aux
+
+LaTeX Warning: Label `tab:values' multiply defined.
+
+)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 140.
@@ -760,7 +764,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
 LaTeX Font Info:    ... okay on input line 140.
 LaTeX Font Info:    Trying to load font information for T1+phv on input line 14
 0.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 Package caption Info: Begin \AtBeginDocument code.
@@ -873,13 +877,14 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 140.
 LaTeX Info: Redefining \pageref on input line 140.
 LaTeX Info: Redefining \nameref on input line 140.
+
+(./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
 40.
-
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
@@ -933,7 +938,7 @@ Package microtype Info: Loading generic protrusion settings for font family
  (./frontcover.tex
 Package pdftex.def Info: Option `bb' equivalent to `viewport' with pdftex drive
 r on input line 15.
-<../../figlib/IST_A_CMYK_POS.pdf, id=4, 845.0471pt x 597.51233pt>
+<../../figlib/IST_A_CMYK_POS.pdf, id=20, 845.0471pt x 597.51233pt>
 File: ../../figlib/IST_A_CMYK_POS.pdf Graphic file (type pdf)
 <use ../../figlib/IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: ../../figlib/IST_A_CMYK_POS.pdf  used on input line 15
@@ -942,29 +947,22 @@ Package pdftex.def Info: ../../figlib/IST_A_CMYK_POS.pdf  used on input line 15
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-))
+)) (./report.toc)
 \tf@toc=\write4
 \openout4 = `report.toc'.
 
- (./intro.tex
-[1
+
+(./intro.tex [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../../figlib/IST_A_CMYK_PO
 S.pdf>]
-
-LaTeX Warning: Reference `tab:restrictions' on page 2 undefined on input line 7
-.
-
-<DesenhoT5.pdf, id=30, 845.04686pt x 597.50786pt>
+<DesenhoT5.pdf, id=51, 845.04686pt x 597.50786pt>
 File: DesenhoT5.pdf Graphic file (type pdf)
 <use DesenhoT5.pdf>
 Package pdftex.def Info: DesenhoT5.pdf  used on input line 34.
 (pdftex.def)             Requested size: 845.0448pt x 597.5064pt.
-) (./simulation.tex [2 <./DesenhoT5.pdf>]
-
-LaTeX Warning: Reference `tab:sim1' on page 3 undefined on input line 12.
-
-) (./analysis.tex [3]
+) (./simulation.tex [2 <./DesenhoT5.pdf>])
+(./analysis.tex [3]
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-34.def
 File: uni-34.def 2013/05/13 UCS: Unicode data U+2200..U+22FF
 )
@@ -972,94 +970,43 @@ File: DesenhoT5.pdf Graphic file (type pdf)
 <use DesenhoT5.pdf>
 Package pdftex.def Info: DesenhoT5.pdf  used on input line 8.
 (pdftex.def)             Requested size: 432.48051pt x 305.79169pt.
-
-
-LaTeX Warning: Reference `fig:DesenhoT5' on page 4 undefined on input line 13.
-
-
-LaTeX Warning: Reference `tab:values' on page 4 undefined on input line 15.
-
-
-LaTeX Warning: Reference `eq:f1' on page 4 undefined on input line 15.
-
-[4]
-! Undefined control sequence.
-l.53 |Z_input| = |\infity
-                          \parallelsum Z_{C_1} + R_1| = |Z_{C_1} + R1|\\
-? 
-! Undefined control sequence.
-l.53 |Z_input| = |\infity \parallelsum
-                                       Z_{C_1} + R_1| = |Z_{C_1} + R1|\\
-? 
-! Undefined control sequence.
-l.54 |Z_output| = |Z_{C_2} \parallelsum
-                                        (0 \parallelsum R2 + R3)| = |Z_{C_2}...
-
-? 
-! Undefined control sequence.
-l.54 ...t| = |Z_{C_2} \parallelsum (0 \parallelsum
-                                                   R2 + R3)| = |Z_{C_2} \par...
-
-? 
-! Undefined control sequence.
-l.54 ...allelsum R2 + R3)| = |Z_{C_2} \parallelsum
-                                                   R2|\\
-? 
-
-! LaTeX Error: File `??' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \includegraphics[width=0.8\linewidth]{??}
-                                              
-? 
-) (./conclusion.tex [5])
+ [4])
+(./conclusion.tex [5])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 218.
  [6]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
  (./report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 78804715D52F81A7EBD28181086D3301;209.
 
 
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  78804715D52F81A7EBD28181086D3301;209.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 19206 strings out of 481239
- 333404 string characters out of 5920377
- 736689 words of memory out of 5000000
- 34038 multiletter control sequences out of 15000+600000
- 573203 words of font info for 81 fonts, out of 8000000 for 9000
+ 19187 strings out of 481239
+ 333351 string characters out of 5920377
+ 737674 words of memory out of 5000000
+ 34028 multiletter control sequences out of 15000+600000
+ 573078 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,11n,79p,925b,750s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
 hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/typ
-e1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr
-/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/publ
-ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on report.pdf (6 pages, 304132 bytes).
+e1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/publ
+ic/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/tex
+mf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic
+/uhvr8a.pfb>
+Output written on report.pdf (6 pages, 300928 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 26 named destinations out of 1000 (max. 500000)
- 14859 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 141 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 14891 words of extra memory for PDF output out of 17280 (max. 10000000)
 

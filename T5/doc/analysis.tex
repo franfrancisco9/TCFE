@@ -50,9 +50,13 @@ Here we have the table for the values of the gain, input and output impedances c
 
 
 \begin{equation}
-|Z_input| = |\infity \parallelsum Z_{C_1} + R_1| = |Z_{C_1} + R1|\\
-|Z_output| = |Z_{C_2} \parallelsum (0 \parallelsum R2 + R3)| = |Z_{C_2} \parallelsum R2|\\
-\label{eq:impendances}
+|Z_input| = |\infty // Z_{C_1} + R_1| = |Z_{C_1} + R1|
+\label{eq:impendances1}
+\end{equation}
+
+\begin{equation}
+|Z_output| = |Z_{C_2} // (0 // R2 + R3)| = |Z_{C_2} // R2|
+\label{eq:impendances2}
 \end{equation}
 
 \begin{table}[h]
@@ -71,12 +75,12 @@ Here we have the table for the values of the gain, input and output impedances c
 
 Finally, we can obtain the plot for the frequency response $V_o$(f)/$V_i$(f) using the incremental circuit, solving the circuit for a frequency vector in log scale with 10 points per decade, from 10Hz to 100MHz.
 
-\begin{figure}[!ht] \centering
-\caption{Frequency response $V_o$(f)/$V_i$(f)}
-\squeezeup  
-\includegraphics[width=0.8\linewidth]{??}
-\label{fig:theoretical}
-\end{figure}
+%%\begin{figure}[!ht] \centering
+%%\caption{Frequency response $V_o$(f)/$V_i$(f)}
+%\squeezeup  
+%\includegraphics[width=0.8\linewidth]{??}
+%\label{fig:theoretical}
+%\end{figure}
 
 
   
