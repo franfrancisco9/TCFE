@@ -12,22 +12,24 @@ and Z o = 0), resulting in the following equation
 
 In this section we will discuss the theoretical analysis of our circuit, represented in figure \ref{fig:DesenhoT5}. The value for the central frequency is 1000Hz and the gain at the central frequency is 40db throughout the calculations. The ideal op-amp model is used so that $Z_input$ is infinite and $Z_ouput$ is null.
 
-The values for the resistors and capacitors used are in table \ref{tab:values}. The first part of the circuit composed of $R_1$ and $C_1$ form the high-pass filter. It passes all frequencies above the value from equation ~\ref{eq:f1}. The signal is then amplified by the op amp by a gain proportional to resistors R3 and R4 according to the following equation. This means the gain is equal to ??.
+The values for the resistors and capacitors used are in table \ref{tab:values}. The first part of the circuit composed of $R_1$ and $C_1$ form the high-pass filter. It passes all frequencies above the value from equation ~\ref{eq:f1}. The signal is then amplified by the op amp by a gain proportional to resistors R3 and R4 according to the following equation. This means the gain is equal to 40.037 dB.
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|c|}
     \hline
     {\bf Symbol} & {\bf Value} \\ \hline
-    $R_{1}$ & $\Omega$ \\ \hline
-    $R_{2}$ & $\Omega$ \\ \hline
-    $R_{3}$ & $\Omega$  \\ \hline
-    $R_{4}$ & $\Omega$\\ \hline
-    $C_{1}$ & $\Omega$\\ \hline
-    $C_{2}$ & $\Omega$\\ \hline
+    $R_{1}$ & $0.9k\Omega$ \\ \hline
+    $R_{2}$ & $0.9k\Omega$ \\ \hline
+    $R_{3}$ & $160k\Omega$  \\ \hline
+    $R_{4}$ & $1k\Omega$\\ \hline
+    $C_{1}$ & $220nF$\\ \hline
+    $C_{2}$ & $132.5nF$\\ \hline
     \end{tabular}
     \caption{Values for theoretical analysis}
     \label{tab:values}
 \end{table}
+
+Where $R1$ and $R2$ are the equivalent resistor of one 10k$\Omega$ resistor and one 1k$\Omega$ resistor in parallel, $R3$ is the equivalent resistor of two 100k$\Omega$ resistors in parallel which are in series with another 100k$\Omega$ and 10k$\Omega$ resistors and $C2$ is the equivalent capacitor of three 1mF capacitors and one 220nF capacitor in series.
 
 \begin{equation}
   Gain = 1+ \frac{R_3}{R_4},
@@ -64,9 +66,9 @@ Here we have the table for the values of the gain, input and output impedances c
     \begin{tabular}{|l|c|}
     \hline
     {\bf Symbol} & {\bf Value} \\ \hline
-    $Gain$ & ?? \\ \hline
-    $Z_{input}$ & ?? \\ \hline
-    $Z_{output}$ & ??  \\ \hline
+    $Gain$ & 40.037 dB\\ \hline
+    $Z_{input}$ & 1154.7\\ \hline
+    $Z_{output}$ &   720.25\\ \hline
 
     \end{tabular}
     \caption{Values for the gain, input and output impedances}
