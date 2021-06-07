@@ -1,2 +1,2 @@
-gaindeviation = 2.295000e-02
-centralfreqdev = 1.863015e+01
+gaindevlin = -5.80710e-01
+f_deviation = 8.101943e+00

@@ -56,14 +56,14 @@ Vin vin 0 0 ac 1.0 sin(0 10m 1k)
 X1 in_p inv_in vcc vee out uA741
 
 C1 vin in_p 220n
-R1 in_p 0 1k
+R1 in_p 0 0.9k
 
-R3 inv_in out 150k
+R3 inv_in out 160k
 
 R4 inv_in 0 1k
 
-R2 out vo 1k
-C2 vo 0 110n
+R2 out vo 0.9k
+C2 vo 0 132.5n
 
 .op
 .end

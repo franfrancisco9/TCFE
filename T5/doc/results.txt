@@ -1,4 +1,0 @@
-gain_deviation = 2.295000e-02
-avgcof = 9.813699e+02
-f_deviation = 1.863015e+01
-zin = 9.999790e+02,-7.23583e+02

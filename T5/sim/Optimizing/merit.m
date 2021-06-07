@@ -3,12 +3,12 @@ pkg load symbolic;
 format short e
 
 C1 = 220e-9;
-R1 = 1e3;
+R1 = 11e3;
 C2 = 220e-9;
-C3 = 220e-9;
-R2 = 1e3;
+C3 = 3e-6;
+R2 = 11e3;
 R3 = 100e3;
-R3b = 100e3;
+R3b = 110e3;
 R3c = 100e3;
 R4 = 1e3;
 
@@ -20,10 +20,7 @@ dataf = fopen('results.txt','r');
 DATA = fscanf(dataf,'%*s = %f')
 fclose(dataf);
 
-gaindevdb = DATA(1);
-freqdevdb = DATA(2);
+gaindev = DATA(1);
+freqdev = DATA(2);
 
-gaindev = 10 ^ (gaindevdb/20);
-freqdev = 10 ^ (freqdevdb/20);
-
-MERIT = 1/(cost*(gaindev+freqdev + 1e-6))
+MERIT = 1/(cost*(abs(gaindev)+abs(freqdev) + 1e-6))
